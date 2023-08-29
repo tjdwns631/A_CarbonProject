@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+	<!-- tiles 적용 -->
+	<definition name="layouts-tiles" template="/WEB-INF/tiles/tiles-layout.jsp">
+		<put-attribute name="sidebar" value="/WEB-INF/tiles/sidebar.jsp" />
+		<put-attribute name="body" value="" />
+	</definition>
+
+	<!-- tiles 미적용 -->
+	<definition name="no-tiles" template="/WEB-INF/tiles/empty.jsp">
+		<put-attribute name="notemple" value="" />
+	</definition>
+	
+	<!-- tiles 미적용 원하는 폴더 먼저 앞쪽에 배치 -->
+	<!-- <definition name="board/*" extends="no-tiles"> definition name은 controller에서 return 해주는 값을 매칭
+		<put-attribute name="notemple" value="/WEB-INF/jsp/board/{1}.jsp" />
+	</definition> -->
+		
+	<!-- tiles 적용 -->
+	<definition name="*" extends="layouts-tiles"> <!-- definition name은 controller에서 return 해주는 값을 매칭 시킴 주소창 경로 확인 -->
+		<put-attribute name="body" value="/WEB-INF/jsp/{1}.jsp" />
+	</definition>
+	<definition name="*/*" extends="layouts-tiles">
+		<put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}.jsp" />
+	</definition>
+
+	<!-- tiles 미적용 -->
+	<definition name="login" extends="no-tiles">
+		<put-attribute name="notemple" value="/WEB-INF/jsp/login.jsp" />
+	</definition>
+	<definition name="test_layout" extends="no-tiles">
+		<put-attribute name="notemple" value="/WEB-INF/jsp/test_layout.jsp" />
+	</definition>
+ 	<definition name="map/map_test" extends="no-tiles"> <!-- definition name은 controller에서 return 해주는 값을 매칭 -->
+		<put-attribute name="notemple" value="/WEB-INF/jsp/map/map_test.jsp" />
+	</definition>
+	<definition name="error" extends="no-tiles">
+		<put-attribute name="notemple" value="${pageContext.request.contextPath}/common/error.jsp" />
+	</definition>
+
+</tiles-definitions>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="carbon.mapper.CommentMapper">
+
+	<resultMap type="carbon.dto.MemberDto" id="MemberDto">
+		<id column="MEMBER_IDX" property="member_idx" />
+		<result column="MEMBER_ID" property="member_id" />
+		<result column="MEMBER_PWD" property="member_pwd" />			
+		<result column="MEMBER_NAME" property="member_name" />
+	</resultMap>
+	
+
+	<resultMap type="carbon.dto.CommentDto" id="CommentDto">
+		<id column="CMT_IDX" property="cmt_idx" />
+		<result column="LEVEL" property="level" />
+		<result column="MEMBER_IDX" property="member_idx" />
+		<result column="CMT_CONTENT" property="cmt_content" />
+		<result column="BOARD_IDX" property="board_idx" />
+		<result column="CMT_UPIDX" property="cmt_upidx" />
+		<result column="CMT_DATE" property="cmt_date" />
+		<collection property="memberdto" resultMap="MemberDto" />
+	</resultMap>
+	
+	<!-- 해당 글 댓글 리스트 -->
+	<select id="comment_list" resultMap="CommentDto">
+	
+		select	list.level as level, list.cmt_idx as cmt_idx, coalesce(list.cmt_upidx,0) as cmt_upidx, list.board_idx as board_idx, list.cmt_content as cmt_content, list.member_idx as member_idx, a.member_name member_name, list.cmt_date as cmt_date,
+				list.sort
+		from(
+				with recursive cte as(
+										select 1 as level, cmt.cmt_idx, cmt.cmt_upidx, concat('',cmt.cmt_idx) as sort, cmt.board_idx, cmt.cmt_content, cmt.member_idx, cmt.cmt_date
+										from tb_board_comment cmt
+										where 1=1
+										and cmt.cmt_upidx = 0
+										
+										union all
+										
+										select cte.level+1 as level, cmt.cmt_idx, cmt.cmt_upidx, concat(cte.sort,',',cmt.cmt_idx) as sort, cmt.board_idx, cmt.cmt_content, cmt.member_idx, cmt.cmt_date
+										from tb_board_comment cmt, cte
+										where 1=1
+										and cte.cmt_idx = cmt.cmt_upidx <!-- idx와 upidx 같은 것만 조회 -->
+									 ) 
+				select *,SPLIT_PART(cte.sort,',',1) from cte <!-- 추가 -->
+				where cte.board_idx = #{board_idx}
+				order by CAST(SPLIT_PART(cte.sort,',',1) as integer), cte.sort  <!-- cte.sort -->
+		) list  join tb_member a on a.member_idx = list.member_idx
+	</select>
+	
+	<!-- with recursive cte(level, cmt_idx, cmt_upidx, sort, board_idx, cmt_content, member_idx, cmt_date, PATH, CYCLE) as(
+	
+	select 1 as level, cmt.cmt_idx, cmt.cmt_upidx, concat('',cmt.cmt_idx) as sort, cmt.board_idx, cmt.cmt_content, cmt.member_idx, cmt.cmt_date
+	,0,ARRAY[cmt.cmt_idx],false
+	from tb_board_comment cmt
+	where cmt.cmt_upidx = 0
+
+	union all
+
+	select cte.level+1 as level, cmt.cmt_idx, cmt.cmt_upidx, concat(cte.sort,',',cmt.cmt_idx) as sort, cmt.board_idx, cmt.cmt_content, cmt.member_idx, cmt.cmt_date
+	, PATH || cmt.cmt_idx , cmt.cmt_idx = ANY(cte.PATH)
+	from tb_board_comment cmt, cte
+	where cte.cmt_idx = cmtt.cmt_upidx and not cycle
+									 ) 
+select level, cmt_idx, cmt_upidx, sort,b board_idx, cmt_content, member_idx, cmt_date, PATH
+from cte
+where cte.board_idx = 13
+order by PATH -->
+	
+	<!-- 해당 글 댓글 총 갯수 -->
+	<select id="comment_count" resultType="Integer">
+		select count(*)
+		from tb_board_comment
+		where board_idx = #{board_idx}
+	</select>
+	
+	<!-- 댓글 등록 -->
+	<insert id="comment_insert" parameterType="carbon.dto.CommentDto" useGeneratedKeys="true" keyProperty="cmt_idx" keyColumn="cmt_idx">
+		INSERT INTO tb_board_comment (member_idx, cmt_content, board_idx, cmt_upidx, cmt_date)
+		VALUES (#{member_idx}, #{cmt_content}, #{board_idx}, #{cmt_upidx}, #{cmt_date})
+	</insert>
+	
+	<!-- 등록한 댓글 정보 조회 -->
+<!-- 	<select id="comment_count" resultMap="CommentDto">
+		select a.*, b.member_name
+		from tb_board_comment a JOIN tb_member b
+		ON a.member_idx = b.member_idx
+		where board_idx = #{board_idx} AND cmt_idx =
+	</select> -->
+</mapper>

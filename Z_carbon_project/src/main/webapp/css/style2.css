@@ -1,0 +1,122 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css");
+/*css 초기화*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+    box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+button {background-color: unset; border: none; color: #fff;} 
+
+canvas {width: 100% !important;}
+/*디자인 수정 시작*/
+* {font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; box-sizing: border-box;}
+*::after, *::before {box-sizing: border-box;}
+
+body {width:100%; height:100vh; background: url(../images/bg.png) 0% 0% / cover; color: #fff;}
+#container {display: flex; width: 100%; height:100%; overflow: hidden;}
+
+/*왼쪽 사이드 메뉴*/
+aside {min-width:250px; height:100%; display: flex; flex-direction: column; transition:width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, background-color 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+; background: transparent; overflow-y: auto;}
+aside .top {padding: 20px; text-align: center; background: transparent;}
+aside .top h1 a {display: block; display: flex; align-items: center; justify-content: center;}
+aside .top h1 a img {width: auto; height:30px;}
+hr.nav_line {flex-shrink: 0;
+    border-top: 0px solid rgba(0, 0, 0, 0.08);
+    border-right: 0px solid rgba(0, 0, 0, 0.08);
+    border-left: 0px solid rgba(0, 0, 0, 0.08);
+    height: 0.0625rem;
+    margin: 5px 0px;
+    border-bottom: none;
+    opacity: 0.25;
+    background-color: transparent;
+    background-image: linear-gradient(to right, rgba(0, 117, 255, 0), rgb(255, 255, 255), rgba(255, 255, 255, 0)) !important;}
+.nav_list.depth1 {display:flex; flex-direction:column; justify-content: center; align-items: center; position: relative; width: 85%; padding:5px 10px; border-radius:15px; cursor: pointer; white-space: nowrap; margin:5px auto;}
+.nav_list.depth1.active {background:rgba(255, 255, 255, 0.1);}
+.nav_list .depth1_box {display: flex; width: 100%; align-items: center;}
+.nav_list .nav_icon {background-color: rgb(0,117,255); border-radius:14px; margin:0 10px; display: grid; place-items:center; width:40px; height:40px;}
+.nav_list.depth1 .fa-chevron-down {transition:all 0.1s;}
+.nav_list.depth1.reverse .fa-chevron-down {transform:scaleY(-1);}
+.nav_list .nav_icon i {font-size: 15px;}
+.nav_list .nav_name {margin-right: auto; font-size: 16px;}
+
+.depth2 {width:100%; text-indent:60px; background-color:#000; border-radius: 25px;}
+.depth2 .nav_list {line-height: 40px;}
+
+/*계정 account profile*/
+aside .bot {margin-top: auto;}
+aside .bot .account, aside .bot .logout {width:220px; margin:0 auto;}
+aside .bot .account {margin-bottom:20px; display: flex; flex-direction: column; overflow-wrap: break-word; overflow: hidden; background-position: center; border-radius: 25px; padding: 10px; background-image: url(../images/account_bg.png); position: relative;}
+aside .bot .account .user_icon {width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background-color: #fff; border-radius: 14px; margin:10px 0 20px;}
+aside .bot .account .user_icon i {color:rgb(0,117,255); font-size: 24px;}
+aside .bot .account .account_name {margin-bottom: 10px; font-weight:500;}
+aside .bot .account .account_grade {margin-bottom: 20px; font-size: 16px;}
+aside .bot .account .account_edit {width: 100%; background-color: rgba(0,0, 0, 0.6); line-height: 40px; border-radius: 25px; transition: font-size 0.1s; font-weight: 600; cursor: pointer;}
+aside .bot .account .account_edit:hover {font-size:18px;}
+aside .bot .logout {margin-bottom:50px; background-image: linear-gradient(310deg, rgb(0, 117, 255), rgb(33, 212, 253)); line-height: 40px; display: block; border-radius: 15px; font-weight: 600; transition: font-size 0.1s; cursor: pointer;}
+aside .bot .logout:hover {font-size:18px;}
+/*main의 그리드 디자인*/
+main {padding: 50px; max-height:100%; width: -webkit-fill-available; align-items: stretch;display: grid; justify-content: inherit; gap: 20px;
+	grid-template-areas:
+	"mini_box_wrap  mini_box_wrap  mini_box_wrap  mini_box_wrap"
+	"year_total_E   year_total_E   stack_big      stack_big"
+	"year_total_E   year_total_E   stack_big      stack_big"
+	"r_inven        r_inven        r_inven        r_inven"
+	"r_inven        r_inven        r_inven        r_inven"
+	;}
+/*main의 section들 다 같은 기본 스타일*/
+section.graph_cont {display: flex; position: relative; padding: 20px; background: linear-gradient(127.09deg, rgba(6, 11, 40, 0.94) 19.41%, rgba(10, 14, 35, 0.49) 76.65%) border-box; border-radius: 25px; flex-wrap: wrap; flex-direction: column;}
+.mini_cont {width:100%; max-height:100px; position: relative; display: flex; justify-content: space-between; column-gap:20px; flex-wrap: wrap;}
+.mini_cont .mini_box {display: flex; flex-grow: 1; padding: 20px; position: relative; overflow-wrap: break-word; overflow: hidden; background: linear-gradient(127.09deg, rgba(6, 11, 40, 0.94) 19.41%, rgba(10, 14, 35, 0.49) 76.65%) border-box; border-radius: 25px; align-items: center;}
+.mini_box .text .title {font-size: 16px; color: #bfbfbf; margin-bottom:10px;}
+.mini_box .text .num {font-size: 40px; font-weight: 700;}
+.mini_box .icon {width:50px; height:50px; display: flex; align-items: center; justify-content: center; border-radius: 15px; background-color: #0075ff; margin-left: auto;}
+
+/*그리드 디자인*/
+section.mini_cont {grid-area:mini_box_wrap;}
+.year_total_emission {grid-area: year_total_E; align-items:flex-start;}
+.stack_line_graph {grid-area: stack_big;}
+.reduction_inventory {grid-area:r_inven;}
+
+.graph_title {width: 100%; line-height:40px; height: 40px;}
+.chart_box {width:100%;}
+.inven_wrap {display: flex; justify-content: space-between;}

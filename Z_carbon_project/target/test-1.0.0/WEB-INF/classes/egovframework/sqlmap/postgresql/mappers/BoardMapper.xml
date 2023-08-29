@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="carbon.mapper.BoardMapper">
+
+	<resultMap type="carbon.dto.MemberDto" id="MemberDto">
+		<id column="MEMBER_IDX" property="member_idx" />
+		<result column="MEMBER_ID" property="member_id" />
+		<result column="MEMBER_PWD" property="member_pwd" />			
+		<result column="MEMBER_NAME" property="member_name" />
+	</resultMap>
+	
+	<resultMap type="carbon.dto.Tb_categoryDto" id="Tb_categoryDto">
+		<id column="CATE_IDX" property="cate_idx" />
+		<result column="CATE_NAME" property="cate_name" />
+	</resultMap>
+	
+	<resultMap type="carbon.dto.BoardDto" id="BoardDto">
+		<id column="BOARD_IDX" property="board_idx" />
+		<result column="BOARD_TITLE" property="board_title" />
+		<result column="BOARD_CONTENT" property="board_content" />
+		<result column="CATE_IDX" property="cate_idx" />
+		<result column="BOARD_PWD" property="board_pwd" />
+		<result column="MEMBER_IDX" property="member_idx" />
+		<result column="BOARD_HITS" property="board_hits" />
+		<result column="BOARD_DATE" property="board_date" />
+		<result column="BOARD_UPD" property="board_upd" />
+		<result column="COUNT" property="count" />
+		<collection property="memberdto" resultMap="MemberDto" />
+		<collection property="tb_categorydto" resultMap="Tb_categoryDto" />
+	</resultMap>
+	
+	<!-- 게시물 리스트 -->
+	<select id="board_list"  resultMap="BoardDto">
+		SELECT a.board_idx board_idx, a.board_title board_title, a.cate_idx cate_idx, b.cate_name cate_name, a.member_idx member_idx,
+		 c.member_name member_name, a.board_hits board_hits, a.board_date board_date,
+		 (select count(*) from tb_board_comment where board_idx = a.board_idx) as count
+		FROM tb_board a JOIN tb_category b ON a.cate_idx = b.cate_idx
+		JOIN tb_member c ON c.member_idx = a.member_idx
+		
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="type=='board_title' and keyword != null and keyword != '' ">
+				AND a.board_title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type=='member_name' and keyword != null and keyword != '' ">
+				AND c.member_name like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim>
+		ORDER BY a.board_idx DESC
+		LIMIT #{listSize} OFFSET #{startList}
+	</select>
+	
+	<!-- 총 게시물 수 -->
+	<select id="board_listcnt" resultType="Integer"> 
+		SELECT count(*)
+		FROM tb_board a JOIN tb_category b ON a.cate_idx = b.cate_idx
+		JOIN tb_member c ON c.member_idx = a.member_idx
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="type=='board_title' and keyword != null and keyword != '' ">
+				AND a.board_title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type=='member_name' and keyword != null and keyword != '' ">
+				AND c.member_name like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim>
+	</select>
+	
+	<!-- 게시물 조회 -->
+	<select id="board_getlist"  resultMap="BoardDto">
+		SELECT a.board_idx board_idx, a.board_title board_title, a.board_content board_content, a.cate_idx cate_idx, b.cate_name cate_name, a.member_idx member_idx,
+		 c.member_name member_name, a.board_hits board_hits, a.board_date board_date
+		FROM tb_board a JOIN tb_category b ON a.cate_idx = b.cate_idx
+		JOIN tb_member c ON c.member_idx = a.member_idx
+		WHERE a.board_idx = ${board_idx}
+	</select>
+	
+	<!-- 게시물 등록 -->
+	<insert id="board_insert" parameterType="carbon.dto.BoardDto">
+		INSERT INTO tb_board (board_title,board_content, cate_idx, board_pwd, member_idx, board_hits, board_date)
+		VALUES (#{board_title}, #{board_content}, #{cate_idx}, #{board_pwd}, #{member_idx}, 0, #{board_date})
+	</insert>
+	<!-- 조회수 증가 -->
+	<insert id="board_hitsupd" parameterType="carbon.dto.BoardDto">
+		UPDATE tb_board SET board_hits = board_hits + 1 where board_idx = ${board_idx}
+	</insert>
+	
+		<!-- 댓글 조회 -->
+<!-- 	<select id="board_commentlist"  resultType="carbon.dto.CommentDto">
+		SELECT * FROM tb_board_comment 
+		WHERE board_idx = ${board_idx}
+	</select>
+ -->
+</mapper>
