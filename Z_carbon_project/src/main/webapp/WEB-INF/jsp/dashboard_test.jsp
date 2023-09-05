@@ -187,11 +187,6 @@
 		$("#areaChart").empty(); // 초기화 후 재생성
 		dashboard_linechart('areaChart');
 
-		$("#d_bar_chart").empty(); // 초기화 후 재생성
-		dashboard_d_barchart('d_bar_chart');
-
-		$("#pie").empty(); // 초기화 후 재생성
-		dashboard_pie_chart('pie');
 	})
 </script>
 </html>

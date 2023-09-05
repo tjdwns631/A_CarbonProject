@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="carbon.mapper.UploadDataMapper">
+
+	<select id="selectcate" parameterType="hashMap" resultType="carbon.dto.CategoryDto">
+		select  a.cate_nm as lev1, b.cate_nm as lev2, c.cate_nm as lev3, c.cate_sn as cate_sn
+		from comt_cbntr_category a join comt_cbntr_category b
+		on a.cate_sn = b.cate_upr_sn
+		join comt_cbntr_category c on b.cate_sn = c.cate_upr_sn
+		where a.cate_nm = #{arg0} and b.cate_nm = #{arg1} and c.cate_nm = #{arg2}
+	</select>
+	
+	<select id="cate" resultType="carbon.dto.TestDto">
+		select  * from comt_cbntr_category where cate_nm = #{inben}
+	</select>
+	
+	<!-- 댓글 등록 -->
+<!-- 	<insert id="comment_insert" parameterType="carbon.dto.CommentDto" useGeneratedKeys="true" keyProperty="cmt_idx" keyColumn="cmt_idx">
+		INSERT INTO tb_board_comment (member_idx, cmt_content, board_idx, cmt_upidx, cmt_date)
+		VALUES (#{member_idx}, #{cmt_content}, #{board_idx}, #{cmt_upidx}, #{cmt_date})
+	</insert> -->
+	
+
+</mapper>

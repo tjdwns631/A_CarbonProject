@@ -70,7 +70,7 @@
 		 c.member_name member_name, a.board_hits board_hits, a.board_date board_date
 		FROM tb_board a JOIN tb_category b ON a.cate_idx = b.cate_idx
 		JOIN tb_member c ON c.member_idx = a.member_idx
-		WHERE a.board_idx = ${board_idx}
+		WHERE a.board_idx = #{board_idx}
 	</select>
 	
 	<!-- 게시물 등록 -->
@@ -80,7 +80,7 @@
 	</insert>
 	<!-- 조회수 증가 -->
 	<insert id="board_hitsupd" parameterType="carbon.dto.BoardDto">
-		UPDATE tb_board SET board_hits = board_hits + 1 where board_idx = ${board_idx}
+		UPDATE tb_board SET board_hits = board_hits + 1 where board_idx = #{board_idx}
 	</insert>
 	
 		<!-- 댓글 조회 -->

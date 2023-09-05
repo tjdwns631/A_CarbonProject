@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="carbon.mapper.CarbonDataMapper">
+
+	<!-- 연도별 데이터 직접/간접 -->
+	<select id="SelectDatayear" resultType="carbon.dto.CbntrdataDto">
+		SELECT b3.cate_sn cate_sn_1, b3.cate_nm lev_1 , b2.cate_sn cate_sn_2, b2.cate_nm lev_2,b.data_date data_date ,sum(b.data_exha_val) data_val
+		FROM comt_cbntr_product a JOIN comt_cbntr_data b ON a.prdt_sn = b.prdt_sn
+		JOIN comt_cbntr_category c ON a.cate_sn = c.cate_sn
+		JOIN comt_cbntr_category b2 ON b2.cate_sn = c.cate_upr_sn
+		JOIN comt_cbntr_category b3 ON b3.cate_sn = b2.cate_upr_sn
+		WHERE b3.cate_sn = 1
+		GROUP BY b.data_date, b2.cate_sn, b3.cate_sn
+	</select>
+	
+		<!-- 연도별 데이터 스택 / 대분류 별 데이터  -->
+	<select id="SelectDataStack" resultType="carbon.dto.CbntrdataDto">
+	SELECT b3.cate_sn cate_sn_1, b3.cate_nm lev_1, b2.cate_sn cate_sn_2, b2.cate_nm lev_2, c.cate_sn cate_sn_3, c.cate_nm lev_3, b.data_date data_date, sum(b.data_exha_val) data_val
+	FROM comt_cbntr_product a JOIN comt_cbntr_data b ON a.prdt_sn = b.prdt_sn
+	JOIN comt_cbntr_category c ON a.cate_sn = c.cate_sn
+	JOIN comt_cbntr_category b2 ON b2.cate_sn = c.cate_upr_sn
+	JOIN comt_cbntr_category b3 ON b3.cate_sn = b2.cate_upr_sn
+	WHERE b3.cate_sn = 1 
+	GROUP BY b.data_date, b2.cate_sn, b3.cate_sn, c.cate_sn
+	ORDER BY c.cate_sn ASC
+	</select>
+
+	<!-- 대분류 카테고리 명칭 -->
+	<select id="categorynm" resultType="carbon.dto.CategoryDto">
+		SELECT distinct c.cate_nm, c.cate_sn
+		FROM comt_cbntr_product a JOIN comt_cbntr_data b ON a.prdt_sn = b.prdt_sn
+		JOIN comt_cbntr_category c ON a.cate_sn = c.cate_sn
+		JOIN comt_cbntr_category b2 ON b2.cate_sn = c.cate_upr_sn
+		JOIN comt_cbntr_category b3 ON b3.cate_sn = b2.cate_upr_sn
+		WHERE b3.cate_sn = 1
+		ORDER BY c.cate_sn ASC
+	</select>
+	
+	<!-- 댓글 등록 -->
+	<insert id="comment_insert" parameterType="carbon.dto.CommentDto" useGeneratedKeys="true" keyProperty="cmt_idx" keyColumn="cmt_idx">
+		INSERT INTO tb_board_comment (member_idx, cmt_content, board_idx, cmt_upidx, cmt_date)
+		VALUES (#{member_idx}, #{cmt_content}, #{board_idx}, #{cmt_upidx}, #{cmt_date})
+	</insert>
+	
+
+</mapper>

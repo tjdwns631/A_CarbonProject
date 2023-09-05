@@ -83,11 +83,12 @@
 	</section>
 	<script>
 		$(function() {
-			$("#dashboard_stacked_linechart").empty(); // 초기화 후 재생성
-			dashboard_stacked_linechart('dashboard_stacked_linechart');
 			
-			$("#barChart").empty(); // 초기화 후 재생성
-			dashboard_barchart('barChart');
+			// test code
+		
+			console.log("dahsboard 페이지");
+			dashboarddataList();
+			dashbarddataListstack();
 
 			$("#areaChart").empty(); // 초기화 후 재생성
 			dashboard_linechart('areaChart');
@@ -97,6 +98,7 @@
 
 			$("#pie").empty(); // 초기화 후 재생성
 			dashboard_pie_chart('pie');
+			
 		})
 		//aside 클릭시 토글
 		$('.depth2').hide();
@@ -104,6 +106,27 @@
 			$(this).children('.depth2').slideToggle();
 			$(this).toggleClass('reverse');
 		})
+
+		function dashboarddataList() { // 차트 
+			$.post('/dashbarddataList.do', {}, function(json) {
+				console.log(json)
+				
+				$("#barChart").empty(); // 연간 총 배출량 그래프
+				dashboard_barchart('barChart',json);
+				
+				$("#dashboard_stacked_linechart").empty(); // 초기화 후 재생성
+				dashboard_stacked_linechart('dashboard_stacked_linechart',json);
+				
+			}, "json");
+		}
+		
+		
+		function dashbarddataListstack() { //  
+			$.post('/dashbarddataListstack.do', {}, function(json) {
+				console.log(json)
+				
+			}, "json");
+		}
 	</script>
 </body>
 </html>

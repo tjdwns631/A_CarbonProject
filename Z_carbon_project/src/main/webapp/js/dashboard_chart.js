@@ -1,5 +1,5 @@
 
-function dashboard_stacked_linechart(area_id) {
+function dashboard_stacked_linechart(area_id, json) {
 	
 	var ctx = document.getElementById(area_id).getContext("2d");
 
@@ -30,43 +30,67 @@ function dashboard_stacked_linechart(area_id) {
 	const myChart = new Chart(ctx, {
 		type: 'line',
 		data: {
-			labels: xData,
+			labels: json.year,
 			datasets: [{
-				label: "Unavailable",
+				label: "에너지",
 				fill: true,
 				backgroundColor: colors.purple.fill,
 				pointBackgroundColor: colors.purple.stroke,
 				borderColor: colors.purple.stroke,
 				pointHighlightStroke: colors.purple.stroke,
 				borderCapStyle: 'butt',
-				data: unavailable,
+				data:  json.stack_data[0],
 
 			}, {
-				label: "Available for Existing",
+				label: "산업공정",
 				fill: true,
 				backgroundColor: colors.darkBlue.fill,
 				pointBackgroundColor: colors.darkBlue.stroke,
 				borderColor: colors.darkBlue.stroke,
 				pointHighlightStroke: colors.darkBlue.stroke,
 				borderCapStyle: 'butt',
-				data: availableForExisting,
+				data: json.stack_data[1],
 			}, {
-				label: "Available",
+				label: "농업",
 				fill: true,
 				backgroundColor: colors.green.fill,
 				pointBackgroundColor: colors.lightBlue.stroke,
 				borderColor: colors.lightBlue.stroke,
 				pointHighlightStroke: colors.lightBlue.stroke,
 				borderCapStyle: 'butt',
-				data: available,
+				data: json.stack_data[2],
 			}, {
-				label: "Logged In",
+				label: "LULUCF",
 				fill: true,
 				backgroundColor: colors.green.fill,
 				pointBackgroundColor: colors.green.stroke,
 				borderColor: colors.green.stroke,
 				pointHighlightStroke: colors.green.stroke,
-				data: loggedIn,
+				data: json.stack_data[3],
+			}, {
+				label: "폐기물",
+				fill: true,
+				backgroundColor: colors.green.fill,
+				pointBackgroundColor: colors.green.stroke,
+				borderColor: colors.green.stroke,
+				pointHighlightStroke: colors.green.stroke,
+				data: json.stack_data[4],
+			}, {
+				label: "전력",
+				fill: true,
+				backgroundColor: colors.green.fill,
+				pointBackgroundColor: colors.green.stroke,
+				borderColor: colors.green.stroke,
+				pointHighlightStroke: colors.green.stroke,
+				data: json.stack_data[5],
+			}, {
+				label: "폐기물(간접)",
+				fill: true,
+				backgroundColor: colors.green.fill,
+				pointBackgroundColor: colors.green.stroke,
+				borderColor: colors.green.stroke,
+				pointHighlightStroke: colors.green.stroke,
+				data: json.stack_data[6],
 			}]
 		},
 		options: {
@@ -151,7 +175,7 @@ function dashboard_linechart(area_id) { // 대시보드 첫번째 차트
 	});
 }
 
-function dashboard_barchart(area_id) { // 대시보드 2번째 차트
+function dashboard_barchart(area_id, data) { // 대시보드 2번째 차트
 
 	Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#858796';
@@ -160,10 +184,10 @@ function dashboard_barchart(area_id) { // 대시보드 2번째 차트
 	var myChart = new Chart(ctx, {
 		type: 'bar',
 		data: {
-			labels: ["2015년", "2016년", "2017년", "2018년", "2019년", "2020년"],
+			labels: data.year/*["2015년", "2016년", "2017년", "2018년", "2019년", "2020년"]*/,
 			datasets: [{
 				label: '직접배출',
-				data: [917254, 972529, 951253, 1064555, 1032352, 1032323],
+				data: data.data_val_2/*[917254, 972529, 951253, 1064555, 1032352, 1032323]*/,
 				backgroundColor: '#4f11d450',
 				borderColor: '#4f11d4',
 				borderWidth: 1,
@@ -171,7 +195,7 @@ function dashboard_barchart(area_id) { // 대시보드 2번째 차트
 				barPercentage: 0.5,
 			}, {
 				label: '간접배출',
-				data: [601254, 712529, 751253, 864555, 902352, 962323],
+				data: data.data_val_2/*[601254, 712529, 751253, 864555, 902352, 962323]*/,
 				backgroundColor: '#11d4b750',
 				borderColor: '#11d4b7',
 				borderWidth: 1,

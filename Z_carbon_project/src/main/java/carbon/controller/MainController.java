@@ -39,37 +39,6 @@ public class MainController {
 	public String despose_detail() {
 		return "despose_detail";
 	}
-	
-	/*
-	 * @RequestMapping(value = "/test.do") public String TilesTest(HttpSession
-	 * session) {
-	 * 
-	 * String name = (String) session.getAttribute("member_name");
-	 * 
-	 * ModelAndView mav = new ModelAndView();
-	 * 
-	 * mav.addObject("member_name", name);
-	 * 
-	 * return "test"; }
-	 */
-
-	@RequestMapping("/main.do")
-	public ModelAndView main() {
-
-		ModelAndView mav = new ModelAndView();
-
-		mav.setViewName("main");
-		mav.addObject("msg", "테스트 테스트");
-
-		System.out.println(mav);
-		
-		return mav;
-	}
-
-	@RequestMapping("/dash_dertail.do")
-	public String detail() {
-		return "dash_detail";
-	}
 
 	@ResponseBody
 	@RequestMapping("/memberAjax.do")
@@ -83,13 +52,5 @@ public class MainController {
 
 		return ajax;
 	}
-
-	@ResponseBody
-	@RequestMapping("/data.do")
-	public String data() {
-
-		String test = "ajax 테스트 성공";
-		return test;
-	}
-
+	
 }
