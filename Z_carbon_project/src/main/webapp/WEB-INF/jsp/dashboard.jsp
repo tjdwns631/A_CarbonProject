@@ -4,10 +4,47 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>김포 탄소중립 대시보드</title>
 </head>
 <body>
-	<!--맨 위 그래프없이 숫자 나열 미니 박스 4개 디자인-->
+	<!--연간 총 배출량-->
+	<section class="graph_cont year_total_emission">
+		<h3 class="graph_title">연간 총 배출량</h3>
+		<!--차트 넣는 곳-->
+		<div class="chart_box">
+			<canvas id="barChart"></canvas>
+		</div>
+	</section>
+	<!--서책임님이 말씀한 누적 라인그래프-->
+	<section class="graph_cont stack_line_graph">
+		<h3 class="graph_title">누적 라인그래프</h3>
+		<!--차트 넣는 곳-->
+		<div class="chart_box">
+			<canvas id="dashboard_stacked_linechart"></canvas>
+		</div>
+	</section>
+	<!--감축인벤토리 + 연도선택기능-->
+	<section class="graph_cont reduction_inventory">
+		<h3 class="graph_title" style="display:flex; align-items:center;">
+			감축 인벤토리
+			<!-- 연도 선택 select option -->
+			<div class="year_select">
+                <button class="label">연도 선택
+                	<i class="fa-solid fa-chevron-down" style="margin-left:16px; margin-bottom:4px;"></i>
+                </button>
+                <ul class="optionList">
+                    <li class="optionItem">2020년</li>
+                    <li class="optionItem">2021년</li>
+                    <li class="optionItem">2022년</li>
+                    <li class="optionItem">2023년</li>
+                </ul>
+            </div>
+		</h3>
+		<!-- 감축 인벤토리 항목들만 넣는 곳 -->
+		<div class="inven_wrap">
+		</div>
+	</section>
+		<!--맨 위 그래프없이 숫자 나열 미니 박스 4개 디자인-->
 	<section class="mini_cont">
 		<div class="mini_box">
 			<div class="text">
@@ -45,41 +82,6 @@
 				<img src="${pageContext.request.contextPath}/images/dispose_icon_indirect.png" alt="간접 배출량">
 			</div>
 		</div>
-	</section>
-	<!--연간 총 배출량-->
-	<section class="graph_cont year_total_emission">
-		<h3 class="graph_title">연간 총 배출량</h3>
-		<!--차트 넣는 곳-->
-		<div class="chart_box">
-			<canvas id="barChart" height=200px></canvas>
-		</div>
-	</section>
-	<!--서책임님이 말씀한 누적 라인그래프-->
-	<section class="graph_cont stack_line_graph">
-		<h3 class="graph_title">서책임님이 말씀한 누적 라인그래프</h3>
-		<!--차트 넣는 곳-->
-		<div class="chart_box">
-			<canvas id="dashboard_stacked_linechart" height=200px></canvas>
-		</div>
-	</section>
-	<!--감축인벤토리 + 연도선택기능-->
-	<section class="graph_cont reduction_inventory">
-		<h3 class="graph_title">감축 인벤토리</h3>
-		<div class="inven_wrap">
-			<!--왼쪽 : 직접배출량-->
-			<div class="direct">
-				<p>직접 배출량</p>
-				<!--차트 넣는 곳-->
-				<div class="chart_box"></div>
-			</div>
-			<!--오른쪽 : 간접배출량-->
-			<div class="indirect">
-				<p>간접 배출량</p>
-				<!--차트 넣는 곳-->
-				<div class="chart_box"></div>
-			</div>
-		</div>
-
 	</section>
 	<script>
 		$(function() {
@@ -127,6 +129,27 @@
 				
 			}, "json");
 		}
+		
+		/* 일반함수 */
+		const label = document.querySelector('.label');
+		const options = document.querySelectorAll('.optionItem');
+		// 클릭한 옵션의 텍스트를 라벨 안에 넣음
+		const handleSelect = function(item) {
+		  label.innerHTML = item.textContent;
+		  label.parentNode.classList.remove('active');
+		}
+		// 옵션 클릭시 클릭한 옵션을 넘김
+		options.forEach(function(option){
+		  option.addEventListener('click', function(){handleSelect(option)})
+		})
+		// 라벨을 클릭시 옵션 목록이 열림/닫힘
+		label.addEventListener('click', function(){
+		  if(label.parentNode.classList.contains('active')) {
+		    label.parentNode.classList.remove('active');
+		  } else {
+		    label.parentNode.classList.add('active');
+		  }
+		});
 	</script>
 </body>
 </html>
