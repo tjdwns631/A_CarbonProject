@@ -25,7 +25,7 @@ public class CarbondataController {
 	@RequestMapping("dashbarddataList.do")
 	@ResponseBody
 	public Map<String, Object> DashboardDataList(){
-		
+
 		Integer[] year_date = { 2015, 2016, 2017, 2018, 2019, 2020 }; // 추후 db에서 값 가져오기
 
 		Integer[] data_val_2 = new Integer[year_date.length]; // 직접배출
@@ -115,7 +115,10 @@ public class CarbondataController {
 	@ResponseBody
 	public String DashboardDataListStarck(){
 		
-
+		Integer a = -11000;
+		Integer b = -12000;
+		System.out.println("a+b : "+(a+b));
+		
 //		output.put("data_val_10", data_val_10); // 간접배출값
 
 		return "";
