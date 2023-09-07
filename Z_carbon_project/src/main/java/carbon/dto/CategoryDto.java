@@ -15,4 +15,7 @@ public class CategoryDto {
 	String lev2;
 	String lev3;
 	
+	Integer prdt_sn;
+	String prdt_nm;
+	
 }

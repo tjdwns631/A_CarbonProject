@@ -34,4 +34,16 @@ public class CarbondataServiceimple implements CarbondataService{
 		return carbondatamapper.SelectDataStack();
 	}
 
+	@Override
+	public List<CbntrdataDto> SelectDatalow(Integer low_date) {
+		// TODO Auto-generated method stub
+		return carbondatamapper.SelectDatalow(low_date);
+	}
+
+	@Override
+	public List<CategoryDto> SelectPrdtnm() {
+		// TODO Auto-generated method stub
+		return carbondatamapper.SelectPrdtnm();
+	}
+
 }

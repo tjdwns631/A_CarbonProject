@@ -24,7 +24,27 @@
 	GROUP BY b.data_date, b2.cate_sn, b3.cate_sn, c.cate_sn
 	ORDER BY c.cate_sn ASC
 	</select>
-
+	
+	<!-- 연도별 감축인벤토리 데이터  -->
+	<select id="SelectDatalow" resultType="carbon.dto.CbntrdataDto">
+	SELECT b3.cate_sn cate_sn_1, b3.cate_nm lev_1, b2.cate_sn cate_sn_2, b2.cate_nm lev_2, c.cate_sn cate_sn_3, c.cate_nm lev_3, a.prdt_sn, a.prdt_nm, b.data_date data_date, b.data_exha_val data_val
+	FROM comt_cbntr_product a JOIN comt_cbntr_data b ON a.prdt_sn = b.prdt_sn
+	JOIN comt_cbntr_category c ON a.cate_sn = c.cate_sn
+	JOIN comt_cbntr_category b2 ON b2.cate_sn = c.cate_upr_sn
+	JOIN comt_cbntr_category b3 ON b3.cate_sn = b2.cate_upr_sn
+	WHERE b3.cate_sn = 14 AND b.data_date = #{low_date}
+	ORDER BY a.prdt_sn ASC
+	</select>
+	<!-- 감축인벤토리 활동자료 -->
+	<select id="SelectPrdtnm" resultType="carbon.dto.CategoryDto">
+		SELECT distinct a.prdt_sn prdt_sn, a.prdt_nm prdt_nm
+		FROM comt_cbntr_product a JOIN comt_cbntr_data b ON a.prdt_sn = b.prdt_sn
+		JOIN comt_cbntr_category c ON a.cate_sn = c.cate_sn
+		JOIN comt_cbntr_category b2 ON b2.cate_sn = c.cate_upr_sn
+		JOIN comt_cbntr_category b3 ON b3.cate_sn = b2.cate_upr_sn
+		WHERE b3.cate_sn = 14
+		ORDER BY a.prdt_sn ASC
+	</select>
 	<!-- 대분류 카테고리 명칭 -->
 	<select id="categorynm" resultType="carbon.dto.CategoryDto">
 		SELECT distinct c.cate_nm, c.cate_sn

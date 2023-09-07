@@ -27,7 +27,6 @@ public class CarbondataController {
 	public Map<String, Object> DashboardDataList(){
 
 		Integer[] year_date = { 2015, 2016, 2017, 2018, 2019, 2020 }; // 추후 db에서 값 가져오기
-
 		Integer[] data_val_2 = new Integer[year_date.length]; // 직접배출
 		Integer[] data_val_10 = new Integer[year_date.length]; // 간접배출
 		for (int i = 0; i < year_date.length; i++) { // 년노별 초기화
@@ -95,9 +94,31 @@ public class CarbondataController {
 
 		System.out.println("result : " + Arrays.deepToString(Arr));
 		
+		/* 감축인벤토리 데이터 */
+		List<CategoryDto> prdt_info =carbondataservice.SelectPrdtnm(); //감축인벤 활동자료명 가져옴
+		log.info("prdt_info= {}", prdt_info);
+		
+		String[] prdt_nm = new String[prdt_info.size()]; // 감축 활동자료
+		Integer[] Low_arr = new Integer[prdt_info.size()]; // 큰 배열->연도->작은배열->대분류변 데이터 입력
+		
+		for (int i = 0; i < prdt_info.size(); i++) { 
+			prdt_nm[i] = prdt_info.get(i).getPrdt_nm();
+			Low_arr[i] = 0;
+		}
+		System.out.println("prdt_nm : " + Arrays.deepToString(prdt_nm));
+		
+		Integer low_date = 2018;
+		List<CbntrdataDto> data3 = carbondataservice.SelectDatalow(low_date); //감축량
+		log.info("date3= {}", data3);
+		
+		
+		for (int i = 0; i < data3.size(); i++) {
+			Low_arr[i] = data3.get(i).getData_val();
+		}
+		System.out.println("prdt_nm : " + Arrays.deepToString(Low_arr));
+		
 		/* 총 배울량, 총 간접인벤, 직접배출량, 간접배출량 데이터 */
 		
-
 		Map<String, Object> output = new HashMap<>();
 		output.put("data_val_2", data_val_2); // 직접배출값
 		output.put("data_val_10", data_val_10); // 간접배출값
@@ -107,6 +128,8 @@ public class CarbondataController {
 		output.put("year", year_date); // 연도
 		output.put("cate_nm", cate_nm);
 		
+		output.put("prdt_nm", prdt_nm); // 감축인벤 활동자료 명
+		output.put("Low_arr", Low_arr);
 		return output;
 		
 	}

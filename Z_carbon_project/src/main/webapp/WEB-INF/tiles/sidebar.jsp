@@ -9,7 +9,7 @@
 	<!--로고-->
 	<div class="top">
 		<h1>
-			<a href="#"> <img src="${pageContext.request.contextPath}/images/logo_wh.png" alt="임시 로고">
+			<a href="${pageContext.request.contextPath}/dashboard.do"> <img src="${pageContext.request.contextPath}/images/logo_wh.png" alt="임시 로고">
 			</a>
 		</h1>
 	</div>
@@ -23,7 +23,7 @@
 					<div class="nav_icon">
 						<i class="fa-solid fa-chart-line"></i>
 					</div>
-					<div class="nav_name">대시보드</div>
+					<div class="nav_name" onclick="location.href='${pageContext.request.contextPath}/dashboard.do';">대시보드</div>
 				</div>
 			</li>
 			<li class="nav_list depth1">

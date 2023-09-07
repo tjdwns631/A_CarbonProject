@@ -15,4 +15,6 @@ public class CbntrdataDto { // data테이블 값 dto
 	Integer cate_sn_3;
 	String lev_3;
 	
+	String prdt_nm;
+	
 }

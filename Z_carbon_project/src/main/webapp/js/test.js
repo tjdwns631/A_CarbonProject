@@ -200,25 +200,33 @@ function dashboard_d_barchart(area_id, data) { // 대시보드 3번째 차트
 	var myChart = new Chart(ctx, {
 		type: 'bar',
 		data: {
-			labels: data.prdt_nm,
+			labels: ["2015년", "2016년", "2017년", "2018년", "2019년", "2020년"],
 			datasets: [{
-				data: data.Low_arr,
+				label: '직접배출',
+				data: [917254, 972529, 951253, 1064555, 1032352, 1032323],
 				backgroundColor: 'rgba(46,253,129,0.5)',
 				borderColor: 'rgba(46,253,129,1)',
 				borderWidth: 2,
 				fill: false,
 				barPercentage: 0.5,
+			}, {
+				label: '간접배출',
+				data:[601254, 712529, 751253, 864555, 902352, 962323],
+				backgroundColor: 'rgba(45,115,251,0.5)',
+				borderColor: 'rgba(45,115,251,1)',
+				borderWidth: 2,
+				fill: false,
+				barPercentage: 0.5, // bar 굵기 조절
 			}],
 		},
 		options: {
 			legend: {
-				display: false,
+				display: true,
 				position: 'bottom'
 			},
 			plugins: {
 				datalabels: {
-					display:false,
-			/*		color: '#D5D5D5',
+					color: '#D5D5D5',
 					display: function(context) {
 						return context.dataset.data[context.dataIndex] > 150000;
 					},
@@ -228,22 +236,22 @@ function dashboard_d_barchart(area_id, data) { // 대시보드 3번째 차트
 					formatter: function(value, context) {
 						let result = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 						return result
-					},*/
+					},
 				}
 			},
-			responsive: false,
 			scales: {
 				yAxes: [{
+					stacked: true,
 					gridLines: {
 						color: "rgba(204, 204, 204,0.1)"
 					},
 					ticks: {
-						//min: min_data ,
-						maxTicksLimit: 4,
-						stepSize: 40, //y축 간격
+						min: -min_data,
+						maxTicksLimit: 5,
 					},
 				}],
 				xAxes: [{
+					stacked: true,
 					gridLines: {
 						color: "rgba(204, 204, 204,0.1)"
 					},

@@ -13,4 +13,8 @@ public interface CarbondataService {
 
 	List<CbntrdataDto> SelectDataStack();
 
+	List<CbntrdataDto> SelectDatalow(Integer low_date);
+
+	List<CategoryDto> SelectPrdtnm();
+
 }
