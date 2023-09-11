@@ -9,7 +9,6 @@
 <body>
 	<!--연간 총 배출량-->
 	<section class="graph_cont year_total_emission">
-		<h3 class="graph_title">연간 총 배출량</h3>
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
 			<canvas id="barChart"></canvas>
@@ -17,7 +16,6 @@
 	</section>
 	<!--서책임님이 말씀한 누적 라인그래프-->
 	<section class="graph_cont stack_line_graph">
-		<h3 class="graph_title">누적 라인그래프</h3>
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
 			<canvas id="dashboard_stacked_linechart"></canvas>
@@ -25,23 +23,20 @@
 	</section>
 	<!--감축인벤토리 + 연도선택기능-->
 	<section class="graph_cont reduction_inventory">
-		<h3 class="graph_title" style="display: flex; align-items: center;">
-			감축 인벤토리
-			<!-- 연도 선택 select option -->
-			<div class="year_select">
-				<button class="label">
-					연도 선택 <i class="fa-solid fa-chevron-down" style="margin-left: 16px; margin-bottom: 4px;"></i>
-				</button>
-				<ul class="optionList">
-					<li class="optionItem">2020년</li>
-					<li class="optionItem">2021년</li>
-					<li class="optionItem">2022년</li>
-					<li class="optionItem">2023년</li>
-				</ul>
-			</div>
-		</h3>
-		<div class="inven_wrap">
-			<canvas id="d_bar_chart" height="200"></canvas>
+		<div class="chart_box">
+			<canvas id="d_bar_chart"></canvas>
+		</div>
+		<!-- 연도 선택 select option -->
+		<div class="year_select">
+			<button class="label">
+				연도 선택 <i class="fa-solid fa-chevron-down" style="margin-left: 16px; margin-bottom: 4px;"></i>
+			</button>
+			<ul class="optionList">
+				<li class="optionItem">2020년</li>
+				<li class="optionItem">2021년</li>
+				<li class="optionItem">2022년</li>
+				<li class="optionItem">2023년</li>
+			</ul>
 		</div>
 	</section>
 		<!--맨 위 그래프없이 숫자 나열 미니 박스 4개 디자인-->
@@ -85,11 +80,7 @@
 	</section>
 	<script>
 		$(function() {
-			
 			// test code
-
-		
-		
 			dashboarddataList();
 
 			$("#areaChart").empty(); // 초기화 후 재생성
@@ -145,6 +136,7 @@
 				label.parentNode.classList.add('active');
 			}
 		});
+		
 	</script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 function dashboard_barchart(area_id, data) { // 대시보드 첫 번째 차트 - 연간 총 배출량
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-	Chart.defaults.global.defaultFontColor = '#858796';
+	Chart.defaults.global.defaultFontColor = '#D5D5D5';
 
 	var ctx = document.getElementById(area_id);
 	var myChart = new Chart(ctx, {
@@ -27,13 +27,28 @@ function dashboard_barchart(area_id, data) { // 대시보드 첫 번째 차트 -
 			}],
 		},
 		options: {
+			layout : {
+				padding: 20,
+			},
+			title : {
+			 	display: true,
+				position : 'top',
+		        text: '연간 총 배출량',
+				fontColor: '#FFFFFF',
+				fontSize:20,
+				fontStyle:600,
+			},
 			legend: {
 				display: true,
-				position: 'bottom'
+				position: 'bottom',
+				labels : {
+					fontColor:'#D5D5D5',
+				}
 			},
 			plugins: {
+				
 				datalabels: {
-					color: '#D5D5D5',
+					color: '#FFFFFF',
 					display: function(context) {
 						return context.dataset.data[context.dataIndex] > 150000;
 					},
@@ -71,7 +86,7 @@ function dashboard_barchart(area_id, data) { // 대시보드 첫 번째 차트 -
 //누적 라인그래프
 function dashboard_stacked_linechart(area_id, json) {
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-	Chart.defaults.global.defaultFontColor = '#858796';
+	Chart.defaults.global.defaultFontColor = '#D5D5D5';
 	var ctx = document.getElementById(area_id).getContext("2d");
 
 	//누적 라인그래프 배경 그라데이션
@@ -164,6 +179,17 @@ function dashboard_stacked_linechart(area_id, json) {
 			}]
 		},
 		options: {
+			layout : {
+				padding: 20,
+			},
+			title : {
+			 	display: true,
+				position : 'top',
+		        text: '누적 라인 그래프',
+				fontColor: '#FFFFFF',
+				fontSize:20,
+				fontStyle:600,
+			},
 			legend : {
 				display:true,
 				position : 'bottom',
@@ -190,7 +216,7 @@ function dashboard_stacked_linechart(area_id, json) {
 function dashboard_d_barchart(area_id, data) { // 대시보드 3번째 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-	Chart.defaults.global.defaultFontColor = '#858796';
+	Chart.defaults.global.defaultFontColor = '#D5D5D5';
 	
 	var min_data = Math.min(...data.Low_arr);
 	console.log(min_data);
@@ -203,14 +229,23 @@ function dashboard_d_barchart(area_id, data) { // 대시보드 3번째 차트
 			labels: data.prdt_nm,
 			datasets: [{
 				data: data.Low_arr,
-				backgroundColor: 'rgba(46,253,129,0.5)',
-				borderColor: 'rgba(46,253,129,1)',
-				borderWidth: 2,
-				fill: false,
-				barPercentage: 0.5,
+				backgroundColor: 'rgba(45,115,251,1)',
+				fill:true,
+				barPercentage: 0.7,
 			}],
 		},
 		options: {
+			layout : {
+				padding: 20,
+			},
+			title : {
+			 	display: true,
+				position : 'top',
+		        text: '감축 인벤토리',
+				fontColor: '#FFFFFF',
+				fontSize:20,
+				fontStyle:600,
+			},
 			legend: {
 				display: false,
 				position: 'bottom'
@@ -231,16 +266,12 @@ function dashboard_d_barchart(area_id, data) { // 대시보드 3번째 차트
 					},*/
 				}
 			},
-			responsive: false,
+			responsive: true,
+			maintainAspectRatio : false,
 			scales: {
 				yAxes: [{
 					gridLines: {
 						color: "rgba(204, 204, 204,0.1)"
-					},
-					ticks: {
-						//min: min_data ,
-						maxTicksLimit: 4,
-						stepSize: 40, //y축 간격
 					},
 				}],
 				xAxes: [{

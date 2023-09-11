@@ -46,7 +46,8 @@ table {
 
 button {background-color: unset; border: none; color: #fff;} 
 
-canvas {width: 100% !important;}
+canvas {width: 100%; height:100%;}
+
 /*디자인 수정 시작*/
 * {font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; box-sizing: border-box;}
 *::after, *::before {box-sizing: border-box;}
@@ -95,36 +96,30 @@ aside .bot .account .account_edit:hover {font-size:18px;}
 aside .bot .logout {margin-bottom:50px; background-image: linear-gradient(310deg, rgb(0, 117, 255), rgb(33, 212, 253)); line-height: 40px; display: block; border-radius: 15px; font-weight: 600; transition: font-size 0.1s; cursor: pointer;}
 aside .bot .logout:hover {font-size:18px;}
 /*main의 그리드 디자인*/
-main {padding: 50px; max-height:100%; width: -webkit-fill-available; align-items: stretch;display: grid; justify-content: inherit; gap: 20px;
-	grid-template-areas:
-	"year_total_E   stack_big"
-	"r_inven        r_inven"
-	"mini_box_wrap  mini_box_wrap"
-	;
-	grid-template-rows:1fr 1fr 100px;
-	grid-template-columns:1fr 1fr;
-}
+main {padding: 50px; max-height:100%; width: -webkit-fill-available; display:flex; gap: 20px; flex-wrap:wrap; justify-content:space-between; align-items:center;}
 /*main의 section들 다 같은 기본 스타일*/
-section.graph_cont {position: relative; padding: 20px; background: linear-gradient(127.09deg, rgba(6, 11, 40, 0.94) 19.41%, rgba(10, 14, 35, 0.49) 76.65%) border-box; border-radius: 25px;}
-.mini_cont {width:100%; max-height:100px; position: relative; display: flex; justify-content: space-between; column-gap:20px; flex-wrap: wrap;}
-.mini_cont .mini_box {max-height:100px; display: flex; flex-grow: 1; padding: 20px; position: relative; overflow-wrap: break-word; overflow: hidden; background: linear-gradient(127.09deg, rgba(6, 11, 40, 0.94) 19.41%, rgba(10, 14, 35, 0.49) 76.65%) border-box; border-radius: 25px; align-items: center;}
+section.graph_cont {position: relative; background: linear-gradient(127.09deg, rgba(6, 11, 40, 0.94) 19.41%, rgba(10, 14, 35, 0.49) 76.65%) border-box; border-radius: 25px;}
+.mini_cont {width:100%; position: relative; display: flex; justify-content: space-between; column-gap:20px; flex-wrap: wrap;}
+.mini_cont .mini_box {display: flex; flex-grow: 1; height:100px; padding: 20px; position: relative; overflow-wrap: break-word; overflow: hidden; background: linear-gradient(127.09deg, rgba(6, 11, 40, 0.94) 19.41%, rgba(10, 14, 35, 0.49) 76.65%) border-box; border-radius: 25px; align-items: center;}
 .mini_box .text .title {font-size: 16px; color: #bfbfbf; margin-bottom:10px;}
 .mini_box .text .num {font-size: 40px; font-weight: 700;}
 .mini_box .icon {width:50px; height:50px; display: flex; align-items: center; justify-content: center; border-radius: 15px; background-color: #0075ff; margin-left: auto;}
 
 /*그리드 디자인*/
-section.mini_cont {grid-area:mini_box_wrap;}
-.year_total_emission {grid-area: year_total_E; align-items:flex-start;}
-.stack_line_graph {grid-area: stack_big;}
-.reduction_inventory {grid-area:r_inven;}
+/*연간 총 배출량*/
+.year_total_emission {height:44%; width:49%;}
+/*누적 라인 그래프*/
+.stack_line_graph {height:44%; width:49%;}
+/*감축 인벤토리*/
+.reduction_inventory {height:40%; width:100%; position:relative;}
+/*맨 아래 4가지 숫자 박스*/
+section.mini_cont {width:100%;}
 
-.graph_title {width: 100%; line-height:40px; margin-bottom:10px;}
-.chart_box {width:100%; height:100%; margin:auto;}
-.inven_wrap {display: flex; justify-content: space-between;}
+.chart_box {width:100%; margin:auto; position:relative; height:100%;}
 
 /*감축 인벤토리 연도선택 디자인*/
-.year_select {position: relative; width: 105px; height: 30px; border-radius: 4px; border: 2px solid #0075ff;
-  cursor: pointer; margin-left:15px;}
+.year_select {position:absolute; top:20px; left:20px; width: 105px; height: 30px; border-radius: 4px; border: 2px solid #0075ff;
+  cursor: pointer;}
 .year_select:after {
   content: '';
   display: block; 
