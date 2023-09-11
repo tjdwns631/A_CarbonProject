@@ -20,5 +20,9 @@ public interface CarbonDataMapper {
 
 	List<CategoryDto> SelectPrdtnm();
 
+	List<CbntrdataDto> SelectData(Integer low_date);
+
+	List<CbntrdataDto> Selectyear();
+
 
 }

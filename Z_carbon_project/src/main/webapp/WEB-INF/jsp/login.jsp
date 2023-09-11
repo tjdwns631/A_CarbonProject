@@ -102,30 +102,35 @@
 <body>
  	<div class="container">
         <h2 class="page_title">김포 탄소중립 대시보드 로그인</h2>
-        <form action="login.php" method="post">
+        <form action="login_action.do" method="post">
             <label for="username">아이디:</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="user_id" name="user_id" required>
             
             <label for="password">비밀번호:</label>
-            <input type="password" id="password" name="password" required>
-            
+            <input type="password" id="user_pwd" name="user_pwd" required>
+            <%-- <c:if test="${error}">
+               <p id="valid" class="alert alert-danger" >${exception}</p>
+			</c:if> --%>
             <button type="submit">로그인</button>
         </form>
     </div>
 <script>
     $(function(){
-/*     	 var alert_msg = "<c:out value="${msg }" />"; //alret 띄우는 코드
+    	
+     	 var alert_msg = ${error}; //alret 띄우는 코드
          if(alert_msg != ""){
-             alert(alert_msg)
-         } */
+        	 msg_ori = "${exception}";
+        	 msg = msg_ori.replaceAll("+", " "); //+ 표시 제거
+             alert(msg);
+         } 
     	
     	$("#login_btn").click(function(){
         	
-    		if( $("#member_id").val()=='' ){
+    		if( $("#user_id").val()=='' ){
     			alert("아이디를 입력해주세요.");
     			return;
     		}
-    		if($("#member_pwd").val()==''){
+    		if($("#user_pwd").val()==''){
     			alert("비밀번호를 입력해주세요.");
     			return;
     		}else{
@@ -136,19 +141,6 @@
 		
 	})
 	
-	function login_btn_function() { //로그인
-   		var member_id  = $('#member_id' ).val() ;
-        var member_pwd = $('#member_pwd').val() ;
-        console.log(member_id +":::"+member_pwd);
-        $.post('login_action/member.do', {'member_id': member_id,'member_pwd': member_pwd}, function (json) {
-            if (json.result == false) {
-                alert("아이디 또는 비밀번호가 틀립니다");
-                return false;
-            } else {
-               window.location.href = "test.do"
-            }
-        }, "json");
-    }
 </script>
 </body>
 </html>

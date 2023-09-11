@@ -13,24 +13,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import carbon.dto.CbntrdataDto;
 import carbon.dto.MemberDto;
+import carbon.service.CarbondataService;
 import carbon.service.MemberService;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@Slf4j
 public class MainController {
 
 	@Autowired
 	MemberService memberservice;
-
-	@RequestMapping("/")
-	public String index() {
-		return "main";
-	}
+	
+	@Autowired
+	CarbondataService carbondataservice;
 	
 	@RequestMapping("/dashboard.do")
-	public String dashboard() {
+	public String dashboard(Model model) {
+		
+		List<CbntrdataDto> year_list = carbondataservice.Selectyear();
+		model.addAttribute("year_list",year_list); // 연도 선택 Select box 구성
+		
 		return "dashboard";
 	}
+	
 	@RequestMapping("/despose.do")
 	public String despose() {
 		return "despose";

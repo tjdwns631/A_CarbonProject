@@ -20,4 +20,9 @@
 		values (#{member_id}, #{member_pwd}, #{member_name})
 	</insert>
 
+	<select id="findByUserId" resultType="carbon.dto.MemberDto">
+		SELECT * FROM comt_admin
+		where user_id=#{user_id}
+	</select>
+
 </mapper>

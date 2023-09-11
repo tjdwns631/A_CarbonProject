@@ -9,8 +9,10 @@ import carbon.dto.MemberDto;
 @Mapper("memberMapper")
 public interface MemberMapper {
 
-	List<MemberDto> select_member();
+	//List<MemberDto> select_member();
 
-	List<MemberDto> check_id(String member_id);
+	//List<MemberDto> check_id(String member_id);
+	
+	MemberDto findByUserId(String user_id);
 	
 }

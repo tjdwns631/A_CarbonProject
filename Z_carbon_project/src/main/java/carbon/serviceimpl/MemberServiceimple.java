@@ -12,18 +12,16 @@ import carbon.service.MemberService;
 @Service
 public class MemberServiceimple implements MemberService {
 
-	@Autowired
-	private MemberMapper membermapper;
-	
 	@Override
 	public List<MemberDto> select_member() {
-		System.out.println("imple");
-		return membermapper.select_member();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public List<MemberDto> select_id(String member_id) throws Exception{
-		return membermapper.check_id(member_id);
+	public List<MemberDto> select_id(String member_id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
