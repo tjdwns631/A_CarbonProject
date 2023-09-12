@@ -134,18 +134,13 @@
 		console.log(year);
 		$.post('/desposeData.do', {"year" : year }, function(json) {
 			console.log(json)
-
-			$("#despose_barchart").empty(); // 초기화 후 재생성
-			despose_barchart('despose_barchart', json);
 			
+			$("#cf_barchart").empty(); // 초기화 후 재생성
+			despose_barchart('cf_barchart', json);
+
 			$("#despose_pie").empty(); // 초기화 후 재생성
 			despose_pie('despose_pie', json);
-			$("#cf_barchart").empty(); // 초기화 후 재생성
-			dashboard_d_barchart('cf_barchart', json);
-			$("#cf_barchart").empty(); // 초기화 후 재생성
-			dashboard_d_barchart('cf_barchart', json);
-			$("#cf_barchart").empty(); // 초기화 후 재생성
-			dashboard_d_barchart('cf_barchart', json);
+			
 
 			$("#total_title").empty();
 			$("#total_title").html(json.year + "년 총 배출량");
@@ -172,11 +167,6 @@
 	
 	function comma(strNum) {	// 숫자 콤마 찍는 함수
  	    return strNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');	// 세자리 콤마
-	}
-	
-	
-	function comma(strNum) {	// 숫자 콤마 찍는 함수
-	    return strNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');	// 세자리 콤마
 	}
 </script>
 </html>
