@@ -50,7 +50,7 @@
 				<p class="num" id="total_num">1,996,276</p>
 			</div>
 			<div class="icon" title="총 배출량">
-				<img src="${pageContext.request.contextPath}/images/dispose_icon_total.png" alt="총 배출량">
+				<img src="${pageContext.request.contextPath}/images/cf_icon_total.png" alt="총 배출량">
 			</div>
 		</div>
 		<div class="mini_box">
@@ -59,7 +59,7 @@
 				<p class="num" id="lu_num">1,575,198</p>
 			</div>
 			<div class="icon" title="순 배출량">
-				<img src="${pageContext.request.contextPath}/images/dispose_icon_normal.png" alt="순 배출량">
+				<img src="${pageContext.request.contextPath}/images/cf_icon_normal.png" alt="순 배출량">
 			</div>
 		</div>
 		<div class="mini_box">
@@ -68,7 +68,7 @@
 				<p class="num" id="di_num">10,031,192</p>
 			</div>
 			<div class="icon" title="직접 배출량">
-				<img src="${pageContext.request.contextPath}/images/dispose_icon_direct.png" alt="직접 배출량">
+				<img src="${pageContext.request.contextPath}/images/cf_icon_direct.png" alt="직접 배출량">
 			</div>
 		</div>
 		<div class="mini_box">
@@ -77,7 +77,7 @@
 				<p class="num" id="indi_num">965,084</p>
 			</div>
 			<div class="icon" title="간접 배출량">
-				<img src="${pageContext.request.contextPath}/images/dispose_icon_indirect.png" alt="간접 배출량">
+				<img src="${pageContext.request.contextPath}/images/cf_icon_indirect.png" alt="간접 배출량">
 			</div>
 		</div>
 	</section>
