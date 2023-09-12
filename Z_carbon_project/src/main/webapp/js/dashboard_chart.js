@@ -261,6 +261,7 @@ function dashboard_d_barchart(area_id, data) { // 대시보드 3번째 차트
 					gridLines: {
 						color: "rgba(204, 204, 204,0.1)"
 					},
+					
 				}],
 				xAxes: [{
 					gridLines: {

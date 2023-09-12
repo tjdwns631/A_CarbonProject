@@ -1,66 +1,72 @@
 function despose_barchart(area_id, data) { // 현황조회 바 차트
 
-	Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-	Chart.defaults.global.defaultFontColor = '#858796';
+	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+	Chart.defaults.global.defaultFontColor = '#D5D5D5';
+
+	var min_data = Math.min(...data.Low_arr);
+	console.log(min_data);
+
 
 	var ctx = document.getElementById(area_id);
 	var myChart = new Chart(ctx, {
 		type: 'bar',
-		//type: 'horizontalBar',
 		data: {
 			labels: data.cate_nm,
 			datasets: [{
-				label: '배출량',
-				data: [794865, 43386, 13197, 83060, 19651, 3012, 10835, 0, 13],
-				backgroundColor: 'rgba(255, 99, 132, 0.2)',
-				borderColor: 'rgba(255,99,132,1)',
-				borderWidth: 1,
-				fill: false,
-				barPercentage: 0.5,
+				data: data.Low_arr,
+				backgroundColor: 'rgba(45,115,251,1)',
+				fill: true,
+				barPercentage: 0.7,
 			}],
 		},
 		options: {
+			layout: {
+				padding: {
+					left: 20,
+					top: 70,
+					right: 20,
+					bottom: 20
+				},
+			},
+			legend: {
+				display: false,
+				position: 'bottom'
+			},
 			plugins: {
 				datalabels: {
-					color: '#D5D5D5',
-					display: function(context) {
-						return context.dataset.data[context.dataIndex] > 400000;
-					},
-					font: {
-						weight: 'bold'
-					},
-					formatter: function(value, context) {
-						let result = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-						return result
-					},
+					display: false,
+					/*		color: '#D5D5D5',
+							display: function(context) {
+								return context.dataset.data[context.dataIndex] > 150000;
+							},
+							font: {
+								weight: 'bold'
+							},
+							formatter: function(value, context) {
+								let result = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+								return result
+							},*/
 				}
 			},
+			responsive: true,
+			maintainAspectRatio: false,
 			scales: {
 				yAxes: [{
 					gridLines: {
 						color: "rgba(204, 204, 204,0.1)"
 					},
-					ticks: {
-						min: 0,
-						maxTicksLimit: 4,
-					},
-
 				}],
 				xAxes: [{
 					gridLines: {
 						color: "rgba(204, 204, 204,0.1)"
 					},
-					/*ticks: {
-						min: 0,
-						maxTicksLimit: 5,
-					},*/
 				}]
 			}
 		},
 	});
 }
 
-function despose_pie(area_id) { // 현황조회 파이 차트
+function despose_pie(area_id,data) { // 현황조회 파이 차트
 
 	Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#858796';
@@ -69,30 +75,15 @@ function despose_pie(area_id) { // 현황조회 파이 차트
 	var myChart = new Chart(ctx, {
 		type: 'pie',
 		data: {
-			labels: ["에너지", "AFOLU"],
+			labels: data.cate_nm,
 			datasets: [{
-				data: [61, 39], //58,42
+				data: data.Low_arr,
 				backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
 				borderColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)'],
 			}],
 		},
 		options: {
 			responsive:false,
-			plugins: {
-				datalabels: {
-					color: '#D5D5D5',
-					display: function(context) {
-						return context.dataset.data[context.dataIndex] > 15;
-					},
-					font: {
-						weight: 'bold'
-					},
-					formatter: function(value, context) {
-						let result = value + "%";
-						return result
-					},
-				}
-			},
 		},
 	});
 }

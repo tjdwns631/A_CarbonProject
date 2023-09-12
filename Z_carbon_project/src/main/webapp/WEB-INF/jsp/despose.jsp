@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>배출현황 조회 - 현황 조회</title>
+<link rel="stylesheet" href="css/emission_status.css">
 </head>
 <body>
 	<section class="mini_cont">
@@ -14,7 +15,7 @@
 				<p class="num" id="total_num">1,996,276</p>
 			</div>
 			<div class="icon" title="총 배출량">
-				<img src="${pageContext.request.contextPath}/images/dispose_icon_total.png" alt="총 배출량">
+				<img src="${pageContext.request.contextPath}/images/cf_icon_total.png" alt="총 배출량">
 			</div>
 		</div>
 		<div class="mini_box">
@@ -23,7 +24,7 @@
 				<p class="num" id="lu_num">1,575,198</p>
 			</div>
 			<div class="icon" title="순 배출량">
-				<img src="${pageContext.request.contextPath}/images/dispose_icon_normal.png" alt="순 배출량">
+				<img src="${pageContext.request.contextPath}/images/cf_icon_normal.png" alt="순 배출량">
 			</div>
 		</div>
 		<div class="mini_box">
@@ -32,7 +33,7 @@
 				<p class="num" id="di_num">10,031,192</p>
 			</div>
 			<div class="icon" title="직접 배출량">
-				<img src="${pageContext.request.contextPath}/images/dispose_icon_direct.png" alt="직접 배출량">
+				<img src="${pageContext.request.contextPath}/images/cf_icon_direct.png" alt="직접 배출량">
 			</div>
 		</div>
 		<div class="mini_box">
@@ -41,13 +42,16 @@
 				<p class="num" id="indi_num">965,084</p>
 			</div>
 			<div class="icon" title="간접 배출량">
-				<img src="${pageContext.request.contextPath}/images/dispose_icon_indirect.png" alt="간접 배출량">
+				<img src="${pageContext.request.contextPath}/images/cf_icon_indirect.png" alt="간접 배출량">
 			</div>
 		</div>
-			<div class="mini_box">
-				<div class="year_select_depose">
+			<div class="mini_box select_year" style="aligm-items:flex-start; overflow:visible; z-index:2;">
+				<div class="text">
+					<p class="title" id="indi_title">연도 선택</p>
+				</div>
+				<div class="year_select_cf">
 					<button class="label" id="year_data" value="optValue">
-						2018년 <i class="fa-solid fa-chevron-down" style="margin-left: 25px; margin-bottom: 4px;"></i>
+						2018년 <i class="fa-solid fa-chevron-down"></i>
 					</button>
 					<ul class="optionList">
 						<c:forEach var="year" items="${year_list}">
@@ -61,7 +65,7 @@
 	<section class="graph_cont first_chart_box">
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
-			<canvas id="despose_barchart"></canvas>
+			<canvas id="cf_barchart"></canvas>
 		</div>
 	</section>
 	<!--두번째 차트 박스-->
@@ -136,6 +140,12 @@
 			
 			$("#despose_pie").empty(); // 초기화 후 재생성
 			despose_pie('despose_pie', json);
+			$("#cf_barchart").empty(); // 초기화 후 재생성
+			dashboard_d_barchart('cf_barchart', json);
+			$("#cf_barchart").empty(); // 초기화 후 재생성
+			dashboard_d_barchart('cf_barchart', json);
+			$("#cf_barchart").empty(); // 초기화 후 재생성
+			dashboard_d_barchart('cf_barchart', json);
 
 			$("#total_title").empty();
 			$("#total_title").html(json.year + "년 총 배출량");
@@ -159,7 +169,13 @@
 
 		}, "json");
 	}
-	function comma(strNum) {	// 숫자 콤파 찍는 함수
+	
+	function comma(strNum) {	// 숫자 콤마 찍는 함수
+ 	    return strNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');	// 세자리 콤마
+	}
+	
+	
+	function comma(strNum) {	// 숫자 콤마 찍는 함수
 	    return strNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');	// 세자리 콤마
 	}
 </script>

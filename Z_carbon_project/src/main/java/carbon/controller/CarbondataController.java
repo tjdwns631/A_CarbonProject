@@ -221,13 +221,14 @@ public class CarbondataController {
 		System.out.println("cate_nm : " + Arrays.deepToString(cate_nm));
 		log.info("despose_date= {}", data);
 		
-		/*
-		 * for (int i = 0; i < data.size(); i++) { for(int j =0; j<category.size(); j++)
-		 * { if(data.get(i).getLev_3().equals(cate_nm[i])) {
-		 * if(data.get(i).getCate_sn_3().equals(cate_sn[i])) { Low_arr[j] =
-		 * data.get(i).getData_val(); } } } } System.out.println("Low_arr : " +
-		 * Arrays.deepToString(Low_arr));
-		 */
+		for (int i = 0; i < data.size(); i++) {
+			for(int j =0; j<category.size(); j++) {
+				if(data.get(i).getCate_sn_3().equals(cate_sn[j])) {
+					Low_arr[j] += data.get(i).getData_val();
+				}
+			}
+		}
+		System.out.println("Low_arr : " + Arrays.deepToString(Low_arr));
 		
 		/* 총 배울량, 총 간접인벤, 직접배출량, 간접배출량 데이터 */
 		
