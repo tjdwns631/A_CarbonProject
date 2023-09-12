@@ -68,7 +68,7 @@
 	<section class="graph_cont second_chart_box">
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
-			<canvas id=""></canvas>
+			<canvas id="despose_pie"></canvas>
 		</div>
 	</section>
 	<!--세번째 차트 박스-->
@@ -132,7 +132,10 @@
 			console.log(json)
 
 			$("#despose_barchart").empty(); // 초기화 후 재생성
-			dashboard_d_barchart('despose_barchart', json);
+			despose_barchart('despose_barchart', json);
+			
+			$("#despose_pie").empty(); // 초기화 후 재생성
+			despose_pie('despose_pie', json);
 
 			$("#total_title").empty();
 			$("#total_title").html(json.year + "년 총 배출량");
@@ -155,6 +158,9 @@
 			$("#indi_num").html(comma(json.indi_val));
 
 		}, "json");
+	}
+	function comma(strNum) {	// 숫자 콤파 찍는 함수
+	    return strNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');	// 세자리 콤마
 	}
 </script>
 </html>
