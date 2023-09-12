@@ -39,9 +39,14 @@ public class MainController {
 	}
 	
 	@RequestMapping("/despose.do")
-	public String despose() {
+	public String despose(Model model) {
+		
+		List<CbntrdataDto> year_list = carbondataservice.Selectyear();
+		model.addAttribute("year_list",year_list); // 연도 선택 Select box 구성
+		
 		return "despose";
 	}
+	
 	@RequestMapping("/despose_detail.do")
 	public String despose_detail() {
 		return "despose_detail";

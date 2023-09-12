@@ -1,4 +1,4 @@
-function despose_barchart(area_id) { // 현황조회 바 차트
+function despose_barchart(area_id, data) { // 현황조회 바 차트
 
 	Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#858796';
@@ -8,7 +8,7 @@ function despose_barchart(area_id) { // 현황조회 바 차트
 		type: 'bar',
 		//type: 'horizontalBar',
 		data: {
-			labels: ["도로", "상업", "공공", "가정","장내발효","CH4","N2O","석회시용","벼재배"],
+			labels: data.cate_nm,
 			datasets: [{
 				label: '배출량',
 				data: [794865, 43386, 13197, 83060, 19651, 3012, 10835, 0, 13],

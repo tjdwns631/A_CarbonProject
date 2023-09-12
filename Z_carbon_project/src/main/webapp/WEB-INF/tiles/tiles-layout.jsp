@@ -29,7 +29,16 @@
     <aside id="sidebar"><tiles:insertAttribute name="sidebar"  ignore="true" /></aside>
     <main id="body"><tiles:insertAttribute name="body"  ignore="true" /></main>
 </div>
-
+<script>
+$(function(){
+	//aside 클릭시 토글 (메뉴부분, 사이드바)
+	$('.depth2').hide();
+	$('.nav_list.depth1').on('click', function() {
+		$(this).children('.depth2').slideToggle();
+		$(this).toggleClass('reverse');
+	})
+})
+</script>
 <!-- JS -->
 <script src="${pageContext.request.contextPath}/vendors/js/vendor.bundle.base.js"></script>
 <script src="${pageContext.request.contextPath}/vendors/chart.js/Chart.min.js"></script>

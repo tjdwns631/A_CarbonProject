@@ -187,6 +187,91 @@ public class CarbondataController {
 		
 	}
 	
+	@RequestMapping("desposeData.do")
+	@ResponseBody
+	public Map<String, Object> despose(@RequestParam(value="year" , required = false) Integer year){
+		
+		System.out.println("year tear : "+year);
+		
+		Integer low_date = 2018;
+		if(year == null) {
+			low_date = 2018;
+		}else {
+			low_date = year;
+		}
+		
+		System.out.println("low_date: "+low_date);
+		/* 감축인벤토리 데이터 */
+		List<CategoryDto> category =carbondataservice.categorynm(); //
+		
+		
+		String[] cate_nm = new String[category.size()]; // 
+		Integer[] cate_sn = new Integer[category.size()];
+		Integer[] Low_arr = new Integer[category.size()]; // 큰 배열->연도->작은배열->대분류별 데이터 입력
+		
+		for (int i = 0; i < category.size(); i++) { 
+			cate_nm[i] = category.get(i).getCate_nm(); // 카테고리 명
+			cate_sn[i] = category.get(i).getCate_sn(); // 카테고리 idx
+			Low_arr[i] = 0; // 각 대분류별 데이터 
+		}
+		
+		List<CbntrdataDto> data = carbondataservice.SelectData(low_date); //연별 배출량 데이터 조회
+		
+		log.info("category= {}", category);
+		System.out.println("cate_nm : " + Arrays.deepToString(cate_nm));
+		log.info("despose_date= {}", data);
+		
+		/*
+		 * for (int i = 0; i < data.size(); i++) { for(int j =0; j<category.size(); j++)
+		 * { if(data.get(i).getLev_3().equals(cate_nm[i])) {
+		 * if(data.get(i).getCate_sn_3().equals(cate_sn[i])) { Low_arr[j] =
+		 * data.get(i).getData_val(); } } } } System.out.println("Low_arr : " +
+		 * Arrays.deepToString(Low_arr));
+		 */
+		
+		/* 총 배울량, 총 간접인벤, 직접배출량, 간접배출량 데이터 */
+		
+		Integer total_val =0; //총 배출량 lulu 뺸거
+		Integer total_lu_val =0; //순 배출량 lulu 더한더 
+		Integer di_val =0; //직접 배출
+		Integer indi_val =0; // 간접 배출
+		
+		List<CbntrdataDto> data4 = carbondataservice.SelectData(low_date);
+		
+		for(int i = 0; i<data4.size(); i++) {
+			total_lu_val += data4.get(i).getData_val();
+			if(!data4.get(i).getLev_3().equals("LULUCF")) {
+				total_val += data4.get(i).getData_val();
+			}
+			if(data4.get(i).getLev_2().equals("직접배출")) {
+				di_val += data4.get(i).getData_val();
+			}
+			if(data4.get(i).getLev_2().equals("간접배출")) {
+				indi_val += data4.get(i).getData_val();
+			}
+		}
+		
+		System.out.println("totla_val :" + total_val);
+		System.out.println("total_lu_val :" + total_lu_val);
+		System.out.println("di_val :" + di_val);
+		System.out.println("indi_val :" + indi_val);
+		
+		Map<String, Object> output = new HashMap<>();
+		//감축 인벤토리
+		output.put("cate_nm", cate_nm); // 감축인벤 활동자료 명
+		output.put("Low_arr", Low_arr);
+		
+		//선택 연도에 따른 값
+		output.put("total_val", total_val); //총 배출량 lulu 뺸거
+		output.put("total_lu_val", total_lu_val); //순 배출량 lulu 더한더
+		output.put("di_val", di_val); //직접 배출
+		output.put("indi_val", indi_val); //간접 배출
+		output.put("year", low_date); //간접 배출
+		
+		return output;
+		
+	}
+	
 }
 
 

@@ -84,13 +84,6 @@
 			dashboarddataList();
 			dashboardSelectList();
 			
-			//aside 클릭시 토글 (메뉴부분)
-			$('.depth2').hide();
-			$('.nav_list.depth1').on('click', function() {
-				$(this).children('.depth2').slideToggle();
-				$(this).toggleClass('reverse');
-			})
-			
 			/* 일반함수 */
 			const label = document.querySelector('.label');
 			const options = document.querySelectorAll('.optionItem');
