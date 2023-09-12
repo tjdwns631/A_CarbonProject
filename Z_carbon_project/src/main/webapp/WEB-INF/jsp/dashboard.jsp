@@ -10,6 +10,7 @@
 <body>
 	<!--연간 총 배출량-->
 	<section class="graph_cont year_total_emission">
+	<div class="graph_title">연간 총 배출량</div>
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
 			<canvas id="barChart"></canvas>
@@ -17,6 +18,7 @@
 	</section>
 	<!--서책임님이 말씀한 누적 라인그래프-->
 	<section class="graph_cont stack_line_graph">
+	<div class="graph_title">누적 라인 그래프</div>
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
 			<canvas id="dashboard_stacked_linechart"></canvas>
@@ -24,6 +26,7 @@
 	</section>
 	<!--감축인벤토리 + 연도선택기능-->
 	<section class="graph_cont reduction_inventory">
+	<div class="graph_title">감축 인벤토리</div>
 		<div class="chart_box">
 			<canvas id="d_bar_chart"></canvas>
 		</div>

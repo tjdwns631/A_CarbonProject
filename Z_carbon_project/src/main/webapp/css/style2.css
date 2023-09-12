@@ -105,7 +105,7 @@ section.graph_cont {position: relative; background: linear-gradient(127.09deg, r
 .mini_box .text .num {font-size: 40px; font-weight: 700;}
 .mini_box .icon {width:50px; height:50px; display: flex; align-items: center; justify-content: center; border-radius: 15px; background-color: #0075ff; margin-left: auto;}
 
-/*그리드 디자인*/
+.graph_title {font-size:20px; color:#fff; font-weight:600; position:absolute; top:20px; left:20px;}
 /*연간 총 배출량*/
 .year_total_emission {height:44%; width:49%;}
 /*누적 라인 그래프*/
@@ -118,7 +118,7 @@ section.mini_cont {width:100%;}
 .chart_box {width:100%; margin:auto; position:relative; height:100%;}
 
 /*감축 인벤토리 연도선택 디자인*/
-.year_select {position:absolute; top:20px; left:20px; width: 105px; height: 30px; border-radius: 4px; border: 2px solid #0075ff;
+.year_select {position:absolute; top:15px; left:140px; width: 105px; height: 30px; border-radius: 4px; border: 2px solid #0075ff;
   cursor: pointer;}
 .year_select:after {
   content: '';

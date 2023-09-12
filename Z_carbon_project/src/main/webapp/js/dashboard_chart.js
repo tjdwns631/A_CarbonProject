@@ -28,38 +28,32 @@ function dashboard_barchart(area_id, data) { // 대시보드 첫 번째 차트 -
 		},
 		options: {
 			layout : {
-				padding: 20,
-			},
-			title : {
-			 	display: true,
-				position : 'top',
-		        text: '연간 총 배출량',
-				fontColor: '#FFFFFF',
-				fontSize:20,
-				fontStyle:600,
+				padding:{
+					left:20,
+					top : 70,
+					right:20,
+					bottom:20
+				},
+			},  
+			datalabels: {
+				color: '#FFFFFF',
+				display: function(context) {
+					return context.dataset.data[context.dataIndex] > 150000;
+				},
+				font: {
+					weight: 'bold'
+				},
+				formatter: function(value, context) {
+					let result = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+					return result
+				},
 			},
 			legend: {
 				display: true,
 				position: 'bottom',
 				labels : {
 					fontColor:'#D5D5D5',
-				}
-			},
-			plugins: {
-				
-				datalabels: {
-					color: '#FFFFFF',
-					display: function(context) {
-						return context.dataset.data[context.dataIndex] > 150000;
-					},
-					font: {
-						weight: 'bold'
-					},
-					formatter: function(value, context) {
-						let result = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-						return result
-					},
-				}
+				},
 			},
 			scales: {
 				yAxes: [{
@@ -78,7 +72,7 @@ function dashboard_barchart(area_id, data) { // 대시보드 첫 번째 차트 -
 						color: "rgba(204, 204, 204,0.1)"
 					},
 				}]
-			}
+			},
 		},
 	});
 }
@@ -180,16 +174,13 @@ function dashboard_stacked_linechart(area_id, json) {
 		},
 		options: {
 			layout : {
-				padding: 20,
-			},
-			title : {
-			 	display: true,
-				position : 'top',
-		        text: '누적 라인 그래프',
-				fontColor: '#FFFFFF',
-				fontSize:20,
-				fontStyle:600,
-			},
+				padding:{
+					left:20,
+					top : 70,
+					right:20,
+					bottom:20
+				},
+			},  
 			legend : {
 				display:true,
 				position : 'bottom',
@@ -236,16 +227,13 @@ function dashboard_d_barchart(area_id, data) { // 대시보드 3번째 차트
 		},
 		options: {
 			layout : {
-				padding: 20,
-			},
-			title : {
-			 	display: true,
-				position : 'top',
-		        text: '감축 인벤토리',
-				fontColor: '#FFFFFF',
-				fontSize:20,
-				fontStyle:600,
-			},
+				padding:{
+					left:20,
+					top : 70,
+					right:20,
+					bottom:20
+				},
+			},  
 			legend: {
 				display: false,
 				position: 'bottom'
