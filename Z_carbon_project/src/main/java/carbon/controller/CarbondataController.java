@@ -138,9 +138,21 @@ public class CarbondataController {
 		List<CbntrdataDto> data3 = carbondataservice.SelectDatalow(low_date); //감축량
 		log.info("date3= {}", data3);
 		
+		Integer total_low_val =0; //총 감축 배출량
+		Integer di_low_val =0; //직접 배출
+		Integer indi_low_val =0; // 간접 배출
 		
 		for (int i = 0; i < data3.size(); i++) {
 			Low_arr[i] = data3.get(i).getData_val();
+			total_low_val += data3.get(i).getData_val();
+			if(!data3.get(i).getLev_3().equals("LULUCF")) {
+				if(data3.get(i).getLev_2().equals("직접배출")) {
+					di_low_val += data3.get(i).getData_val();
+				}
+				if(data3.get(i).getLev_2().equals("간접배출")) {
+					indi_low_val += data3.get(i).getData_val();
+				}
+			}
 		}
 		System.out.println("Low_arr : " + Arrays.deepToString(Low_arr));
 		
@@ -157,12 +169,12 @@ public class CarbondataController {
 			total_lu_val += data4.get(i).getData_val();
 			if(!data4.get(i).getLev_3().equals("LULUCF")) {
 				total_val += data4.get(i).getData_val();
-			}
-			if(data4.get(i).getLev_2().equals("직접배출")) {
-				di_val += data4.get(i).getData_val();
-			}
-			if(data4.get(i).getLev_2().equals("간접배출")) {
-				indi_val += data4.get(i).getData_val();
+				if(data4.get(i).getLev_2().equals("직접배출")) {
+					di_val += data4.get(i).getData_val();
+				}
+				if(data4.get(i).getLev_2().equals("간접배출")) {
+					indi_val += data4.get(i).getData_val();
+				}
 			}
 		}
 		
@@ -175,6 +187,9 @@ public class CarbondataController {
 		//감축 인벤토리
 		output.put("prdt_nm", prdt_nm); // 감축인벤 활동자료 명
 		output.put("Low_arr", Low_arr);
+		output.put("total_low_val", total_low_val); //총 배출량 lulu 뺸거
+		output.put("di_low_val", di_low_val); //직접 배출
+		output.put("indi_low_val", indi_low_val); //간접 배출
 		
 		//선택 연도에 따른 값
 		output.put("total_val", total_val); //총 배출량 lulu 뺸거

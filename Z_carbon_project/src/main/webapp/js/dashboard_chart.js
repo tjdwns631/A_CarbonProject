@@ -18,7 +18,7 @@ function dashboard_barchart(area_id, data) { // 대시보드 첫 번째 차트 -
 				barPercentage: 0.5,
 			}, {
 				label: '간접배출',
-				data: data.data_val_2/*[601254, 712529, 751253, 864555, 902352, 962323]*/,
+				data: data.data_val_10/*[601254, 712529, 751253, 864555, 902352, 962323]*/,
 				backgroundColor: 'rgba(45,115,251,0.5)',
 				borderColor: 'rgba(45,115,251,1)',
 				borderWidth: 2,
@@ -27,6 +27,13 @@ function dashboard_barchart(area_id, data) { // 대시보드 첫 번째 차트 -
 			}],
 		},
 		options: {
+			onClick: function(point,event) {
+				if (event.length <= 0) return;
+				var clickedElementindex = event[0]["_index"];
+				console.log("labels"+myChart.data.labels[clickedElementindex])
+				var year = myChart.data.labels[clickedElementindex];
+				dashboard_piechart(year)
+			},
 			layout : {
 				padding:{
 					left:20,
@@ -71,8 +78,70 @@ function dashboard_barchart(area_id, data) { // 대시보드 첫 번째 차트 -
 					gridLines: {
 						color: "rgba(204, 204, 204,0.1)"
 					},
+					
 				}]
 			},
+		},
+	});
+}	
+
+function dashboard_pie_chart(area_id,data) { // 대시보드 파이 차트
+
+	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+	Chart.defaults.global.defaultFontColor = '#858796';
+
+	var ctx = document.getElementById(area_id);
+	var myChart = new Chart(ctx, {
+		type: 'pie',
+		data: {
+			labels: data.cate_nm,
+			datasets: [{
+				data: data.Low_arr, //58,42
+				backgroundColor: ['#4f11d450', '#11d4b750'],
+				borderColor: ['#4f11d4', '#11d4b7'],
+			}],
+		},
+		options: {
+			//cutoutPercentage: 85, 
+			legend: {
+				display: false,
+			},
+			plugins: {
+/*				doughnutlabel: {
+					labels: [
+						{
+							text: 'The title4433434',
+							font: {
+								size: '60'
+							},
+							color: 'red'
+						},
+					]
+				},*/
+				datalabels: {
+					display: false,
+					color: '#D5D5D5',
+					display: function(context) {
+						return context.dataset.data[context.dataIndex] > 5000000;
+					},
+					font: {
+						weight: 'bold'
+					},
+/*					formatter: function(value, context) {
+						let result = value + "%";
+						return result
+					},*/
+				},
+		
+			},
+/*			elements: {
+				center: {
+					text: '12313123131',
+					color: 'white',
+					fontStyle: 'Helvetica', //Default Arial 
+					//sidePadding: 15 //Default 20 (as a percentage) 
+				}
+			},*/
 		},
 	});
 }
@@ -269,67 +338,6 @@ function dashboard_d_barchart(area_id, data) { // 대시보드 3번째 차트
 					},
 				}]
 			}
-		},
-	});
-}
-
-function dashboard_pie_chart(area_id) { // 대시보드 파이 차트
-
-	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-	Chart.defaults.global.defaultFontColor = '#858796';
-
-	var ctx = document.getElementById(area_id);
-	var myChart = new Chart(ctx, {
-		type: 'doughnut',
-		data: {
-			labels: ["직접배출량", "간접배출량"],
-			datasets: [{
-				data: [61, 39], //58,42
-				backgroundColor: ['#4f11d450', '#11d4b750'],
-				borderColor: ['#4f11d4', '#11d4b7'],
-			}],
-		},
-		options: {
-			cutoutPercentage: 85,
-			legend: {
-				//display: false,
-			},
-			plugins: {
-				doughnutlabel: {
-					labels: [
-						{
-							text: 'The title4433434',
-							font: {
-								size: '60'
-							},
-							color: 'red'
-						},
-					]
-				},
-				datalabels: {
-					//display: false,
-					color: '#D5D5D5',
-					display: function(context) {
-						return context.dataset.data[context.dataIndex] > 15;
-					},
-					font: {
-						weight: 'bold'
-					},
-					formatter: function(value, context) {
-						let result = value + "%";
-						return result
-					},
-				},
-		
-			},
-/*			elements: {
-				center: {
-					text: '12313123131',
-					color: 'white',
-					fontStyle: 'Helvetica', //Default Arial 
-					//sidePadding: 15 //Default 20 (as a percentage) 
-				}
-			},*/
 		},
 	});
 }

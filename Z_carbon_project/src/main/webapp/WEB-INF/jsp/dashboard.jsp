@@ -16,12 +16,12 @@
 			<canvas id="barChart"></canvas>
 		</div>
 	</section>
-	<!--서책임님이 말씀한 누적 라인그래프-->
+	<!--파이(파이 or 도넛) 그래프-->
 	<section class="graph_cont stack_line_graph">
 	<div class="graph_title">누적 라인 그래프</div>
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
-			<canvas id="dashboard_stacked_linechart"></canvas>
+			<canvas id="dashboard_piechart"></canvas>
 		</div>
 	</section>
 	<!--감축인벤토리 + 연도선택기능-->
@@ -86,6 +86,7 @@
 			
 			dashboarddataList();
 			dashboardSelectList();
+			dashboard_piechart() //파이차트
 			
 			/* 일반함수 */
 			const label = document.querySelector('.label');
@@ -165,6 +166,17 @@
 						$("#dashboard_stacked_linechart").empty(); // 초기화 후 재생성
 						dashboard_stacked_linechart('dashboard_stacked_linechart', json);
 					
+
+					}, "json");
+		}
+		
+		function dashboard_piechart(year) { //연간 총배출량 차트 클릭시 파이차트 
+			$.post('/desposeData.do', {"year": year},
+					function(json) {
+						console.log(json)
+
+						$("#dashboard_piechart").empty(); // 연간 총 배출량 그래프
+						dashboard_pie_chart('dashboard_piechart', json);
 
 					}, "json");
 		}
