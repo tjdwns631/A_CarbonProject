@@ -66,6 +66,62 @@ function despose_barchart(area_id, data) { // 현황조회 바 차트
 	});
 }
 
+function despose_stackbarchart(area_id, data) { // 스택 바 차트 보류 불가능 할듯
+
+	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+	Chart.defaults.global.defaultFontColor = '#D5D5D5';
+
+	var min_data = Math.min(...data.Low_arr);
+
+	var ctx = document.getElementById(area_id);
+	var myChart = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: data.cate_nm,
+			datasets: [{
+				data: data.energy_val,
+				backgroundColor: 'rgba(45,115,251,1)',
+				fill: true,
+				barPercentage: 0.7,
+			}],
+		},
+		options: {
+			layout: {
+				padding: {
+					left: 20,
+					top: 70,
+					right: 20,
+					bottom: 20
+				},
+			},
+			legend: {
+				display: false,
+				position: 'bottom'
+			},
+			plugins: {
+				datalabels: {
+					display: false,
+				}
+			},
+			maintainAspectRatio: false,
+			scales: {
+				yAxes: [{
+					stacked: true,
+					gridLines: {
+						color: "rgba(204, 204, 204,0.1)"
+					},
+				}],
+				xAxes: [{
+					stacked: true,
+					gridLines: {
+						color: "rgba(204, 204, 204,0.1)"
+					},
+				}]
+			}
+		},
+	});
+}
+
 function despose_pie(area_id,data) { // 현황조회 파이 차트
 
 	Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';

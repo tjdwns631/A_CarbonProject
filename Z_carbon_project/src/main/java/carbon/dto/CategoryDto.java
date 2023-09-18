@@ -18,4 +18,6 @@ public class CategoryDto {
 	Integer prdt_sn;
 	String prdt_nm;
 	
+	Integer count;
+	
 }

@@ -20,15 +20,6 @@
 		</div>
 		<div class="mini_box">
 			<div class="text">
-				<p class="title" id="lu_title">순 배출량</p>
-				<p class="num" id="lu_num">1,575,198</p>
-			</div>
-			<div class="icon" title="순 배출량">
-				<img src="${pageContext.request.contextPath}/images/cf_icon_normal.png" alt="순 배출량">
-			</div>
-		</div>
-		<div class="mini_box">
-			<div class="text">
 				<p class="title" id="di_title">직접 배출량</p>
 				<p class="num" id="di_num">10,031,192</p>
 			</div>
@@ -43,6 +34,15 @@
 			</div>
 			<div class="icon" title="간접 배출량">
 				<img src="${pageContext.request.contextPath}/images/cf_icon_indirect.png" alt="간접 배출량">
+			</div>
+		</div>
+		<div class="mini_box">
+			<div class="text">
+				<p class="title" id="lu_title">순 배출량</p>
+				<p class="num" id="lu_num">1,575,198</p>
+			</div>
+			<div class="icon" title="순 배출량">
+				<img src="${pageContext.request.contextPath}/images/cf_icon_normal.png" alt="순 배출량">
 			</div>
 		</div>
 			<div class="mini_box select_year" style="aligm-items:flex-start; overflow:visible; z-index:2;">
@@ -65,20 +65,21 @@
 	<section class="graph_cont first_chart_box">
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
-			<canvas id="cf_barchart"></canvas>
+			<canvas id="barChart"></canvas>
 		</div>
 	</section>
 	<!--두번째 차트 박스-->
 	<section class="graph_cont second_chart_box">
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
-			<canvas id="despose_pie"></canvas>
+			<canvas id="cf_barchart"></canvas>
 		</div>
 	</section>
+	
 	<!--세번째 차트 박스-->
 	<section class="graph_cont third_chart_box">
 		<!--차트 넣는 곳-->
-		<div class="chart_box">
+		<div class="chart_box" style="display: none">
 			<canvas id=""></canvas>
 		</div>
 	</section>
@@ -99,49 +100,29 @@
 </body>
 <script>
 	$(function() {
-		desposeData();
-/* 		$("#despose_barchart").empty(); // 초기화 후 재생성
-		despose_barchart('despose_barchart'); */
+		DashboardYearData()
+		DesposeData();
 		
-		/* 일반함수 */
-		const label = document.querySelector('.label');
-		const options = document.querySelectorAll('.optionItem');
-		// 클릭한 옵션의 텍스트를 라벨 안에 넣음
-		const handleSelect = function(item) {
-			label.innerHTML = item.textContent;
-			label.parentNode.classList.remove('active');
-		}
-		// 옵션 클릭시 클릭한 옵션을 넘김
-		options.forEach(function(option) {
-			option.addEventListener('click', function() {
-				handleSelect(option)
-				let year ="";
-				year = $(this).val(); //선택된 연도 담기
-				desposeData(year); 
-			})
-		})
-		// 라벨을 클릭시 옵션 목록이 열림/닫힘
-		label.addEventListener('click', function() {
-			if (label.parentNode.classList.contains('active')) {
-				label.parentNode.classList.remove('active');
-			} else {
-				label.parentNode.classList.add('active');
-			}
-		});
+		SelectBoxClick() // 셀텍트 박스 클릭 이벤
 	})
+	
 
-	function desposeData(year) { // 선택연도 데이터
+	function DashboardYearData() { // 연간 배출량 그래프
+		$.post('/DashboardDataList.do', {}, function(json) {
+			$("#barChart").empty();
+			dashboard_barchart('barChart', json);
+		}, "json");
+	}
+
+	function DesposeData(year) { // 선택연도 데이터
 		console.log(year);
-		$.post('/desposeData.do', {"year" : year }, function(json) {
+		$.post('/desposeData.do', {
+			"year" : year
+		}, function(json) {
 			console.log(json)
-			
 			$("#cf_barchart").empty(); // 초기화 후 재생성
 			despose_barchart('cf_barchart', json);
-
-			$("#despose_pie").empty(); // 초기화 후 재생성
-			despose_pie('despose_pie', json);
-			
-
+			//despose_stackbarchart('cf_barchart', json);
 			$("#total_title").empty();
 			$("#total_title").html(json.year + "년 총 배출량");
 			$("#total_num").empty();
@@ -164,9 +145,40 @@
 
 		}, "json");
 	}
+
+	function comma(strNum) { // 숫자 콤마 찍는 함수
+		return strNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); // 세자리 콤마
+	}
 	
-	function comma(strNum) {	// 숫자 콤마 찍는 함수
- 	    return strNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');	// 세자리 콤마
+	function SelectBoxClick(){
+		/* 일반함수 */
+		const label = document.querySelector('.label');
+		const options = document.querySelectorAll('.optionItem');
+		// 클릭한 옵션의 텍스트를 라벨 안에 넣음
+		const handleSelect = function(item) {
+			label.innerHTML = item.textContent;
+			label.parentNode.classList.remove('active');
+			// label.innerHTML = "222222"; 라벨에 값 넣기
+		}
+		// 옵션 클릭시 클릭한 옵션을 넘김
+		options.forEach(function(option) {
+			option.addEventListener('click', function() {
+				handleSelect(option)
+				
+				let year ="";
+				year = $(this).val(); //선택된 연도 담기
+				
+				DesposeData(year); 
+			})
+		})
+		// 라벨을 클릭시 옵션 목록이 열림/닫힘
+		label.addEventListener('click', function() {
+			if (label.parentNode.classList.contains('active')) {
+				label.parentNode.classList.remove('active');
+			} else {
+				label.parentNode.classList.add('active');
+			}
+		});
 	}
 </script>
 </html>

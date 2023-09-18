@@ -21,4 +21,8 @@ public interface CarbondataService {
 
 	List<CbntrdataDto> Selectyear();
 
+	List<CategoryDto> CategoryCount();
+
+	List<CategoryDto> SelectviPrdtnm(String cata_name);
+
 }

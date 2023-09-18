@@ -35,6 +35,7 @@
 	WHERE b3.cate_sn = 14 AND b.data_date = #{low_date}
 	ORDER BY a.prdt_sn ASC
 	</select>
+	
 	<!-- 감축인벤토리 활동자료 -->
 	<select id="SelectPrdtnm" resultType="carbon.dto.CategoryDto">
 		SELECT distinct a.prdt_sn prdt_sn, a.prdt_nm prdt_nm
@@ -43,6 +44,22 @@
 		JOIN comt_cbntr_category b2 ON b2.cate_sn = c.cate_upr_sn
 		JOIN comt_cbntr_category b3 ON b3.cate_sn = b2.cate_upr_sn
 		WHERE b3.cate_sn = 14
+		ORDER BY a.prdt_sn ASC
+	</select>
+	
+	<!-- 배출인벤토리 활동자료 -->
+	<select id="SelectviPrdtnm" resultType="carbon.dto.CategoryDto">
+		SELECT distinct a.prdt_sn prdt_sn, a.prdt_nm prdt_nm, c.cate_sn cate_sn_3, c.cate_nm lev3
+		FROM comt_cbntr_product a JOIN comt_cbntr_data b ON a.prdt_sn = b.prdt_sn
+		JOIN comt_cbntr_category c ON a.cate_sn = c.cate_sn
+		JOIN comt_cbntr_category b2 ON b2.cate_sn = c.cate_upr_sn
+		JOIN comt_cbntr_category b3 ON b3.cate_sn = b2.cate_upr_sn
+		WHERE b3.cate_sn = 1
+		<trim prefix="AND" prefixOverrides="OR">
+			<if test="cate != null ">
+				OR c.cate_nm = #{cate_nm}
+			</if>
+		</trim>
 		ORDER BY a.prdt_sn ASC
 	</select>
 	
@@ -64,7 +81,7 @@
 		order by data_date asc
 	</select>
 	
-	<!-- 대분류 카테고리 명칭 -->
+	<!-- 배출인벤 대분류 카테고리 명칭 -->
 	<select id="categorynm" resultType="carbon.dto.CategoryDto">
 		SELECT distinct c.cate_nm, c.cate_sn
 		FROM comt_cbntr_product a JOIN comt_cbntr_data b ON a.prdt_sn = b.prdt_sn
@@ -72,6 +89,17 @@
 		JOIN comt_cbntr_category b2 ON b2.cate_sn = c.cate_upr_sn
 		JOIN comt_cbntr_category b3 ON b3.cate_sn = b2.cate_upr_sn
 		WHERE b3.cate_sn = 1
+		ORDER BY c.cate_sn ASC
+	</select>
+	
+	<!-- 대분류별 활동자료 수 구하기 -->
+	<select id="CategoryCount" resultType="carbon.dto.CategoryDto">
+		SELECT c.cate_nm, c.cate_sn, count(c.cate_sn)
+		FROM comt_cbntr_product a JOIN comt_cbntr_category c ON a.cate_sn = c.cate_sn
+		JOIN comt_cbntr_category b2 ON b2.cate_sn = c.cate_upr_sn
+		JOIN comt_cbntr_category b3 ON b3.cate_sn = b2.cate_upr_sn
+		WHERE b3.cate_sn = 1
+		group by c.cate_sn
 		ORDER BY c.cate_sn ASC
 	</select>
 	

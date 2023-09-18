@@ -31,15 +31,15 @@
 					<div class="nav_icon">
 						<i class="fa-solid fa-magnifying-glass"></i>
 					</div>
-					<div class="nav_name">배출현황 조회</div>
+					<div class="nav_name">상세 조회</div>
 					<i class="fa-solid fa-chevron-down"></i>
 				</div>
 				<ul class="depth2">
 					<li class="nav_list">
-						<div class="nav_name"  onclick="location.href='${pageContext.request.contextPath}/despose.do';">현황 조회</div>
+						<div class="nav_name"  onclick="location.href='${pageContext.request.contextPath}/cf_dispose.do';">배출량현황</div>
 					</li>
 					<li class="nav_list">
-						<div class="nav_name" onclick="location.href='${pageContext.request.contextPath}/despose_detail.do';">상세현황 조회</div>
+						<div class="nav_name" onclick="location.href='${pageContext.request.contextPath}/cf_lowdispose_detail.do';">감축인벤토리</div>
 					</li>
 				</ul>
 			</li>

@@ -18,7 +18,7 @@
 	<!-- JS -->     
 	<script src="${pageContext.request.contextPath}/js/jquery-3.7.0.min.js"></script> 
     <script src="${pageContext.request.contextPath}/js/dashboard_chart.js"></script>
-    <script src="${pageContext.request.contextPath}/js/despose_chart.js"></script>
+    <script src="${pageContext.request.contextPath}/js/cf_dispose_chart.js"></script>
     <script src="${pageContext.request.contextPath}/vendors/chart.js/Chart.min.js"></script>
     <script src="https://kit.fontawesome.com/63ee985f7b.js" crossorigin="anonymous"></script>
  
@@ -41,7 +41,6 @@ $(function(){
 </script>
 <!-- JS -->
 <script src="${pageContext.request.contextPath}/vendors/js/vendor.bundle.base.js"></script>
-<script src="${pageContext.request.contextPath}/vendors/chart.js/Chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
 <script src="${pageContext.request.contextPath}/vendors/progressbar.js/progressbar.min.js"></script>
 <script src="${pageContext.request.contextPath}/vendors/jvectormap/jquery-jvectormap.min.js"></script>

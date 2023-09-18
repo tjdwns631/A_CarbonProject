@@ -84,10 +84,67 @@
 	<script>
 		$(function() {
 			
-			dashboarddataList();
-			dashboardSelectList();
-			dashboard_piechart() //파이차트
+			DashboardYearData(); //연간 배출량 데이터
+			DashboardSelectData(); //연별 선택 감축 데이터 및 배출량 데이터
+			Dashboard_piechart() //파이차트 데이터 (default 2018년 데이터)
 			
+			SelectBoxClick() // 셀텍트 박스 클릭 이벤
+			
+		})
+
+		function DashboardSelectData(year) { // 선택연도 데이터
+			console.log(year);
+			$.post('/DashboardSelectList.do', {"year" : year},
+					function(json) {
+						console.log(json)
+						//감축 인벤토리 데이터
+						$("#d_bar_chart").empty(); 
+						dashboard_d_barchart('d_bar_chart',json);
+						//배출량 데이터 
+						$("#total_title").empty();
+						$("#total_title").html(json.year+"년 총 배출량");
+						$("#total_num").empty();
+						$("#total_num").html(comma(json.total_val));
+						$("#lu_title").empty();
+						$("#lu_title").html(json.year+"년 순 배출량");
+						$("#lu_num").empty();
+						$("#lu_num").html(comma(json.total_lu_val));
+						$("#di_title").empty();
+						$("#di_title").html(json.year+"년 직접 배출량");
+						$("#di_num").empty();
+						$("#di_num").html(comma(json.di_val));
+						$("#indi_title").empty();
+						$("#indi_title").html(json.year+"년 간접 배출량");
+						$("#indi_num").empty();
+						$("#indi_num").html(comma(json.indi_val));
+						
+					}, "json");
+		}
+		
+		function DashboardYearData() { // 연간 배출량 그래프
+			$.post('/DashboardDataList.do', {},
+					function(json) {
+						console.log(json)
+						$("#barChart").empty(); 
+						dashboard_barchart('barChart', json);
+					}, "json");
+		}
+		function Dashboard_piechart(year) { //연간 총배출량 차트 클릭시 파이차트 
+			$.post('/desposeData.do', {"year": year},
+					function(json) {
+						console.log(json)
+
+						$("#dashboard_piechart").empty(); // 연간 총 배출량 그래프
+						dashboard_pie_chart('dashboard_piechart', json);
+
+					}, "json");
+		}
+		
+		function comma(strNum) {	// 숫자 콤파 찍는 함수
+		    return strNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');	// 세자리 콤마
+		}
+		
+		function SelectBoxClick(){
 			/* 일반함수 */
 			const label = document.querySelector('.label');
 			const options = document.querySelectorAll('.optionItem');
@@ -105,7 +162,7 @@
 					let year ="";
 					year = $(this).val(); //선택된 연도 담기
 					
-					dashboardSelectList(year); 
+					DashboardSelectData(year); 
 				})
 			})
 			// 라벨을 클릭시 옵션 목록이 열림/닫힘
@@ -116,69 +173,6 @@
 					label.parentNode.classList.add('active');
 				}
 			});
-			
-		})
-		
-		function dashboardSelectList(year) { // 선택연도 데이터
-			console.log(year);
-			$.post('/dashboardSelectList.do', {"year" : year},
-					function(json) {
-						console.log(json)
-
-						$("#d_bar_chart").empty(); // 초기화 후 재생성
-						dashboard_d_barchart('d_bar_chart',json);
-						
-						$("#total_title").empty();
-						$("#total_title").html(json.year+"년 총 배출량");
-						$("#total_num").empty();
-						$("#total_num").html(comma(json.total_val));
-						
-						$("#lu_title").empty();
-						$("#lu_title").html(json.year+"년 순 배출량");
-						$("#lu_num").empty();
-						$("#lu_num").html(comma(json.total_lu_val));
-						
-						$("#di_title").empty();
-						$("#di_title").html(json.year+"년 직접 배출량");
-						$("#di_num").empty();
-						$("#di_num").html(comma(json.di_val));
-						
-						$("#indi_title").empty();
-						$("#indi_title").html(json.year+"년 간접 배출량");
-						$("#indi_num").empty();
-						$("#indi_num").html(comma(json.indi_val));
-						
-					}, "json");
-		}
-		
-		function comma(strNum) {	// 숫자 콤파 찍는 함수
-		    return strNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');	// 세자리 콤마
-		}
-
-		function dashboarddataList() { // 차트 
-			$.post('/dashboarddatalist.do', {},
-					function(json) {
-						console.log(json)
-
-						$("#barChart").empty(); // 연간 총 배출량 그래프
-						dashboard_barchart('barChart', json);
-
-						$("#dashboard_stacked_linechart").empty(); // 초기화 후 재생성
-						dashboard_stacked_linechart('dashboard_stacked_linechart', json);
-					
-
-					}, "json");
-		}
-		
-		function dashboard_piechart(year) { //연간 총배출량 차트 클릭시 파이차트 
-			$.post('/desposeData.do', {"year": year},
-					function(json) {
-						console.log(json)
-
-						$("#dashboard_piechart").empty(); // 연간 총 배출량 그래프
-						dashboard_pie_chart('dashboard_piechart', json);
-
-					}, "json");
 		}
 	</script>
 </body>

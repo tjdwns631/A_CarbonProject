@@ -58,4 +58,16 @@ public class CarbondataServiceimple implements CarbondataService{
 		return carbondatamapper.Selectyear();
 	}
 
+	@Override
+	public List<CategoryDto> CategoryCount() {
+		// TODO Auto-generated method stub
+		return carbondatamapper.CategoryCount();
+	}
+
+	@Override
+	public List<CategoryDto> SelectviPrdtnm(String cate_nm) {
+		// TODO Auto-generated method stub
+		return carbondatamapper.SelectviPrdtnm(cate_nm);
+	}
+
 }

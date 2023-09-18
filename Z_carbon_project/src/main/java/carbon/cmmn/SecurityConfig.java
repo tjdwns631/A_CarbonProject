@@ -34,8 +34,8 @@ public class SecurityConfig {
         .authorizeHttpRequests((requests) -> requests
         		.requestMatchers(new AntPathRequestMatcher("/css/**"),new AntPathRequestMatcher("/images/**"),new AntPathRequestMatcher("/js/**"),
         						new AntPathRequestMatcher("/vendors/**"),new AntPathRequestMatcher("/common/**"),
-        						new AntPathRequestMatcher("/login.do*")
-        						/*new AntPathRequestMatcher("/dashboard.do"),new AntPathRequestMatcher("/dashboardSelectList.do"),new AntPathRequestMatcher("/dashboarddatalist.do")*/
+        						new AntPathRequestMatcher("/login.do*"),
+        						new AntPathRequestMatcher("/cf_dispose.do"),new AntPathRequestMatcher("/DashboardDataList.do"),new AntPathRequestMatcher("/desposeData.do")
         						).permitAll()
                 //.requestMatchers("/css/**", "/img/**", "/js/**","/vendors/**" ,"/login","/error").permitAll()
                 //.requestMatchers("/dashboard/dashboard_sis").hasRole("ADMIN")

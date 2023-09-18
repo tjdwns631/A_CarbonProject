@@ -24,5 +24,9 @@ public interface CarbonDataMapper {
 
 	List<CbntrdataDto> Selectyear();
 
+	List<CategoryDto> CategoryCount();
+
+	List<CategoryDto> SelectviPrdtnm(String cate_nm);
+
 
 }

@@ -32,7 +32,7 @@ function dashboard_barchart(area_id, data) { // 대시보드 첫 번째 차트 -
 				var clickedElementindex = event[0]["_index"];
 				console.log("labels"+myChart.data.labels[clickedElementindex])
 				var year = myChart.data.labels[clickedElementindex];
-				dashboard_piechart(year)
+				Dashboard_piechart(year);
 			},
 			layout : {
 				padding:{
