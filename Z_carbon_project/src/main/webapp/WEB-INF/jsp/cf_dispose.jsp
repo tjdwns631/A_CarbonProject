@@ -77,26 +77,48 @@
 	</section>
 	
 	<!--세번째 차트 박스-->
-	<section class="graph_cont third_chart_box">
-		<!--차트 넣는 곳-->
-		<div class="chart_box" style="display: none">
-			<canvas id=""></canvas>
-		</div>
-	</section>
-	<!--네번째 차트 박스-->
-	<section class="graph_cont fourth_chart_box">
-		<!--차트 넣는 곳-->
-		<div class="chart_box">
-			<canvas id=""></canvas>
-		</div>
-	</section>
-	<!--다섯번째 차트 박스-->
-	<section class="graph_cont fifth_chart_box">
-		<!--차트 넣는 곳-->
-		<div class="chart_box">
-			<canvas id=""></canvas>
-		</div>
-	</section>
+	<div class="folding_wrap">
+        <section class="graph_cont">
+            <div class="chart_box">
+                <canvas></canvas>
+            </div>
+        </section>
+        <section class="graph_cont">
+            <div class="chart_box">
+                <canvas></canvas>
+            </div>
+        </section>
+        <section class="graph_cont">
+            <div class="chart_box">
+                <canvas></canvas>
+            </div>
+        </section>
+        <section class="graph_cont">
+            <div class="chart_box">
+                <canvas></canvas>
+            </div>
+        </section>
+        <section class="graph_cont">
+            <div class="chart_box">
+                <canvas></canvas>
+            </div>
+        </section>
+        <section class="graph_cont">
+            <div class="chart_box">
+                <canvas></canvas>
+            </div>
+        </section>
+        <section class="graph_cont">
+            <div class="chart_box">
+                <canvas></canvas>
+            </div>
+        </section>
+        <section class="graph_cont">
+            <div class="chart_box">
+                <canvas></canvas>
+            </div>
+        </section>
+    </div>
 </body>
 <script>
 	$(function() {
@@ -180,5 +202,15 @@
 			}
 		});
 	}
+	
+
+    $(document).ready(function () {
+        $(".folding_wrap .graph_cont").click(function () {
+            // 현재 클릭한 chart_box 요소를 확장하고 나머지를 최소화
+            $(this).toggleClass("expanded");
+            $(".folding_wrap .graph_cont").not(this).removeClass("expanded");
+        });
+    });
+
 </script>
 </html>

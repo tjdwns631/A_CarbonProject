@@ -184,3 +184,10 @@ section.mini_cont {width:100%;}
 .year_select .optionList::-webkit-scrollbar-thumb {background: #303030; border-radius: 45px;}
 .year_select .optionList::-webkit-scrollbar-thumb:hover {background: #303030;}
 
+
+.folding_wrap {display: flex; justify-content: space-between; gap: 20px; width: 100%; height: 100%;}
+/*8개니까 12.5%로 맞췄습니다*/
+.folding_wrap .graph_cont {width: 12.5%; height:300px; cursor: pointer; flex-grow: 1; transition: width 0.5s;}
+.folding_wrap .graph_cont canvas {width:100%; height: 100%;}
+.folding_wrap .graph_cont.expanded {width:40%}
+    
