@@ -1,3 +1,81 @@
+function dispose_yearchart(area_id, data) { // 대시보드 첫 번째 차트 - 연간 총 배출량
+
+	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+	Chart.defaults.global.defaultFontColor = '#D5D5D5';
+	console.log("cf_fispo : "+data.data_val_2)
+	console.log("cf_fispo : "+data.year_date)
+	var ctx = document.getElementById(area_id);
+	var myChart = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: data.year_date,
+			datasets: [{
+				label: '직접배출',
+				data: data.data_val_2,
+				backgroundColor: 'rgba(46,253,129,0.5)',
+				borderColor: 'rgba(46,253,129,1)',
+				borderWidth: 2,
+				fill: false,
+				barPercentage: 0.5,
+			}, {
+				label: '간접배출',
+				data: data.data_val_10,
+				backgroundColor: 'rgba(45,115,251,0.5)',
+				borderColor: 'rgba(45,115,251,1)',
+				borderWidth: 2,
+				fill: false,
+				barPercentage: 0.5, // bar 굵기 조절
+			}],
+		},
+		options: {
+			layout : {
+				padding:{
+					left:20,top : 70,right:20,bottom:20
+				},
+			},  
+			datalabels: {
+				color: '#FFFFFF',
+				display: function(context) {
+					return context.dataset.data[context.dataIndex] > 150000;
+				},
+				font: {
+					weight: 'bold'
+				},
+				formatter: function(value, context) {
+					let result = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+					return result
+				},
+			},
+			legend: {
+				display: true,
+				position: 'bottom',
+				labels : {
+					fontColor:'#D5D5D5',
+				},
+			},
+			scales: {
+				yAxes: [{
+					stacked: true,
+					gridLines: {
+						color: "rgba(204, 204, 204,0.1)"
+					},
+					ticks: {
+						min: 0,
+						maxTicksLimit: 5,
+					},
+				}],
+				xAxes: [{
+					stacked: true,
+					gridLines: {
+						color: "rgba(204, 204, 204,0.1)"
+					},
+					
+				}]
+			},
+		},
+	});
+}	
+
 function despose_barchart(area_id, data) { // 현황조회 바 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';

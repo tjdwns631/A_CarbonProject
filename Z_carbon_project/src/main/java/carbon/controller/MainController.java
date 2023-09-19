@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import carbon.dto.CbntrdataDto;
 import carbon.dto.MemberDto;
+import carbon.security.User;
 import carbon.service.CarbondataService;
 import carbon.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +37,11 @@ public class MainController {
 		
 		List<CbntrdataDto> year_list = carbondataservice.Selectyear();
 		model.addAttribute("year_list",year_list); // 연도 선택 Select box 구성
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User)authentication.getPrincipal();
+		System.out.println("testet"+ user.getUsername());
+		log.info("test={}",user);
 		
 		return "dashboard";
 	}

@@ -122,21 +122,22 @@
 <script>
 	$(function() {
 		DashboardLowYearData()
-		//DesposeData();
+		DesposeData();
 		SelectBoxClick() // 셀텍트 박스 클릭 이벤
 	})
 	
 
 	function DashboardLowYearData() { // 연간 배출량 그래프
 		$.post('/Low_data.do', {}, function(json) {
-			/* $("#barChart").empty();
-			dashboard_barchart('barChart', json); */
+			console.log(json);
+			$("#barChart").empty();
+			dispose_yearchart('barChart', json);
 		}, "json");
 	}
 
 	function DesposeData(year) { // 선택연도 데이터
 		console.log(year);
-		$.post('/desposeData.do', {
+		$.post('/Low_data.do', {
 			"year" : year
 		}, function(json) {
 			console.log(json)

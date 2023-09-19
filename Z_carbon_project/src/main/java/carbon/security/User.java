@@ -33,7 +33,7 @@ public class User implements UserDetails {
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return this.memberdto.getUser_id();
+		return this.memberdto.getUser_nm();
 	}
 
 	@Override

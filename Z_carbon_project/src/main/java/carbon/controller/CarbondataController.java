@@ -85,7 +85,7 @@ public class CarbondataController {
 		Map<String, Object> output = new HashMap<>();
 		output.put("data_val_2", data_val_2); // 직접배출값
 		output.put("data_val_10", data_val_10); // 간접배출값
-		output.put("year", year_date); // 연도
+		output.put("year_date", year_date); // 연도
 
 		output.put("stack_data", Arr); // 직접배출값
 		output.put("year", year_date); // 연도
@@ -503,7 +503,7 @@ public class CarbondataController {
 		String[] indiwaste_nm  = new String[catecount.get(4).getCount()];
 		Integer[] indiwaste_sn = new Integer[catecount.get(4).getCount()];
 		Integer[] indiwaste_val = new Integer[catecount.get(4).getCount()];
-		List<CategoryDto> prdt_info_indiwaste =carbondataservice.SelectviPrdtnm(cata_name[4]); //배출인벤 에너지 활동자료명 가져옴
+		List<CategoryDto> prdt_info_indiwaste =carbondataservice.SelectLowPrdtnm(cata_name[4]); //배출인벤 에너지 활동자료명 가져옴
 		for(int i =0; i<prdt_info_indiwaste.size(); i++) {
 			indiwaste_sn[i] = prdt_info_indiwaste.get(i).getPrdt_sn();
 			indiwaste_nm [i] = prdt_info_indiwaste.get(i).getPrdt_nm();
@@ -515,7 +515,8 @@ public class CarbondataController {
 		Integer lulucf_sum = 0;
 		Integer elect_sum = 0;
 		Integer indiwaste_sum = 0;
-		List<CbntrdataDto> data = carbondataservice.SelectData(low_date); //연별 배출량 데이터 조회
+		List<CbntrdataDto> data = carbondataservice.SelectLowData(low_date); //연별 배출량 데이터 조회
+		log.info("datadatadata= {}", data);
 		for(int i=0; i<data.size(); i++) {
 			for(int a=0; a<energy_sn.length; a++) {
 				if(data.get(i).getPrdt_sn().equals(energy_sn[a])) {energy_sum += data.get(i).getData_val();energy_val[a] = data.get(i).getData_val();}
@@ -551,7 +552,7 @@ public class CarbondataController {
 		Integer di_val =0; //직접 배출
 		Integer indi_val =0; // 간접 배출
 		
-		List<CbntrdataDto> data4 = carbondataservice.SelectData(low_date);
+		List<CbntrdataDto> data4 = carbondataservice.SelectLowData(low_date);
 		
 		for(int i = 0; i<data4.size(); i++) {
 			total_lu_val += data4.get(i).getData_val();
@@ -577,10 +578,10 @@ public class CarbondataController {
 		//대분류 별 데이터
 		output.put("energy_val", energy_val); //간접 배출
 		// 감축 인벤 직접 간접 배출 데이터
-		output.put("year", year_date); // 연도
+		output.put("year_date", year_date); // 연도
 		output.put("data_val_2", data_val_2); //직접 배출
 		output.put("data_val_10", data_val_10); //간접 배출
-		
+		System.out.println(Arrays.toString(year_date));
 		//선택 연도에 따른 값
 		output.put("total_val", total_val); //총 배출량 lulu 뺸거
 		output.put("total_lu_val", total_lu_val); //순 배출량 lulu 더한더
