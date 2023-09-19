@@ -34,6 +34,8 @@ function dashboard_barchart(area_id, data) { // 대시보드 첫 번째 차트 -
 				var year = myChart.data.labels[clickedElementindex];
 				Dashboard_piechart(year);
 			},
+			responsive: true, // 반응형 설정 활성화
+        	maintainAspectRatio: false, // 가로세로비율유지X
 			layout : {
 				padding:{
 					left:20,
@@ -88,7 +90,7 @@ function dashboard_barchart(area_id, data) { // 대시보드 첫 번째 차트 -
 function dashboard_pie_chart(area_id,data) { // 대시보드 파이 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-	Chart.defaults.global.defaultFontColor = '#858796';
+	Chart.defaults.global.defaultFontColor = '#ffffff';
 
 	var ctx = document.getElementById(area_id);
 	var myChart = new Chart(ctx, {
@@ -97,12 +99,22 @@ function dashboard_pie_chart(area_id,data) { // 대시보드 파이 차트
 			labels: data.cate_nm,
 			datasets: [{
 				data: data.Low_arr, //58,42
-				backgroundColor: ['#4f11d450', '#11d4b750'],
-				borderColor: ['#4f11d4', '#11d4b7'],
+				backgroundColor: ['rgba(46,253,129,0.5)', 'rgba(42,232,177,0.5)','rgba(53,243,227,0.5)','rgba(56,227,255,0.5)', 'rgba(50,203,247,0.5)', 'rgba(42,154,232,0.5)', 'rgba(45,115,251,0.5)'],
+				borderColor: ['#ffffff'],
 			}],
 		},
 		options: {
 			//cutoutPercentage: 85, 
+			responsive: true, // 반응형 설정 활성화
+        	maintainAspectRatio: false, // 가로세로비율유지X
+			layout : {
+				padding:{
+					left:20,
+					top : 70,
+					right:20,
+					bottom:20
+				},
+			},  
 			legend: {
 				display: false,
 			},
@@ -119,8 +131,7 @@ function dashboard_pie_chart(area_id,data) { // 대시보드 파이 차트
 					]
 				},*/
 				datalabels: {
-					display: false,
-					color: '#D5D5D5',
+					color: '#ffffff',
 					display: function(context) {
 						return context.dataset.data[context.dataIndex] > 5000000;
 					},
@@ -242,6 +253,8 @@ function dashboard_stacked_linechart(area_id, json) {
 			}]
 		},
 		options: {
+			responsive: true, // 반응형 설정 활성화
+        	maintainAspectRatio: false, // 가로세로비율유지X
 			layout : {
 				padding:{
 					left:20,
@@ -295,6 +308,8 @@ function dashboard_d_barchart(area_id, data) { // 대시보드 3번째 차트
 			}],
 		},
 		options: {
+			responsive: true,
+			maintainAspectRatio : false,
 			layout : {
 				padding:{
 					left:20,
@@ -323,8 +338,7 @@ function dashboard_d_barchart(area_id, data) { // 대시보드 3번째 차트
 					},*/
 				}
 			},
-			responsive: true,
-			maintainAspectRatio : false,
+
 			scales: {
 				yAxes: [{
 					gridLines: {
@@ -334,7 +348,13 @@ function dashboard_d_barchart(area_id, data) { // 대시보드 3번째 차트
 				}],
 				xAxes: [{
 					gridLines: {
-						color: "rgba(204, 204, 204,0.1)"
+						color: /*"rgba(204, 204, 204,0.1)"*/
+						(context) => {
+							console.log("tetsetests" + context)
+							if(context.ticks.value === 0){
+								return "blue"
+							} 
+						}
 					},
 				}]
 			}

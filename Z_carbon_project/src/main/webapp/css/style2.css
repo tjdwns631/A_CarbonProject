@@ -80,13 +80,13 @@ hr.nav_line {flex-shrink: 0;
 .nav_list .nav_icon i {font-size: 15px;}
 .nav_list .nav_name {margin-right: auto; font-size: 16px;}
 
-.depth2 {width:100%; text-indent:60px; background-color:#000; border-radius: 25px;}
+.depth2 {width:100%; text-indent:60px; border-radius: 25px;}
 .depth2 .nav_list {line-height: 40px;}
 
 /*계정 account profile*/
 aside .bot {margin-top: auto;}
 aside .bot .account, aside .bot .logout {width:220px; margin:0 auto;}
-aside .bot .account {margin-bottom:20px; display: flex; flex-direction: column; overflow-wrap: break-word; overflow: hidden; background-position: center; border-radius: 25px; padding: 10px; background-image: url(../images/account_bg.png); position: relative;}
+aside .bot .account {margin-bottom:20px; display: flex; flex-direction: column; overflow-wrap: break-word; overflow: hidden; background-position: center; border-radius: 25px; padding: 10px; background-image: url(../images/account_bg.png); position: relative; height:200px;}
 aside .bot .account .user_icon {width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background-color: #fff; border-radius: 14px; margin:10px 0 20px;}
 aside .bot .account .user_icon i {color:rgb(0,117,255); font-size: 24px;}
 aside .bot .account .account_name {margin-bottom: 10px; font-weight:500;}
@@ -107,9 +107,9 @@ section.graph_cont {position: relative; background: linear-gradient(127.09deg, r
 
 .graph_title {font-size:20px; color:#fff; font-weight:600; position:absolute; top:20px; left:20px;}
 /*연간 총 배출량*/
-.year_total_emission {height:44%; width:49%;}
+.year_total_emission {height:44%; width:69%;}
 /*누적 라인 그래프*/
-.stack_line_graph {height:44%; width:49%;}
+.stack_line_graph {height:44%; width:29%;}
 /*감축 인벤토리*/
 .reduction_inventory {height:40%; width:100%; position:relative;}
 /*맨 아래 4가지 숫자 박스*/
@@ -186,8 +186,13 @@ section.mini_cont {width:100%;}
 
 
 .folding_wrap {display: flex; justify-content: space-between; gap: 20px; width: 100%; height: 100%;}
-/*8개니까 12.5%로 맞췄습니다*/
-.folding_wrap .graph_cont {width: 12.5%; height:300px; cursor: pointer; flex-grow: 1; transition: width 0.5s;}
+/*7개니까 14%로 맞췄습니다*/
+.folding_wrap .graph_cont {width: 14%; height:300px; cursor: pointer; flex-grow: 1; transition: width 0.5s;}
 .folding_wrap .graph_cont canvas {width:100%; height: 100%;}
-.folding_wrap .graph_cont.expanded {width:40%}
-    
+.folding_wrap .graph_cont .chart_box {display:none;}
+.folding_wrap .graph_cont.expanded {width:50%;}
+.folding_wrap .graph_cont.expanded .chart_box {display:flex;}
+.folding_wrap .graph_cont .min_cont {display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; height:100%; padding:20px;}
+.min_cont_title {font-size:20px; font-weight:600; margin-bottom:20px;}
+.min_cont_num {font-size: 20px; margin-bottom: 20px; color: #2d73fb;}
+.tCO2eq {font-size:14px;}

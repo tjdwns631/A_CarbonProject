@@ -63,6 +63,7 @@
 	</section>
 	<!-- 대분류별 차트 (에너지 농업 lulucf 등)-->
 	<section class="graph_cont first_chart_box">
+	<div class="graph_title">총배출량 (직접/간접)</div>
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
 			<canvas id="barChart"></canvas>
@@ -70,8 +71,10 @@
 	</section>
 	<!--두번째 차트 박스-->
 	<section class="graph_cont second_chart_box">
+	
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
+			<div class="graph_title">Level 2 분류</div>
 			<canvas id="cf_barchart"></canvas>
 		</div>
 	</section>
@@ -80,58 +83,80 @@
 	<div class="folding_wrap">
         <section class="graph_cont">
             <div class="chart_box" >
+            	<div class="graph_title">에너지</div>
                 <canvas id="energy"></canvas>
             </div>
-			<div id="energy_sum">
-				
+			<div class="min_cont" id="energy_sum">
+				<h4 class="min_cont_title">에너지</h4>
+				<p class="min_cont_num">1111</p>
+				<p class="tCO2eq">tCO2eq</p>
 			</div>
         </section>
         <section class="graph_cont">
             <div class="chart_box" >
+            	<div class="graph_title">산업공정</div>
                 <canvas id="indus"></canvas>
             </div>
-            <div id="indus_sum">
-				
+            <div class="min_cont" id="indus_sum">
+				<h4 class="min_cont_title">산업공정</h4>
+				<p class="min_cont_num">1111</p>
+				<p class="tCO2eq">tCO2eq</p>
 			</div>
         </section>
         <section class="graph_cont">
             <div class="chart_box" >
+            	<div class="graph_title">농업</div>
                 <canvas id="agri"></canvas>
             </div>
-            <div id="agri_sum">
-				
+            <div class="min_cont" id="agri_sum">
+				<h4 class="min_cont_title">농업</h4>
+				<p class="min_cont_num">1111</p>
+				<p class="tCO2eq">tCO2eq</p>
 			</div>
         </section>
         <section class="graph_cont">
             <div class="chart_box" >
+            	<div class="graph_title">lulu cf</div>
                 <canvas id="lulucf"></canvas>
             </div>
-            <div id="lulucf_sum">
-				
+            <div class="min_cont" id="lulucf_sum">
+				<h4 class="min_cont_title">lulu cf</h4>
+				<p class="min_cont_num">1111</p>
+				<p class="tCO2eq">tCO2eq</p>
 			</div>
         </section>
         <section class="graph_cont">
             <div class="chart_box" >
+            	<div class="graph_title">폐기물(직접)</div>
                 <canvas id="waste"></canvas>
             </div>
-            <div id="waste_sum">
-				
+            <div class="min_cont" id="waste_sum">
+				<h4 class="min_cont_title">폐기물(직접)</h4>
+				<p class="min_cont_num">1111</p>
+				<p class="tCO2eq">tCO2eq</p>
 			</div>
         </section>
         <section class="graph_cont">
             <div class="chart_box" >
+            	<div class="graph_title">전력</div>
                 <canvas id="elect"></canvas>
             </div>
-            <div id="elect_sum">
-				
+            <div class="min_cont" id="elect_sum">
+				<h4 class="min_cont_title">전력</h4>
+				<p class="min_cont_num">1111</p>
+				<p class="tCO2eq">tCO2eq</p>
 			</div>
         </section>
         <section class="graph_cont">
-        	<div></div> <!-- 제목 -->
             <div class="chart_box">
+            	<div class="graph_title">폐기물(간접)</div>
                 <canvas id="indiwaste"></canvas>
             </div>
-            <div id="indiwaste_sum"></div> <!-- 데이터 합 -->
+            <div class="min_cont" id="indiwaste_sum">
+            	<h4 class="min_cont_title">폐기물(간접)</h4>
+				<p class="min_cont_num">1111</p>
+				<p class="tCO2eq">tCO2eq</p>
+            </div>
         </section>
     </div>
 </body>
@@ -210,6 +235,7 @@
 		// 클릭한 옵션의 텍스트를 라벨 안에 넣음
 		const handleSelect = function(item) {
 			label.innerHTML = item.textContent;
+			label.innerHTML += ' <i class="fa-solid fa-chevron-down" style="margin-left: 25px; margin-bottom: 4px;"></i>';
 			label.parentNode.classList.remove('active');
 			// label.innerHTML = "222222"; 라벨에 값 넣기
 		}
@@ -237,9 +263,16 @@
 
     $(document).ready(function () {
         $(".folding_wrap .graph_cont").click(function () {
+        	//chart_box 숨기기
+            $('.folding_wrap .chart_box').css('display', 'none');
+        	//min_cont들 보이게 하기
+            $('.min_cont').css('display', 'flex');
+            //graph_cont들 모두 expanded 클래스 제거
+            $(".folding_wrap .graph_cont").removeClass("expanded");
             // 현재 클릭한 chart_box 요소를 확장하고 나머지를 최소화
-            $(this).toggleClass("expanded");
-            $(".folding_wrap .graph_cont").not(this).removeClass("expanded");
+            $(this).addClass("expanded");
+            $(this).find('.chart_box').css('display', 'flex');
+            $(this).find('.min_cont').css('display', 'none');
         });
     });
 

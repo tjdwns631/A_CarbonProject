@@ -66,10 +66,18 @@
 				<i class="fa-solid fa-user"></i>
 			</div>
 			<div class="account_name">홍길동</div>
-			<div class="account_grade">ㅇㅇ부서 연구원</div>
 			<button class="account_edit">정보수정</button>
 		</div>
 		<button class="logout">LOGOUT</button>
 	</div>
+	<script>
+		//클릭된 sidebar 버튼에 active class 추가하기
+		$(document).ready(function(){
+			$('.nav_list.depth1').click(function(){
+				$('.nav_list.depth1').removeClass('active');
+				$(this).addClass('active');
+			});	
+		});
+	</script>
 </body>
 </html>

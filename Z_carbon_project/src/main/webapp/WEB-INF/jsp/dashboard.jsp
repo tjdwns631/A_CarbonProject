@@ -33,7 +33,8 @@
 		<!-- 연도 선택 select option -->
 		<div class="year_select">
 			<button class="label" id="year_data" value="optValue">
-				2018년     <i class="fa-solid fa-chevron-down" style="margin-left: 25px; margin-bottom: 4px;"></i>
+				2018년
+				<i class="fa-solid fa-chevron-down" style="margin-left: 25px; margin-bottom: 4px;"></i>
 			</button>
 			<ul class="optionList">
 				<c:forEach var ="year" items="${year_list}">
@@ -136,21 +137,21 @@
 
 						$("#dashboard_piechart").empty(); // 연간 총 배출량 그래프
 						dashboard_pie_chart('dashboard_piechart', json);
-
 					}, "json");
 		}
 		
-		function comma(strNum) {	// 숫자 콤파 찍는 함수
+		function comma(strNum) {	// 숫자 콤마 찍는 함수
 		    return strNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');	// 세자리 콤마
 		}
 		
 		function SelectBoxClick(){
 			/* 일반함수 */
-			const label = document.querySelector('.label');
-			const options = document.querySelectorAll('.optionItem');
+			const label = document.querySelector('.year_select .label');
+			const options = document.querySelectorAll('.year_select .optionItem');
 			// 클릭한 옵션의 텍스트를 라벨 안에 넣음
 			const handleSelect = function(item) {
 				label.innerHTML = item.textContent;
+				label.innerHTML += ' <i class="fa-solid fa-chevron-down" style="margin-left: 25px; margin-bottom: 4px;"></i>';
 				label.parentNode.classList.remove('active');
 				// label.innerHTML = "222222"; 라벨에 값 넣기
 			}
@@ -161,6 +162,8 @@
 					
 					let year ="";
 					year = $(this).val(); //선택된 연도 담기
+		
+
 					
 					DashboardSelectData(year); 
 				})

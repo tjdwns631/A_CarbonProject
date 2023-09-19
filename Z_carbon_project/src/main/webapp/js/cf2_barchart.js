@@ -1,7 +1,7 @@
-function despose_energy(area_id, data) { // 에너지 차트
+function despose_energy(area_id, data) { // 직접 - 에너지 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-	Chart.defaults.global.defaultFontColor = '#D5D5D5';
+	Chart.defaults.global.defaultFontColor = '#ffffff';
 
 	//var min_data = Math.min(...data.energy_nm);
 
@@ -12,7 +12,7 @@ function despose_energy(area_id, data) { // 에너지 차트
 			labels: data.energy_nm,
 			datasets: [{
 				data: data.energy_val,
-				backgroundColor: 'rgba(45,115,251,1)',
+				backgroundColor: 'rgba(42,232,177,1)',
 				fill: true,
 				barPercentage: 0.7,
 			}],
@@ -53,10 +53,10 @@ function despose_energy(area_id, data) { // 에너지 차트
 	});
 }
 
-function despose_indus(area_id, data) { // 에너지 차트
+function despose_indus(area_id, data) { // 직접 - 산업공정 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-	Chart.defaults.global.defaultFontColor = '#D5D5D5';
+	Chart.defaults.global.defaultFontColor = '#ffffff';
 
 
 	var ctx = document.getElementById(area_id);
@@ -66,7 +66,7 @@ function despose_indus(area_id, data) { // 에너지 차트
 			labels: data.indus_nm,
 			datasets: [{
 				data: data.indus_val,
-				backgroundColor: 'rgba(45,115,251,1)',
+				backgroundColor: 'rgba(42,232,177,1)',
 				fill: true,
 				barPercentage: 0.7,
 			}],
@@ -107,10 +107,10 @@ function despose_indus(area_id, data) { // 에너지 차트
 	});
 }
 
-function despose_agri(area_id, data) { // 에너지 차트
+function despose_agri(area_id, data) { // 직접 - 농업 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-	Chart.defaults.global.defaultFontColor = '#D5D5D5';
+	Chart.defaults.global.defaultFontColor = '#ffffff';
 
 	var ctx = document.getElementById(area_id);
 	var myChart = new Chart(ctx, {
@@ -119,7 +119,7 @@ function despose_agri(area_id, data) { // 에너지 차트
 			labels: data.agri_nm,
 			datasets: [{
 				data: data.agri_val,
-				backgroundColor: 'rgba(45,115,251,1)',
+				backgroundColor: 'rgba(42,232,177,1)',
 				fill: true,
 				barPercentage: 0.7,
 			}],
@@ -160,10 +160,10 @@ function despose_agri(area_id, data) { // 에너지 차트
 	});
 }
 
-function despose_lulucf(area_id, data) { // 에너지 차트
+function despose_lulucf(area_id, data) { // 직접 - 폐기물 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-	Chart.defaults.global.defaultFontColor = '#D5D5D5';
+	Chart.defaults.global.defaultFontColor = '#ffffff';
 
 	var ctx = document.getElementById(area_id);
 	var myChart = new Chart(ctx, {
@@ -172,7 +172,7 @@ function despose_lulucf(area_id, data) { // 에너지 차트
 			labels: data.lulucf_nm,
 			datasets: [{
 				data: data.lulucf_val,
-				backgroundColor: 'rgba(45,115,251,1)',
+				backgroundColor: 'rgba(42,232,177,1)',
 				fill: true,
 				barPercentage: 0.7,
 			}],
@@ -212,10 +212,10 @@ function despose_lulucf(area_id, data) { // 에너지 차트
 		},
 	});
 }
-function despose_waste(area_id, data) { // 에너지 차트
+function despose_waste(area_id, data) { // 간접 - 전력 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-	Chart.defaults.global.defaultFontColor = '#D5D5D5';
+	Chart.defaults.global.defaultFontColor = '#ffffff';
 
 	var ctx = document.getElementById(area_id);
 	var myChart = new Chart(ctx, {
@@ -224,7 +224,7 @@ function despose_waste(area_id, data) { // 에너지 차트
 			labels: data.waste_nm,
 			datasets: [{
 				data: data.waste_val,
-				backgroundColor: 'rgba(45,115,251,1)',
+				backgroundColor: 'rgba(56,227,255,1)',
 				fill: true,
 				barPercentage: 0.7,
 			}],
@@ -264,10 +264,10 @@ function despose_waste(area_id, data) { // 에너지 차트
 		},
 	});
 }
-function despose_elect(area_id, data) { // 에너지 차트
+function despose_elect(area_id, data) { // 간접 - 페기물 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-	Chart.defaults.global.defaultFontColor = '#D5D5D5';
+	Chart.defaults.global.defaultFontColor = '#ffffff';
 
 	var ctx = document.getElementById(area_id);
 	var myChart = new Chart(ctx, {
@@ -276,7 +276,7 @@ function despose_elect(area_id, data) { // 에너지 차트
 			labels: data.elect_nm,
 			datasets: [{
 				data: data.elect_val,
-				backgroundColor: 'rgba(45,115,251,1)',
+				backgroundColor: 'rgba(56,227,255,1)',
 				fill: true,
 				barPercentage: 0.7,
 			}],
@@ -319,7 +319,7 @@ function despose_elect(area_id, data) { // 에너지 차트
 function despose_indiwaste(area_id, data) { // 에너지 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-	Chart.defaults.global.defaultFontColor = '#D5D5D5';
+	Chart.defaults.global.defaultFontColor = '#ffffff';
 
 	var ctx = document.getElementById(area_id);
 	var myChart = new Chart(ctx, {
@@ -328,7 +328,7 @@ function despose_indiwaste(area_id, data) { // 에너지 차트
 			labels: data.indiwaste_nm,
 			datasets: [{
 				data: data.indiwaste_val,
-				backgroundColor: 'rgba(45,115,251,1)',
+				backgroundColor: 'rgba(56,227,255,1)',
 				fill: true,
 				barPercentage: 0.7,
 			}],
