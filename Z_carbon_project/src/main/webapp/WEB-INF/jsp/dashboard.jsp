@@ -48,25 +48,27 @@
 		<div class="mini_box">
 			<div class="text">
 				<p class="title" id="total_title">총 배출량</p>
-				<p class="num" id="total_num">1,996,276</p>
+				<p class="num small" id="total_num">1,996,276</p>
 			</div>
 			<div class="icon" title="총 배출량">
 				<img src="${pageContext.request.contextPath}/images/cf_icon_total.png" alt="총 배출량">
 			</div>
 		</div>
-		<div class="mini_box">
+		<div class="mini_box col2">
 			<div class="text">
-				<p class="title" id="lu_title">순 배출량</p>
-				<p class="num" id="lu_num">1,575,198</p>
+				<p class="title" id="">직접 배출량</p>
+				<p class="num small" id="lu_num">1,575,198</p>
 			</div>
-			<div class="icon" title="순 배출량">
-				<img src="${pageContext.request.contextPath}/images/cf_icon_normal.png" alt="순 배출량">
+			<div class="col_line"></div>
+			<div class="text">
+				<p class="title" id="">간접 배출량</p>
+				<p class="num small" id="lu_num">1,575,198</p>
 			</div>
 		</div>
 		<div class="mini_box">
 			<div class="text">
-				<p class="title" id="di_title">직접 배출량</p>
-				<p class="num" id="di_num">10,031,192</p>
+				<p class="title" id="">순 배출량</p>
+				<p class="num small" id="">10,031,192</p>
 			</div>
 			<div class="icon" title="직접 배출량">
 				<img src="${pageContext.request.contextPath}/images/cf_icon_direct.png" alt="직접 배출량">
@@ -74,11 +76,22 @@
 		</div>
 		<div class="mini_box">
 			<div class="text">
-				<p class="title" id="indi_title">간접 배출량</p>
-				<p class="num" id="indi_num">965,084</p>
+				<p class="title" id="">감축 인벤토리</p>
+				<p class="num small" id="indi_num">965,084</p>
 			</div>
-			<div class="icon" title="간접 배출량">
+			<div class="icon" title="감축 인벤토리">
 				<img src="${pageContext.request.contextPath}/images/cf_icon_indirect.png" alt="간접 배출량">
+			</div>
+		</div>
+		<div class="mini_box col2">
+			<div class="text">
+				<p class="title" id="">직접 배출량</p>
+				<p class="num small" id="">1,575,198</p>
+			</div>
+			<div class="col_line"></div>
+			<div class="text">
+				<p class="title" id="">간접 배출량</p>
+				<p class="num small" id="">1,575,198</p>
 			</div>
 		</div>
 	</section>
