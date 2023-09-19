@@ -79,44 +79,59 @@
 	<!--세번째 차트 박스-->
 	<div class="folding_wrap">
         <section class="graph_cont">
-            <div class="chart_box">
-                <canvas></canvas>
+            <div class="chart_box" >
+                <canvas id="energy"></canvas>
             </div>
+			<div id="energy_sum">
+				
+			</div>
         </section>
         <section class="graph_cont">
-            <div class="chart_box">
-                <canvas></canvas>
+            <div class="chart_box" >
+                <canvas id="indus"></canvas>
             </div>
+            <div id="indus_sum">
+				
+			</div>
         </section>
         <section class="graph_cont">
-            <div class="chart_box">
-                <canvas></canvas>
+            <div class="chart_box" >
+                <canvas id="agri"></canvas>
             </div>
+            <div id="agri_sum">
+				
+			</div>
         </section>
         <section class="graph_cont">
-            <div class="chart_box">
-                <canvas></canvas>
+            <div class="chart_box" >
+                <canvas id="lulucf"></canvas>
             </div>
+            <div id="lulucf_sum">
+				
+			</div>
         </section>
         <section class="graph_cont">
-            <div class="chart_box">
-                <canvas></canvas>
+            <div class="chart_box" >
+                <canvas id="waste"></canvas>
             </div>
+            <div id="waste_sum">
+				
+			</div>
         </section>
         <section class="graph_cont">
-            <div class="chart_box">
-                <canvas></canvas>
+            <div class="chart_box" >
+                <canvas id="elect"></canvas>
             </div>
+            <div id="elect_sum">
+				
+			</div>
         </section>
         <section class="graph_cont">
+        	<div></div> <!-- 제목 -->
             <div class="chart_box">
-                <canvas></canvas>
+                <canvas id="indiwaste"></canvas>
             </div>
-        </section>
-        <section class="graph_cont">
-            <div class="chart_box">
-                <canvas></canvas>
-            </div>
+            <div id="indiwaste_sum"></div> <!-- 데이터 합 -->
         </section>
     </div>
 </body>
@@ -145,6 +160,22 @@
 			$("#cf_barchart").empty(); // 초기화 후 재생성
 			despose_barchart('cf_barchart', json);
 			//despose_stackbarchart('cf_barchart', json);
+			
+			$("#energy").empty(); // 초기화 후 재생성
+			despose_energy('energy', json);
+			$("#indus").empty(); // 초기화 후 재생성
+			despose_indus('indus', json);
+			$("#agri").empty(); // 초기화 후 재생성
+			despose_agri('agri', json);
+			$("#lulucf").empty(); // 초기화 후 재생성
+			despose_lulucf('lulucf', json);
+			$("#waste").empty(); // 초기화 후 재생성
+			despose_waste('waste', json);
+			$("#elect").empty(); // 초기화 후 재생성
+			despose_elect('elect', json);
+			$("#indiwaste").empty(); // 초기화 후 재생성
+			despose_indiwaste('indiwaste', json);
+			
 			$("#total_title").empty();
 			$("#total_title").html(json.year + "년 총 배출량");
 			$("#total_num").empty();

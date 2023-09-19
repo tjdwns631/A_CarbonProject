@@ -35,7 +35,8 @@ public class SecurityConfig {
         		.requestMatchers(new AntPathRequestMatcher("/css/**"),new AntPathRequestMatcher("/images/**"),new AntPathRequestMatcher("/js/**"),
         						new AntPathRequestMatcher("/vendors/**"),new AntPathRequestMatcher("/common/**"),
         						new AntPathRequestMatcher("/login.do*"),
-        						new AntPathRequestMatcher("/cf_dispose.do"),new AntPathRequestMatcher("/DashboardDataList.do"),new AntPathRequestMatcher("/desposeData.do")
+        						new AntPathRequestMatcher("/cf_dispose.do"),new AntPathRequestMatcher("/DashboardDataList.do"),new AntPathRequestMatcher("/desposeData.do"),
+        						new AntPathRequestMatcher("/cf_lowdispose_detail.do"),new AntPathRequestMatcher("/Low_data.do")
         						).permitAll()
                 //.requestMatchers("/css/**", "/img/**", "/js/**","/vendors/**" ,"/login","/error").permitAll()
                 //.requestMatchers("/dashboard/dashboard_sis").hasRole("ADMIN")

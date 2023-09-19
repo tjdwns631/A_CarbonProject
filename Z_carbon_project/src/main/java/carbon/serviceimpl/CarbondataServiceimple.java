@@ -35,15 +35,15 @@ public class CarbondataServiceimple implements CarbondataService{
 	}
 
 	@Override
-	public List<CbntrdataDto> SelectDatalow(Integer low_date) {
+	public List<CbntrdataDto> SelectLowData(Integer low_date) {
 		// TODO Auto-generated method stub
-		return carbondatamapper.SelectDatalow(low_date);
+		return carbondatamapper.SelectLowData(low_date);
 	}
 
 	@Override
-	public List<CategoryDto> SelectPrdtnm() {
+	public List<CategoryDto> SelectLowPrdtnm(String cata_name) {
 		// TODO Auto-generated method stub
-		return carbondatamapper.SelectPrdtnm();
+		return carbondatamapper.SelectLowPrdtnm(cata_name);
 	}
 
 	@Override
@@ -68,6 +68,24 @@ public class CarbondataServiceimple implements CarbondataService{
 	public List<CategoryDto> SelectviPrdtnm(String cate_nm) {
 		// TODO Auto-generated method stub
 		return carbondatamapper.SelectviPrdtnm(cate_nm);
+	}
+
+	@Override
+	public List<CbntrdataDto> SelectLowDatayear() {
+		// TODO Auto-generated method stub
+		return carbondatamapper.SelectLowDatayear();
+	}
+
+	@Override
+	public List<CategoryDto> categoryLownm() {
+		// TODO Auto-generated method stub
+		return carbondatamapper.categoryLownm();
+	}
+
+	@Override
+	public List<CategoryDto> CategoryLowCount() {
+		// TODO Auto-generated method stub
+		return carbondatamapper.CategoryLowCount();
 	}
 
 }

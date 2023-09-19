@@ -16,9 +16,9 @@ public interface CarbonDataMapper {
 
 	List<CbntrdataDto> SelectDataStack();
 
-	List<CbntrdataDto> SelectDatalow(Integer low_date);
+	List<CbntrdataDto> SelectLowData(Integer low_date);
 
-	List<CategoryDto> SelectPrdtnm();
+	List<CategoryDto> SelectLowPrdtnm(String cata_name);
 
 	List<CbntrdataDto> SelectData(Integer low_date);
 
@@ -27,6 +27,12 @@ public interface CarbonDataMapper {
 	List<CategoryDto> CategoryCount();
 
 	List<CategoryDto> SelectviPrdtnm(String cate_nm);
+
+	List<CbntrdataDto> SelectLowDatayear();
+
+	List<CategoryDto> categoryLownm();
+
+	List<CategoryDto> CategoryLowCount();
 
 
 }
