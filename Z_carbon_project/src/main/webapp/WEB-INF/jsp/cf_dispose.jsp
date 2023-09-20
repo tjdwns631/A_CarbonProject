@@ -261,19 +261,21 @@
 		});
 	}
 	
-
+	//에너지, 산업공정, 농업, lulu cf, 폐기물(직간접 따로), 전력 그래프/숫자 컨텐츠 클릭해서 번갈아가면서 볼 수 있는 기능
     $(document).ready(function () {
         $(".folding_wrap .graph_cont").click(function () {
-        	//chart_box 숨기기
-            $('.folding_wrap .chart_box').css('display', 'none');
-        	//min_cont들 보이게 하기
-            $('.min_cont').css('display', 'flex');
-            //graph_cont들 모두 expanded 클래스 제거
-            $(".folding_wrap .graph_cont").removeClass("expanded");
-            // 현재 클릭한 chart_box 요소를 확장하고 나머지를 최소화
-            $(this).addClass("expanded");
-            $(this).find('.chart_box').css('display', 'flex');
-            $(this).find('.min_cont').css('display', 'none');
+            if($(this).hasClass('expanded')){ //누른 컨텐츠가 이미 그래프 컨텐츠를 보여주는 상태인 경우
+            	$(this).removeClass('expanded'); //크기 줄이기
+            	$('.folding_wrap .chart_box').css('display', 'none'); //모든 그래프 차트 박스 숨기기
+            	$(this).find('.min_cont').css('display', 'flex'); //클릭한 부분의 숫자 컨텐츠 보이기
+            } else { //숫자 컨텐츠가 보이는 상태의 부분을 클릭한 경우
+            	$(".folding_wrap .graph_cont").removeClass('expanded'); //모든 박스 크기 줄이기
+            	$('.folding_wrap .chart_box').css('display', 'none'); //모든 그래프 차트 박스 숨기기
+            	$('.min_cont').css('display', 'flex'); //숫자 컨텐츠만 보이기
+                $(this).addClass("expanded"); //클릭한 부분의 크기 키우기
+                $(this).find('.chart_box').css('display', 'flex'); //클릭한 부분의 그래프 차트 박스 보이기
+                $(this).find('.min_cont').css('display', 'none'); //클릭한 부분의 숫자 컨텐츠 숨기기
+            }
         });
     });
 

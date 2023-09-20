@@ -76,9 +76,10 @@ hr.nav_line {flex-shrink: 0;
 .nav_list.depth1.active {background:rgba(255, 255, 255, 0.1);}
 .nav_list .depth1_box {display: flex; width: 100%; align-items: center;}
 .nav_list .nav_icon {background-color: rgb(0,117,255); border-radius:14px; margin:0 10px; display: grid; place-items:center; width:40px; height:40px;}
-.nav_list.depth1 .fa-chevron-down {transition:all 0.1s;}
-.nav_list.depth1.reverse .fa-chevron-down {transform:scaleY(-1);}
-.nav_list .nav_icon i {font-size: 15px;}
+.nav_list .nav_icon svg {width:15px; height:15px;}
+.nav_list .nav_icon svg path {fill:#fff;}
+.nav_list.depth1 .arrow_down {transition:all 0.1s;}
+.nav_list.depth1.reverse .arrow_down {transform:scaleY(-1);}
 .nav_list .nav_name {margin-right: auto; font-size: 16px;}
 
 
@@ -90,10 +91,10 @@ hr.nav_line {flex-shrink: 0;
 /*계정 account profile*/
 aside .bot {margin-top: auto;}
 aside .bot .account, aside .bot .logout {width:220px; margin:0 auto;}
-aside .bot .account {margin-bottom:20px; display: flex; flex-direction: column; overflow-wrap: break-word; overflow: hidden; background-position: center; border-radius: 25px; padding: 10px; background-image: url(../images/account_bg.png); position: relative; justify-content:end; align-items:center;}
-aside .bot .account .user_icon {width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; background-color: #fff; border-radius: 14px; margin:10px 0 20px;}
+aside .bot .account {margin-bottom:20px; height:220px;display: flex; flex-direction: column; overflow-wrap: break-word; overflow: hidden; background-position: center; border-radius: 25px; padding: 10px; background-image: url(../images/account_bg.png); position: relative; justify-content:center; align-items:center;}
+aside .bot .account .user_icon {width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; background-color: #fff; border-radius: 14px; margin-bottom:20px;}
 aside .bot .account .user_icon i {color:rgb(0,117,255); font-size: 50px;}
-aside .bot .account .account_name {margin-bottom: 20px; font-weight:500; font-size:30px;}
+aside .bot .account .account_name {font-weight:500; font-size:30px;}
 aside .bot .account .account_grade {margin-bottom: 20px; font-size: 16px;}
 aside .bot .account .account_edit {width: 100%; background-color: rgba(0,0, 0, 0.6); line-height: 40px; border-radius: 25px; transition: font-size 0.1s; font-weight: 600; cursor: pointer;}
 aside .bot .account .account_edit:hover {font-size:18px;}
