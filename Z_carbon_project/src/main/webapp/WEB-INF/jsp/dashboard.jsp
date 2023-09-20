@@ -116,32 +116,32 @@
 						dashboard_d_barchart('d_bar_chart',json);
 						//배출량 데이터 
 						$("#total_title").empty();
-						$("#total_title").html(json.year+"년 총 배출량");
+						$("#total_title").html("총 배출량");
 						$("#total_num").empty();
 						$("#total_num").html(comma(json.total_val));
 						$("#lu_title").empty();
-						$("#lu_title").html(json.year+"년 순 배출량");
+						$("#lu_title").html("순 배출량");
 						$("#lu_num").empty();
 						$("#lu_num").html(comma(json.total_lu_val));
 						$("#di_title").empty();
-						$("#di_title").html(json.year+"년 직접 배출량");
+						$("#di_title").html("직접 배출량");
 						$("#di_num").empty();
 						$("#di_num").html(comma(json.di_val));
 						$("#indi_title").empty();
-						$("#indi_title").html(json.year+"년 간접 배출량");
+						$("#indi_title").html("간접 배출량");
 						$("#indi_num").empty();
 						$("#indi_num").html(comma(json.indi_val));
 						
 						$("#low_total_title").empty();
-						$("#low_total_title").html(json.year+"년 감축 인벤토리");
+						$("#low_total_title").html("감축 인벤토리");
 						$("#low_total_num").empty();
 						$("#low_total_num").html(comma(json.total_low_val));
 						$("#low_di_title").empty();
-						$("#low_di_title").html(json.year+"년 직접 배출량(감축)");
+						$("#low_di_title").html("직접 배출량(감축)");
 						$("#low_di_num").empty();
 						$("#low_di_num").html(comma(json.di_low_val));
 						$("#low_indi_title").empty();
-						$("#low_indi_title").html(json.year+"년 간접 배출량(감축)");
+						$("#low_indi_title").html("간접 배출량(감축)");
 						$("#low_indi_num").empty();
 						$("#low_indi_num").html(comma(json.indi_low_val));
 						
