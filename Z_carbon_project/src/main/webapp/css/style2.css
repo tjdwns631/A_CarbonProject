@@ -77,7 +77,7 @@ hr.nav_line {flex-shrink: 0;
 .nav_list .depth1_box {display: flex; width: 100%; align-items: center;}
 .nav_list .nav_icon {background-color: rgb(0,117,255); border-radius:14px; margin:0 10px; display: grid; place-items:center; width:40px; height:40px;}
 .nav_list .nav_icon svg {width:15px; height:15px;}
-.nav_list .nav_icon svg path {fill:#fff;}
+.nav_list .nav_icon svg path, .arrow_down svg path {fill:#fff;}
 .nav_list.depth1 .arrow_down {transition:all 0.1s;}
 .nav_list.depth1.reverse .arrow_down {transform:scaleY(-1);}
 .nav_list .nav_name {margin-right: auto; font-size: 16px;}
