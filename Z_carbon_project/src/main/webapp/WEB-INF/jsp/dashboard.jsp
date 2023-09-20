@@ -86,8 +86,6 @@
 	</section>
 	<script>
 		$(function() {
-			console.log(window.location.href);
-			console.log(window.location.pathname.split("/")[1]);
 			DashboardYearData(); //연간 배출량 데이터
 			DashboardSelectData(); //연별 선택 감축 데이터 및 배출량 데이터
 			Dashboard_piechart() //파이차트 데이터 (default 2018년 데이터)

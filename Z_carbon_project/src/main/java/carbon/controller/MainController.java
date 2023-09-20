@@ -32,6 +32,16 @@ public class MainController {
 	@Autowired
 	CarbondataService carbondataservice;
 	
+	@RequestMapping("/user_info.do")
+	@ResponseBody
+	public User user_info() {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User)authentication.getPrincipal();
+		
+		return user;
+	}
+	
 	@RequestMapping("/dashboard.do")
 	public String dashboard(Model model) {
 		

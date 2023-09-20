@@ -63,9 +63,9 @@
 	</section>
 	<!-- 대분류별 차트 (에너지 농업 lulucf 등)-->
 	<section class="graph_cont first_chart_box">
-	<div class="graph_title">총배출량 (직접/간접)</div>
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
+			<div class="graph_title">총배출량 (직접/간접)</div>
 			<canvas id="barChart"></canvas>
 		</div>
 	</section>
@@ -162,13 +162,11 @@
 </body>
 <script>
 	$(function() {
-		//$('.depth2 .nav_list .nav_name').eq(0).addClass('active');
 		DashboardYearData()
 		DesposeData();
 		
 		SelectBoxClick() // 셀텍트 박스 클릭 이벤
 	})
-	
 
 	function DashboardYearData() { // 연간 배출량 그래프
 		$.post('/DashboardDataList.do', {}, function(json) {
@@ -178,10 +176,7 @@
 	}
 
 	function DesposeData(year) { // 선택연도 데이터
-		console.log(year);
-		$.post('/desposeData.do', {
-			"year" : year
-		}, function(json) {
+		$.post('/desposeData.do', { "year" : year }, function(json) {
 			console.log(json)
 			$("#cf_barchart").empty(); // 초기화 후 재생성
 			despose_barchart('cf_barchart', json);
@@ -243,7 +238,7 @@
 			$("#indi_num").html(comma(json.indi_val));
 			
 			$("#detail_graph_title").empty();
-			$("#detail_graph_title").html(json.year + "년 상세 데이터");
+			$("#detail_graph_title").html(json.year + "년 배출량 상세 그래프");
 		}, "json");
 	}
 
