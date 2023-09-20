@@ -90,7 +90,7 @@
 			</div>
 			<div class="account_name" id="user_name">홍길동</div>
 		</div>
-		<button class="logout" onclick="location.href='${pageContext.request.contextPath}/login.do';">LOGOUT</button>
+		<button class="logout">LOGOUT</button>
 	</div>
 	<script>
 		//버튼 눌렀을 때 화면 깜빡이면서 버벅이는 거 수정 할 수 있으면 수정하기ㅋㅋ
@@ -102,17 +102,20 @@
 			    $('.nav_list.depth1').siblings('.depth1').removeClass('active'); //다른 active가 있으면 지워준다.
 			    $('.depth2 .nav_list .nav_name').siblings('.nav_name').removeClass('active');
 			    $('.nav_list .depth2').css('display','none');
+			    $('.nav_list.depth1').removeClass('reverse'); //화살표 뒤집힌 거 원래대로 하기
 			    
 			    if (pageUrl.indexOf('cf_dispose') > -1) { //url에 cf_dispose(-=현황 조회) 라는 글자가 있으면 실행
 			        $('.nav_list.depth1').eq(1).addClass('active'); //상세조회 불 들어오게 하기
 			        $('.depth2 .nav_list .nav_name').eq(0).addClass('active'); //현황 조회 색깔 바꾸기
-			        
+			        $('.nav_list.depth1').eq(1).addClass('reverse'); //화살표 뒤집기
 			    } else if (pageUrl.indexOf('admin') > -1) { //url에 admin 이라는 글자가 있으면 실행
 			        $('.nav_list.depth1').eq(2).addClass('active'); //설정 불 들어오게 하기
 			        $('.depth2 .nav_list .nav_name').eq(2).addClass('active'); //데이터 관리 색깔 바꾸기
+			        $('.nav_list.depth1').eq(2).addClass('reverse'); //화살표 뒤집기
 		    	} else if (pageUrl.indexOf('cf_lowdispose') > -1) { //url에 cf_lowdispose 라는 글자가 있으면 실행
 				        $('.nav_list.depth1').eq(1).addClass('active'); //상세조회 불 들어오게 하기
 				        $('.depth2 .nav_list .nav_name').eq(1).addClass('active'); //데이터 관리 색깔 바꾸기
+				        $('.nav_list.depth1').eq(1).addClass('reverse'); //화살표 뒤집기
 			    } else if (pageUrl.indexOf('dashboard') > -1) { //url에 dashboard 라는 글자가 있으면 실행
 			        $('.nav_list.depth1').eq(0).addClass('active'); //대시보드 불 들어오게 하기 
 			    }
@@ -121,23 +124,24 @@
 			    
 				$('.nav_list.depth1').click(function(){
 					$('.nav_list.depth1').siblings('.depth1').removeClass('active');
+					$('.nav_list .depth2').siblings('.depth2').css('display','none');
 					$('.nav_list.active .depth2').css('display','none');
 					$(this).addClass('active');
 				});	
 			});
 			
+
 			 user_info()
-			
+				
 		});
 		
-		
+			
 		function user_info() { // 연간 배출량 그래프
 			$.post('/user_info.do', {}, function(json) {
 				$("#user_name").empty();
-				$("#user_name").html(json.usernames);
+				$("#user_name").html(json.username);
 			}, "json");
 		}
-
 	</script>
 </body>
 </html>
