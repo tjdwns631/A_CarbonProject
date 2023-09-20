@@ -130,6 +130,7 @@
 			
 		});
 		
+		
 		function user_info() { // 연간 배출량 그래프
 			$.post('/user_info.do', {}, function(json) {
 				$("#user_name").empty();
