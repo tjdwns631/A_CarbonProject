@@ -18,7 +18,7 @@
 	</section>
 	<!--파이(파이 or 도넛) 그래프-->
 	<section class="graph_cont stack_line_graph">
-	<div class="graph_title">연간 직간접 상세 배출량 그래프</div>
+	<div class="graph_title">누적 라인 그래프</div>
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
 			<canvas id="dashboard_piechart"></canvas>
@@ -43,7 +43,7 @@
 			</ul>
 		</div>
 	</section>
-		<!--맨 위 그래프없이 숫자 나열 미니 박스 5개 디자인-->
+		<!--맨 위 그래프없이 숫자 나열 미니 박스 4개 디자인-->
 	<section class="mini_cont">
 		<div class="mini_box">
 			<div class="text">
@@ -56,29 +56,28 @@
 		</div>
 		<div class="mini_box col2">
 			<div class="text">
-				<p class="title" id="">직접 배출량</p>
-				<p class="num small" id="lu_num">1,575,198</p>
+				<p class="title" id="di_title">직접 배출량</p>
+				<p class="num small" id="di_num">1,575,198</p>
 			</div>
 			<div class="col_line"></div>
 			<div class="text">
-				<p class="title" id="">간접 배출량</p>
-				<p class="num small" id="lu_num">1,575,198</p>
+				<p class="title" id="indi_title">간접 배출량</p>
+				<p class="num small" id="indi_num">1,575,198</p>
 			</div>
 		</div>
 		<div class="mini_box">
 			<div class="text">
-				<p class="title" id="">순 배출량</p>
-				<p class="num small" id="">10,031,192</p>
+				<p class="title" id="lu_title">순 배출량</p>
+				<p class="num small" id="lu_num">10,031,192</p>
 			</div>
 			<div class="icon" title="직접 배출량">
 				<img src="${pageContext.request.contextPath}/images/cf_icon_direct.png" alt="직접 배출량">
 			</div>
 		</div>
-		<div class="line"></div>
 		<div class="mini_box">
 			<div class="text">
-				<p class="title" id="">감축 인벤토리</p>
-				<p class="num small" id="indi_num">965,084</p>
+				<p class="title" id="low_total_title">감축 인벤토리</p>
+				<p class="num small" id="low_total_num">965,084</p>
 			</div>
 			<div class="icon" title="감축 인벤토리">
 				<img src="${pageContext.request.contextPath}/images/cf_icon_indirect.png" alt="간접 배출량">
@@ -86,19 +85,20 @@
 		</div>
 		<div class="mini_box col2">
 			<div class="text">
-				<p class="title" id="">직접 배출량</p>
-				<p class="num small" id="">1,575,198</p>
+				<p class="title" id="low_di_title">직접 배출량</p>
+				<p class="num small" id="low_di_num">1,575,198</p>
 			</div>
 			<div class="col_line"></div>
 			<div class="text">
-				<p class="title" id="">간접 배출량</p>
-				<p class="num small" id="">1,575,198</p>
+				<p class="title" id="low_indi_title">간접 배출량</p>
+				<p class="num small" id="low_indi_num">1,575,198</p>
 			</div>
 		</div>
 	</section>
 	<script>
 		$(function() {
-			
+			console.log(window.location.href);
+			console.log(window.location.pathname.split("/")[1]);
 			DashboardYearData(); //연간 배출량 데이터
 			DashboardSelectData(); //연별 선택 감축 데이터 및 배출량 데이터
 			Dashboard_piechart() //파이차트 데이터 (default 2018년 데이터)
@@ -108,7 +108,6 @@
 		})
 
 		function DashboardSelectData(year) { // 선택연도 데이터
-			console.log(year);
 			$.post('/DashboardSelectList.do', {"year" : year},
 					function(json) {
 						console.log(json)
@@ -133,6 +132,19 @@
 						$("#indi_num").empty();
 						$("#indi_num").html(comma(json.indi_val));
 						
+						$("#low_total_title").empty();
+						$("#low_total_title").html(json.year+"년 감축 인벤토리");
+						$("#low_total_num").empty();
+						$("#low_total_num").html(comma(json.total_low_val));
+						$("#low_di_title").empty();
+						$("#low_di_title").html(json.year+"년 직접 배출량(감축)");
+						$("#low_di_num").empty();
+						$("#low_di_num").html(comma(json.di_low_val));
+						$("#low_indi_title").empty();
+						$("#low_indi_title").html(json.year+"년 간접 배출량(감축)");
+						$("#low_indi_num").empty();
+						$("#low_indi_num").html(comma(json.indi_low_val));
+						
 					}, "json");
 		}
 		
@@ -147,10 +159,12 @@
 		function Dashboard_piechart(year) { //연간 총배출량 차트 클릭시 파이차트 
 			$.post('/desposeData.do', {"year": year},
 					function(json) {
-						console.log(json)
-
+						console.log("Dashboard_piechart : "+json)
 						$("#dashboard_piechart").empty(); // 연간 총 배출량 그래프
 						dashboard_pie_chart('dashboard_piechart', json);
+						
+						$("#pie_charttitle").empty();
+						$("#pie_charttitle").html(json.year+"년 배출량 상세 그래프");
 					}, "json");
 		}
 		

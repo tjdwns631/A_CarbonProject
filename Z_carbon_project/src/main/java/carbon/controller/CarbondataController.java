@@ -88,7 +88,7 @@ public class CarbondataController {
 		output.put("year_date", year_date); // 연도
 
 		output.put("stack_data", Arr); // 직접배출값
-		output.put("year", year_date); // 연도
+		output.put("year_date", year_date); // 연도
 		output.put("cate_nm", cate_nm);
 		
 		return output;
@@ -186,7 +186,7 @@ public class CarbondataController {
 		output.put("total_lu_val", total_lu_val); //순 배출량 lulu 더한더
 		output.put("di_val", di_val); //직접 배출
 		output.put("indi_val", indi_val); //간접 배출
-		output.put("year", low_date); //간접 배출
+		output.put("year", low_date); // 선택연도
 		
 		return output;
 		

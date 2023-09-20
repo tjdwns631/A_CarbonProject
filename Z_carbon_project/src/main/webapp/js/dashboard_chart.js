@@ -7,7 +7,7 @@ function dashboard_barchart(area_id, data) { // 대시보드 첫 번째 차트 -
 	var myChart = new Chart(ctx, {
 		type: 'bar',
 		data: {
-			labels: data.year/*["2015년", "2016년", "2017년", "2018년", "2019년", "2020년"]*/,
+			labels: data.year_date/*["2015년", "2016년", "2017년", "2018년", "2019년", "2020년"]*/,
 			datasets: [{
 				label: '직접배출',
 				data: data.data_val_2/*[917254, 972529, 951253, 1064555, 1032352, 1032323]*/,
@@ -100,7 +100,7 @@ function dashboard_pie_chart(area_id,data) { // 대시보드 파이 차트
 			datasets: [{
 				data: data.Low_arr, //58,42
 				backgroundColor: ['rgba(46,253,129,0.5)', 'rgba(42,232,177,0.5)','rgba(53,243,227,0.5)','rgba(56,227,255,0.5)', 'rgba(50,203,247,0.5)', 'rgba(42,154,232,0.5)', 'rgba(45,115,251,0.5)'],
-				borderColor: ['rgba(46,253,129,1)', 'rgba(42,232,177,1)','rgba(53,243,227,1)','rgba(56,227,255,1)', 'rgba(50,203,247,1)', 'rgba(42,154,232,1)', 'rgba(45,115,251,1)'],
+				borderColor: ['#ffffff'],
 			}],
 		},
 		options: {
