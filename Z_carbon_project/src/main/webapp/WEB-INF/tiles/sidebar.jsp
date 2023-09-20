@@ -82,18 +82,23 @@
 			$(window).on('load', function(){ //load가 되었을때 실행
 			    $('.nav_list.depth1').siblings('.depth1').removeClass('active'); //다른 active가 있으면 지워준다.
 			    $('.depth2 .nav_list .nav_name').siblings('.nav_name').removeClass('active');
+			    $('.nav_list .depth2').css('display','none');
 			    
-			    if (pageUrl.indexOf('cf_dispose') > -1) { //url에 about이라는 글자가 있으면 실행
-			        $('.nav_list.depth1').eq(1).addClass('active');
-			        $('.depth2 .nav_list .nav_name').eq(0).addClass('active');
-			    } else if (pageUrl.indexOf('admin') > -1) { //url에 contact라는 글자가 있으면 실행
-			        $('.nav_list.depth1').eq(2).addClass('active');
-			        $('.depth2 .nav_list .nav_name').eq(2).addClass('active');
-			    } else {
-			        $('.nav_list.depth1').eq(0).addClass('active'); 
-			        $('.depth2 .nav_list .nav_name').eq(1).addClass('active');
-			        //메인 url은 main이라는 단어가 들어가지 않아서 모든 조건이 아닐때 실행하도록 함
+			    if (pageUrl.indexOf('cf_dispose') > -1) { //url에 cf_dispose(-=현황 조회) 라는 글자가 있으면 실행
+			        $('.nav_list.depth1').eq(1).addClass('active'); //상세조회 불 들어오게 하기
+			        $('.depth2 .nav_list .nav_name').eq(0).addClass('active'); //현황 조회 색깔 바꾸기
+			        
+			    } else if (pageUrl.indexOf('admin') > -1) { //url에 admin 이라는 글자가 있으면 실행
+			        $('.nav_list.depth1').eq(2).addClass('active'); //설정 불 들어오게 하기
+			        $('.depth2 .nav_list .nav_name').eq(2).addClass('active'); //데이터 관리 색깔 바꾸기
+		    	} else if (pageUrl.indexOf('cf_lowdispose') > -1) { //url에 cf_lowdispose 라는 글자가 있으면 실행
+				        $('.nav_list.depth1').eq(1).addClass('active'); //상세조회 불 들어오게 하기
+				        $('.depth2 .nav_list .nav_name').eq(1).addClass('active'); //데이터 관리 색깔 바꾸기
+			    } else if (pageUrl.indexOf('dashboard') > -1) { //url에 dashboard 라는 글자가 있으면 실행
+			        $('.nav_list.depth1').eq(0).addClass('active'); //대시보드 불 들어오게 하기 
 			    }
+			    
+			    $('.nav_list.active .depth2').css('display','block');
 			});
 		});
 	</script>

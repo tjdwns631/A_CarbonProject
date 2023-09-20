@@ -45,16 +45,13 @@
 	</section>
 		<!--맨 위 그래프없이 숫자 나열 미니 박스 4개 디자인-->
 	<section class="mini_cont">
+		<div id="mc_year">2018년</div>
 		<div class="mini_box">
 			<div class="text">
-				<p class="title" id="total_title">총 배출량</p>
-				<p class="num small" id="total_num">1,996,276</p>
+				<p class="title main" id="total_title">총 배출량</p>
+				<p class="num small main" id="total_num">1,996,276</p>
 			</div>
-			<div class="icon" title="총 배출량">
-				<img src="${pageContext.request.contextPath}/images/cf_icon_total.png" alt="총 배출량">
-			</div>
-		</div>
-		<div class="mini_box col2">
+			<div class="col_line"></div>
 			<div class="text">
 				<p class="title" id="di_title">직접 배출량</p>
 				<p class="num small" id="di_num">1,575,198</p>
@@ -64,26 +61,18 @@
 				<p class="title" id="indi_title">간접 배출량</p>
 				<p class="num small" id="indi_num">1,575,198</p>
 			</div>
-		</div>
-		<div class="mini_box">
+			<div class="col_line"></div>
 			<div class="text">
 				<p class="title" id="lu_title">순 배출량</p>
 				<p class="num small" id="lu_num">10,031,192</p>
 			</div>
-			<div class="icon" title="직접 배출량">
-				<img src="${pageContext.request.contextPath}/images/cf_icon_direct.png" alt="직접 배출량">
-			</div>
 		</div>
 		<div class="mini_box">
 			<div class="text">
-				<p class="title" id="low_total_title">감축 인벤토리</p>
-				<p class="num small" id="low_total_num">965,084</p>
+				<p class="title main" id="low_total_title">감축 인벤토리</p>
+				<p class="num small main" id="low_total_num">965,084</p>
 			</div>
-			<div class="icon" title="감축 인벤토리">
-				<img src="${pageContext.request.contextPath}/images/cf_icon_indirect.png" alt="간접 배출량">
-			</div>
-		</div>
-		<div class="mini_box col2">
+			<div class="col_line"></div>
 			<div class="text">
 				<p class="title" id="low_di_title">직접 배출량</p>
 				<p class="num small" id="low_di_num">1,575,198</p>
