@@ -76,46 +76,62 @@
 		</div>
 	</section>
 	
-	<!--세번째 차트 박스-->
+	<!--접었다 폈다 하는 컨텐츠 구역-->
 	<div class="folding_wrap">
         <section class="graph_cont">
             <div class="chart_box" >
+            	<div class="graph_title">에너지</div>
                 <canvas id="energy"></canvas>
             </div>
-			<div id="energy_sum">
-				
-			</div>
+			<div class="min_cont" id="energy_sum">
+				<h4 class="min_cont_title">에너지</h4>
+				<p class="min_cont_num">1111</p>
+				<p class="tCO2eq">tCO2eq</p>
+			</div>	
         </section>
-        <section class="graph_cont">
+       <section class="graph_cont">
             <div class="chart_box" >
+            	<div class="graph_title">농업</div>
                 <canvas id="agri"></canvas>
             </div>
-            <div id="agri_sum">
-				
+            <div class="min_cont" id="agri_sum">
+				<h4 class="min_cont_title">농업</h4>
+				<p class="min_cont_num">1111</p>
+				<p class="tCO2eq">tCO2eq</p>
 			</div>
         </section>
-        <section class="graph_cont">
+       <section class="graph_cont">
             <div class="chart_box" >
+            	<div class="graph_title">lulu cf</div>
                 <canvas id="lulucf"></canvas>
             </div>
-            <div id="lulucf_sum">
-				
+            <div class="min_cont" id="lulucf_sum">
+				<h4 class="min_cont_title">lulu cf</h4>
+				<p class="min_cont_num">1111</p>
+				<p class="tCO2eq">tCO2eq</p>
 			</div>
         </section>
         <section class="graph_cont">
             <div class="chart_box" >
+            	<div class="graph_title">전력</div>
                 <canvas id="elect"></canvas>
             </div>
-            <div id="elect_sum">
-				
+            <div class="min_cont" id="elect_sum">
+				<h4 class="min_cont_title">전력</h4>
+				<p class="min_cont_num">1111</p>
+				<p class="tCO2eq">tCO2eq</p>
 			</div>
         </section>
-        <section class="graph_cont">
-        	<div></div> <!-- 제목 -->
+         <section class="graph_cont">
             <div class="chart_box">
+            	<div class="graph_title">폐기물(간접)</div>
                 <canvas id="indiwaste"></canvas>
             </div>
-            <div id="indiwaste_sum"></div> <!-- 데이터 합 -->
+            <div class="min_cont" id="indiwaste_sum">
+            	<h4 class="min_cont_title">폐기물(간접)</h4>
+				<p class="min_cont_num">1111</p>
+				<p class="tCO2eq">tCO2eq</p>
+            </div>
         </section>
     </div>
 </body>
@@ -216,11 +232,21 @@
 	}
 	
 
+	//에너지, 산업공정, 농업, lulu cf, 폐기물(직간접 따로), 전력 그래프/숫자 컨텐츠 클릭해서 번갈아가면서 볼 수 있는 기능
     $(document).ready(function () {
         $(".folding_wrap .graph_cont").click(function () {
-            // 현재 클릭한 chart_box 요소를 확장하고 나머지를 최소화
-            $(this).toggleClass("expanded");
-            $(".folding_wrap .graph_cont").not(this).removeClass("expanded");
+            if($(this).hasClass('expanded')){ //누른 컨텐츠가 이미 그래프 컨텐츠를 보여주는 상태인 경우
+            	$(this).removeClass('expanded'); //크기 줄이기
+            	$('.folding_wrap .chart_box').css('display', 'none'); //모든 그래프 차트 박스 숨기기
+            	$(this).find('.min_cont').css('display', 'flex'); //클릭한 부분의 숫자 컨텐츠 보이기
+            } else { //숫자 컨텐츠가 보이는 상태의 부분을 클릭한 경우
+            	$(".folding_wrap .graph_cont").removeClass('expanded'); //모든 박스 크기 줄이기
+            	$('.folding_wrap .chart_box').css('display', 'none'); //모든 그래프 차트 박스 숨기기
+            	$('.min_cont').css('display', 'flex'); //숫자 컨텐츠만 보이기
+                $(this).addClass("expanded"); //클릭한 부분의 크기 키우기
+                $(this).find('.chart_box').css('display', 'flex'); //클릭한 부분의 그래프 차트 박스 보이기
+                $(this).find('.min_cont').css('display', 'none'); //클릭한 부분의 숫자 컨텐츠 숨기기
+            }
         });
     });
 

@@ -93,7 +93,7 @@
 		<button class="logout">LOGOUT</button>
 	</div>
 	<script>
-		//버튼 눌렀을 때 화면 깜빡이면서 버벅이는 거 수정 할 수 있으면 수정하기
+		//버튼 눌렀을 때 화면 깜빡이면서 버벅이는 거 수정 할 수 있으면 수정하기ㅋㅋ
 		//클릭된 sidebar 버튼에 active class 추가하기
 		$(document).ready(function(){
 			//sidebar의 버튼을 클릭해서 페이지가 이동하거나 새로고침 됐을 때
