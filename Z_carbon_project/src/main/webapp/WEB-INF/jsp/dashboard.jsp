@@ -18,7 +18,7 @@
 	</section>
 	<!--파이(파이 or 도넛) 그래프-->
 	<section class="graph_cont stack_line_graph">
-	<div class="graph_title">누적 라인 그래프</div>
+	<div class="graph_title">연간 직간접 상세 배출량 그래프</div>
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
 			<canvas id="dashboard_piechart"></canvas>
@@ -43,7 +43,7 @@
 			</ul>
 		</div>
 	</section>
-		<!--맨 위 그래프없이 숫자 나열 미니 박스 4개 디자인-->
+		<!--맨 위 그래프없이 숫자 나열 미니 박스 5개 디자인-->
 	<section class="mini_cont">
 		<div class="mini_box">
 			<div class="text">
@@ -74,6 +74,7 @@
 				<img src="${pageContext.request.contextPath}/images/cf_icon_direct.png" alt="직접 배출량">
 			</div>
 		</div>
+		<div class="line"></div>
 		<div class="mini_box">
 			<div class="text">
 				<p class="title" id="">감축 인벤토리</p>

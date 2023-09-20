@@ -72,6 +72,7 @@ hr.nav_line {flex-shrink: 0;
     background-color: transparent;
     background-image: linear-gradient(to right, rgba(0, 117, 255, 0), rgb(255, 255, 255), rgba(255, 255, 255, 0)) !important;}
 .nav_list.depth1 {display:flex; flex-direction:column; justify-content: center; align-items: center; position: relative; width: 85%; padding:5px 10px; border-radius:15px; cursor: pointer; white-space: nowrap; margin:5px auto;}
+/*현재 페이지에 해당하는 depth1 부분 배경 하얗게 만들기*/
 .nav_list.depth1.active {background:rgba(255, 255, 255, 0.1);}
 .nav_list .depth1_box {display: flex; width: 100%; align-items: center;}
 .nav_list .nav_icon {background-color: rgb(0,117,255); border-radius:14px; margin:0 10px; display: grid; place-items:center; width:40px; height:40px;}
@@ -80,16 +81,19 @@ hr.nav_line {flex-shrink: 0;
 .nav_list .nav_icon i {font-size: 15px;}
 .nav_list .nav_name {margin-right: auto; font-size: 16px;}
 
+
 .depth2 {width:100%; text-indent:60px; border-radius: 25px;}
 .depth2 .nav_list {line-height: 40px;}
+/*현재 페이지에 해당하는 부분 색깔 파랗게 바뀌게 하기*/
+.depth2 .nav_list .nav_name.active {color:rgba(0, 117, 255,1);}
 
 /*계정 account profile*/
 aside .bot {margin-top: auto;}
 aside .bot .account, aside .bot .logout {width:220px; margin:0 auto;}
-aside .bot .account {margin-bottom:20px; display: flex; flex-direction: column; overflow-wrap: break-word; overflow: hidden; background-position: center; border-radius: 25px; padding: 10px; background-image: url(../images/account_bg.png); position: relative; height:200px;}
-aside .bot .account .user_icon {width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background-color: #fff; border-radius: 14px; margin:10px 0 20px;}
-aside .bot .account .user_icon i {color:rgb(0,117,255); font-size: 24px;}
-aside .bot .account .account_name {margin-bottom: 10px; font-weight:500;}
+aside .bot .account {margin-bottom:20px; display: flex; flex-direction: column; overflow-wrap: break-word; overflow: hidden; background-position: center; border-radius: 25px; padding: 10px; background-image: url(../images/account_bg.png); position: relative; justify-content:end; align-items:center;}
+aside .bot .account .user_icon {width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; background-color: #fff; border-radius: 14px; margin:10px 0 20px;}
+aside .bot .account .user_icon i {color:rgb(0,117,255); font-size: 50px;}
+aside .bot .account .account_name {margin-bottom: 20px; font-weight:500; font-size:30px;}
 aside .bot .account .account_grade {margin-bottom: 20px; font-size: 16px;}
 aside .bot .account .account_edit {width: 100%; background-color: rgba(0,0, 0, 0.6); line-height: 40px; border-radius: 25px; transition: font-size 0.1s; font-weight: 600; cursor: pointer;}
 aside .bot .account .account_edit:hover {font-size:18px;}
@@ -102,17 +106,18 @@ section.graph_cont {position: relative; background: linear-gradient(127.09deg, r
 .mini_cont {width:100%; position: relative; display: flex; justify-content: space-between; column-gap:20px;}
 .mini_cont .mini_box {display: flex; flex-grow: 1; height:100px; padding: 20px; position: relative; overflow-wrap: break-word; overflow: hidden; background: linear-gradient(127.09deg, rgba(6, 11, 40, 0.94) 19.41%, rgba(10, 14, 35, 0.49) 76.65%) border-box; border-radius: 25px; align-items: center;}
 .mini_cont .mini_box.col2 {justify-content:space-between;}
-.mini_cont .mini_box.col2 .col_line {width:1px; height:90%; background-color:#d5d5d5;}
+.mini_cont .mini_box.col2 .col_line {width:2px; height:100%; background-color:#777;}
 .mini_box .text .title {font-size: 16px; color: #bfbfbf; margin-bottom:10px;}
 .mini_box .text .num {font-size: 40px; font-weight: 700;}
 .mini_box .text .num.small {font-size: 22px;}
 .mini_box .icon {width:50px; height:50px; display: flex; align-items: center; justify-content: center; border-radius: 15px; background-color: #0075ff; margin-left: auto;}
+.mini_cont .line {width:2px; height:100px; background-color:#fff;}
 
 .graph_title {font-size:20px; color:#fff; font-weight:600; position:absolute; top:20px; left:20px;}
 /*연간 총 배출량*/
-.year_total_emission {height:44%; width:69%;}
+.year_total_emission {height:44%; width:59%;}
 /*누적 라인 그래프*/
-.stack_line_graph {height:44%; width:29%;}
+.stack_line_graph {height:44%; width:39%;}
 /*감축 인벤토리*/
 .reduction_inventory {height:40%; width:100%; position:relative;}
 /*맨 아래 4가지 숫자 박스*/

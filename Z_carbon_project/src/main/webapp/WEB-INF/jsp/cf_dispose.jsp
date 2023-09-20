@@ -162,6 +162,7 @@
 </body>
 <script>
 	$(function() {
+		//$('.depth2 .nav_list .nav_name').eq(0).addClass('active');
 		DashboardYearData()
 		DesposeData();
 		

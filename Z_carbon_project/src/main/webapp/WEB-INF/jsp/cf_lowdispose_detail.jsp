@@ -121,6 +121,7 @@
 </body>
 <script>
 	$(function() {
+		//$('.depth2 .nav_list .nav_name').eq(1).addClass('active');
 		DashboardLowYearData()
 		DesposeData();
 		SelectBoxClick() // 셀텍트 박스 클릭 이벤

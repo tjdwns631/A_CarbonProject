@@ -18,7 +18,7 @@
 	<!--nav-->
 	<nav>
 		<ul class="nav_wrap">
-			<li class="nav_list depth1 active">
+			<li class="nav_list depth1">
 				<div class="depth1_box">
 					<div class="nav_icon">
 						<i class="fa-solid fa-chart-line"></i>
@@ -36,7 +36,7 @@
 				</div>
 				<ul class="depth2">
 					<li class="nav_list">
-						<div class="nav_name"  onclick="location.href='${pageContext.request.contextPath}/cf_dispose.do';">배출량현황</div>
+						<div class="nav_name" onclick="location.href='${pageContext.request.contextPath}/cf_dispose.do';">배출량현황</div>
 					</li>
 					<li class="nav_list">
 						<div class="nav_name" onclick="location.href='${pageContext.request.contextPath}/cf_lowdispose_detail.do';">감축인벤토리</div>
@@ -77,6 +77,24 @@
 				$('.nav_list.depth1').removeClass('active');
 				$(this).addClass('active');
 			});	
+			
+			var pageUrl = window.location.href; //창의 url을 가져온다.
+			$(window).on('load', function(){ //load가 되었을때 실행
+			    $('.nav_list.depth1').siblings('.depth1').removeClass('active'); //다른 active가 있으면 지워준다.
+			    $('.depth2 .nav_list .nav_name').siblings('.nav_name').removeClass('active');
+			    
+			    if (pageUrl.indexOf('cf_dispose') > -1) { //url에 about이라는 글자가 있으면 실행
+			        $('.nav_list.depth1').eq(1).addClass('active');
+			        $('.depth2 .nav_list .nav_name').eq(0).addClass('active');
+			    } else if (pageUrl.indexOf('admin') > -1) { //url에 contact라는 글자가 있으면 실행
+			        $('.nav_list.depth1').eq(2).addClass('active');
+			        $('.depth2 .nav_list .nav_name').eq(2).addClass('active');
+			    } else {
+			        $('.nav_list.depth1').eq(0).addClass('active'); 
+			        $('.depth2 .nav_list .nav_name').eq(1).addClass('active');
+			        //메인 url은 main이라는 단어가 들어가지 않아서 모든 조건이 아닐때 실행하도록 함
+			    }
+			});
 		});
 	</script>
 </body>

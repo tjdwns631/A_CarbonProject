@@ -6,7 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<div style="margin-bottom: 20px;">
 		<select class="pl" name="year">
 			<option value="">연도선택</option>
@@ -177,5 +176,10 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		$(document).ready(function(){
+			//$('.depth2 .nav_list .nav_name').eq(2).addClass('active');
+		});
+	</script>
 </body>
 </html>
