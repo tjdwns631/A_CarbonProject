@@ -18,7 +18,7 @@
 	</section>
 	<!--파이(파이 or 도넛) 그래프-->
 	<section class="graph_cont stack_line_graph">
-	<div class="graph_title">누적 라인 그래프</div>
+	<div class="graph_title" id="pie_charttitle">누적 라인 그래프</div>
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
 			<canvas id="dashboard_piechart"></canvas>
@@ -121,6 +121,8 @@
 						$("#indi_num").empty();
 						$("#indi_num").html(comma(json.indi_val));
 						
+						$("#mc_year").empty();
+						$("#mc_year").html(json.year+"년");
 						$("#low_total_title").empty();
 						$("#low_total_title").html("감축 인벤토리");
 						$("#low_total_num").empty();
@@ -153,7 +155,7 @@
 						dashboard_pie_chart('dashboard_piechart', json);
 						
 						$("#pie_charttitle").empty();
-						$("#pie_charttitle").html(json.year+"년 배출량 상세 그래프");
+						$("#pie_charttitle").html(json.year+"년 총 배출량 상세 그래프");
 					}, "json");
 		}
 		

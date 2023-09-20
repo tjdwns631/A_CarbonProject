@@ -74,7 +74,7 @@
 	
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
-			<div class="graph_title">Level 2 분류</div>
+			<div class="graph_title" id="detail_graph_title">Level 2 분류</div>
 			<canvas id="cf_barchart"></canvas>
 		</div>
 	</section>
@@ -86,9 +86,9 @@
             	<div class="graph_title">에너지</div>
                 <canvas id="energy"></canvas>
             </div>
-			<div class="min_cont" id="energy_sum">
+			<div class="min_cont">
 				<h4 class="min_cont_title">에너지</h4>
-				<p class="min_cont_num">1111</p>
+				<p class="min_cont_num" id="energy_sum">1111</p>
 				<p class="tCO2eq">tCO2eq</p>
 			</div>
         </section>
@@ -97,9 +97,9 @@
             	<div class="graph_title">산업공정</div>
                 <canvas id="indus"></canvas>
             </div>
-            <div class="min_cont" id="indus_sum">
+            <div class="min_cont" >
 				<h4 class="min_cont_title">산업공정</h4>
-				<p class="min_cont_num">1111</p>
+				<p class="min_cont_num" id="indus_sum">1111</p>
 				<p class="tCO2eq">tCO2eq</p>
 			</div>
         </section>
@@ -108,20 +108,20 @@
             	<div class="graph_title">농업</div>
                 <canvas id="agri"></canvas>
             </div>
-            <div class="min_cont" id="agri_sum">
+            <div class="min_cont" >
 				<h4 class="min_cont_title">농업</h4>
-				<p class="min_cont_num">1111</p>
+				<p class="min_cont_num" id="agri_sum">1111</p>
 				<p class="tCO2eq">tCO2eq</p>
 			</div>
         </section>
         <section class="graph_cont">
             <div class="chart_box" >
-            	<div class="graph_title">lulu cf</div>
+            	<div class="graph_title">LULUCF</div>
                 <canvas id="lulucf"></canvas>
             </div>
-            <div class="min_cont" id="lulucf_sum">
-				<h4 class="min_cont_title">lulu cf</h4>
-				<p class="min_cont_num">1111</p>
+            <div class="min_cont">
+				<h4 class="min_cont_title">LULUCF</h4>
+				<p class="min_cont_num" id ="lulucf_sum">1111</p>
 				<p class="tCO2eq">tCO2eq</p>
 			</div>
         </section>
@@ -130,9 +130,9 @@
             	<div class="graph_title">폐기물(직접)</div>
                 <canvas id="waste"></canvas>
             </div>
-            <div class="min_cont" id="waste_sum">
+            <div class="min_cont">
 				<h4 class="min_cont_title">폐기물(직접)</h4>
-				<p class="min_cont_num">1111</p>
+				<p class="min_cont_num" id="waste_sum">1111</p>
 				<p class="tCO2eq">tCO2eq</p>
 			</div>
         </section>
@@ -141,9 +141,9 @@
             	<div class="graph_title">전력</div>
                 <canvas id="elect"></canvas>
             </div>
-            <div class="min_cont" id="elect_sum">
+            <div class="min_cont">
 				<h4 class="min_cont_title">전력</h4>
-				<p class="min_cont_num">1111</p>
+				<p class="min_cont_num" id="elect_sum">1111</p>
 				<p class="tCO2eq">tCO2eq</p>
 			</div>
         </section>
@@ -152,9 +152,9 @@
             	<div class="graph_title">폐기물(간접)</div>
                 <canvas id="indiwaste"></canvas>
             </div>
-            <div class="min_cont" id="indiwaste_sum">
+            <div class="min_cont" >
             	<h4 class="min_cont_title">폐기물(간접)</h4>
-				<p class="min_cont_num">1111</p>
+				<p class="min_cont_num" id="indiwaste_sum">1111</p>
 				<p class="tCO2eq">tCO2eq</p>
             </div>
         </section>
@@ -187,20 +187,40 @@
 			despose_barchart('cf_barchart', json);
 			//despose_stackbarchart('cf_barchart', json);
 			
-			$("#energy").empty(); // 초기화 후 재생성
+			$("#energy").empty(); 
 			despose_energy('energy', json);
-			$("#indus").empty(); // 초기화 후 재생성
+			$("#energy_sum").empty();
+			$("#energy_sum").html(comma(json.energy_sum));
+			
+			$("#indus").empty(); 
 			despose_indus('indus', json);
-			$("#agri").empty(); // 초기화 후 재생성
+			$("#indus_sum").empty();
+			$("#indus_sum").html(comma(json.indus_sum));
+			
+			$("#agri").empty();
 			despose_agri('agri', json);
-			$("#lulucf").empty(); // 초기화 후 재생성
+			$("#agri_sum").empty();
+			$("#agri_sum").html(comma(json.agri_sum));
+			
+			$("#lulucf").empty(); 
 			despose_lulucf('lulucf', json);
-			$("#waste").empty(); // 초기화 후 재생성
+			$("#lulucf_sum").empty();
+			$("#lulucf_sum").html(comma(json.lulucf_sum));
+			
+			$("#waste").empty(); 
 			despose_waste('waste', json);
-			$("#elect").empty(); // 초기화 후 재생성
+			$("#waste_sum").empty();
+			$("#waste_sum").html(comma(json.waste_sum));
+			
+			$("#elect").empty(); 
 			despose_elect('elect', json);
-			$("#indiwaste").empty(); // 초기화 후 재생성
+			$("#elect_sum").empty();
+			$("#elect_sum").html(comma(json.elect_sum));
+			
+			$("#indiwaste").empty();
 			despose_indiwaste('indiwaste', json);
+			$("#indiwaste_sum").empty();
+			$("#indiwaste_sum").html(comma(json.indiwaste_sum));
 			
 			$("#total_title").empty();
 			$("#total_title").html(json.year + "년 총 배출량");
@@ -221,7 +241,9 @@
 			$("#indi_title").html(json.year + "년 간접 배출량");
 			$("#indi_num").empty();
 			$("#indi_num").html(comma(json.indi_val));
-
+			
+			$("#detail_graph_title").empty();
+			$("#detail_graph_title").html(json.year + "년 상세 데이터");
 		}, "json");
 	}
 
