@@ -91,7 +91,7 @@
 			</div>
 			<div class="account_name" id="user_name">홍길동</div>
 		</div>
-		<button class="logout">LOGOUT</button>
+		<button class="logout"  onclick="location.href='${pageContext.request.contextPath}/login.do';">LOGOUT</button>
 	</div>
 	<script>
 		//버튼 눌렀을 때 화면 깜빡이면서 버벅이는 거 수정 할 수 있으면 수정하기

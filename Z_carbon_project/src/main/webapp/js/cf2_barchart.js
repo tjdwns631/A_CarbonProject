@@ -4,6 +4,10 @@ function despose_energy(area_id, data) { // 직접 - 에너지 차트
 	Chart.defaults.global.defaultFontColor = '#ffffff';
 
 	//var min_data = Math.min(...data.energy_nm);
+	var	limit = 0;
+	if(data.energy_sum == 0 || data.energy_sum == null){
+		limit = 1;
+	}
 
 	var ctx = document.getElementById(area_id);
 	var myChart = new Chart(ctx, {
@@ -44,6 +48,9 @@ function despose_energy(area_id, data) { // 직접 - 에너지 차트
 						zeroLineWidth : 1, //y축 0 부분의 선 두께
 						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
+					ticks: {
+						maxTicksLimit: limit,
+					},
 				}],
 				xAxes: [{
 					gridLines: {
@@ -60,6 +67,10 @@ function despose_indus(area_id, data) { // 직접 - 산업공정 차트
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#ffffff';
 
+	var	limit = 0;
+	if(data.indus_sum == 0 || data.indus_sum == null){
+		limit = 1;
+	}
 
 	var ctx = document.getElementById(area_id);
 	var myChart = new Chart(ctx, {
@@ -100,6 +111,10 @@ function despose_indus(area_id, data) { // 직접 - 산업공정 차트
 						zeroLineWidth : 1, //y축 0 부분의 선 두께
 						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
+					ticks: {
+						min:0,
+						maxTicksLimit: limit,
+					},
 				}],
 				xAxes: [{
 					gridLines: {
@@ -115,6 +130,11 @@ function despose_agri(area_id, data) { // 직접 - 농업 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#ffffff';
+
+	var	limit = 0;
+	if(data.agri_sum == 0){
+		limit = 1;
+	}
 
 	var ctx = document.getElementById(area_id);
 	var myChart = new Chart(ctx, {
@@ -155,6 +175,10 @@ function despose_agri(area_id, data) { // 직접 - 농업 차트
 						zeroLineWidth : 1, //y축 0 부분의 선 두께
 						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
+					ticks: {
+						min : 0,
+						maxTicksLimit: limit,
+					}
 				}],
 				xAxes: [{
 					gridLines: {
@@ -170,6 +194,11 @@ function despose_lulucf(area_id, data) { // 직접 -lulu cf 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#ffffff';
+
+	var	limit = 0;
+	if(data.lulucf_sum == 0){
+		limit = 1;
+	}
 
 	var ctx = document.getElementById(area_id);
 	var myChart = new Chart(ctx, {
@@ -213,6 +242,9 @@ function despose_lulucf(area_id, data) { // 직접 -lulu cf 차트
 						zeroLineWidth : 1, //y축 0 부분의 선 두께
 						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
+					ticks: {
+						maxTicksLimit: limit,
+					}
 				}],
 				xAxes: [{
 					gridLines: {
@@ -227,6 +259,11 @@ function despose_waste(area_id, data) { // 간접 - 전력 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#ffffff';
+	
+	var	limit = 0;
+	if(data.waste_sum == 0){
+		limit = 1;
+	}
 
 	var ctx = document.getElementById(area_id);
 	var myChart = new Chart(ctx, {
@@ -267,6 +304,10 @@ function despose_waste(area_id, data) { // 간접 - 전력 차트
 						zeroLineWidth : 1, //y축 0 부분의 선 두께
 						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
+					ticks: {
+						min:0,
+						maxTicksLimit: limit,
+					}
 				}],
 				xAxes: [{
 					gridLines: {
@@ -281,6 +322,11 @@ function despose_elect(area_id, data) { // 간접 - 페기물 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#ffffff';
+
+	var	limit = 0;
+	if(data.elect_sum == 0){
+		limit = 1;
+	}
 
 	var ctx = document.getElementById(area_id);
 	var myChart = new Chart(ctx, {
@@ -321,6 +367,10 @@ function despose_elect(area_id, data) { // 간접 - 페기물 차트
 						zeroLineWidth : 1, //y축 0 부분의 선 두께
 						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
+					ticks: {
+						min:0,
+						maxTicksLimit: limit,
+					}
 				}],
 				xAxes: [{
 					gridLines: {
@@ -335,6 +385,11 @@ function despose_indiwaste(area_id, data) { // 에너지 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#ffffff';
+
+	var	limit = 0;
+	if(data.indiwaste_sum == 0){
+		limit = 1;
+	}
 
 	var ctx = document.getElementById(area_id);
 	var myChart = new Chart(ctx, {
@@ -375,6 +430,10 @@ function despose_indiwaste(area_id, data) { // 에너지 차트
 						zeroLineWidth : 1, //y축 0 부분의 선 두께
 						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
+					ticks: {
+						min : 0,
+						maxTicksLimit: limit,
+					}
 				}],
 				xAxes: [{
 					gridLines: {

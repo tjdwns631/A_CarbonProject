@@ -2,8 +2,7 @@ function dispose_yearchart(area_id, data) { // 총 배출량(직접/간접)
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#D5D5D5';
-	console.log("cf_fispo : "+data.data_val_2)
-	console.log("cf_fispo : "+data.year_date)
+	
 	var ctx = document.getElementById(area_id);
 	var myChart = new Chart(ctx, {
 		type: 'bar',

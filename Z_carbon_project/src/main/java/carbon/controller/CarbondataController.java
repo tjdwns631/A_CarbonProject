@@ -216,7 +216,11 @@ public class CarbondataController {
 		}
 		Integer[][] Arr = new Integer[category.size()][max];
 		for (int i = 0; i < category.size(); i++) {
-			cate_nm[i] = category.get(i).getCate_nm(); // 대분류 카테고리 명
+			if(category.get(i).getCate_upr_sn().equals(2)) {
+				cate_nm[i] = category.get(i).getCate_nm()+"(직접)"; // 대분류 카테고리 명
+			}else {
+				cate_nm[i] = category.get(i).getCate_nm(); // 대분류 카테고리 명
+			}
 			cate_sn[i] = category.get(i).getCate_sn(); // 대분류 카테고리 idx
 			Low_arr[i] = 0; // 각 대분류별 데이터 
 			for(int j = 0; j < catecount.get(i).getCount(); j++) {
@@ -442,10 +446,11 @@ public class CarbondataController {
 		Integer[] cate_sn = new Integer[category.size()];
 		Integer[] Low_arr = new Integer[category.size()]; // 큰 배열->연도->작은배열->대분류별 데이터 입력
 		Integer max = catecount.get(0).getCount();
-
+		
 		for (int i = 0; i < catecount.size(); i++) {// 카테고리수 최대값 구하기
 			max = Math.max(max, catecount.get(i).getCount());
 		}
+		
 		Integer[][] Arr = new Integer[category.size()][max];
 		for (int i = 0; i < category.size(); i++) {
 			cate_nm[i] = category.get(i).getCate_nm(); // 대분류 카테고리 명
