@@ -21,7 +21,6 @@
     <script src="${pageContext.request.contextPath}/js/cf_dispose_chart.js"></script>
     <script src="${pageContext.request.contextPath}/js/cf2_barchart.js"></script>
     <script src="${pageContext.request.contextPath}/vendors/chart.js/Chart.min.js"></script>
-    <script src="https://kit.fontawesome.com/63ee985f7b.js" crossorigin="anonymous"></script>
  
 </head>
 <body>

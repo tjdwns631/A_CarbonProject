@@ -74,32 +74,34 @@ hr.nav_line {flex-shrink: 0;
 .nav_list.depth1 {display:flex; flex-direction:column; justify-content: center; align-items: center; position: relative; width: 85%; padding:5px 10px; border-radius:15px; cursor: pointer; white-space: nowrap; margin:5px auto;}
 /*현재 페이지에 해당하는 depth1 부분 배경 하얗게 만들기*/
 .nav_list.depth1.active {background:rgba(255, 255, 255, 0.1);}
+.depth2 {width:100%; text-indent:60px; border-radius: 25px; display:none;}
+.depth2 .nav_list {line-height: 40px;}
 .nav_list.depth1.active .depth2 {display:block;}
 .nav_list .depth1_box {display: flex; width: 100%; align-items: center;}
-.nav_list .nav_icon {background-color: rgb(0,117,255); border-radius:14px; margin:0 10px; display: grid; place-items:center; width:40px; height:40px;}
+.nav_list .nav_icon {background-color:#677c9b; border-radius:14px; margin:0 10px; display: grid; place-items:center; width:40px; height:40px;}
 .nav_list .nav_icon svg {width:15px; height:15px;}
 .nav_list .nav_icon svg path, .arrow_down svg path {fill:#fff;}
 .nav_list.depth1 .arrow_down {transition:all 0.1s;}
-.nav_list.depth1.reverse .arrow_down {transform:scaleY(-1);}
+.nav_list.depth1.active .arrow_down {transform:scaleY(-1);}
 .nav_list .nav_name {margin-right: auto; font-size: 16px;}
 
 
-.depth2 {width:100%; text-indent:60px; border-radius: 25px;}
-.depth2 .nav_list {line-height: 40px;}
+
 /*현재 페이지에 해당하는 부분 색깔 파랗게 바뀌게 하기*/
-.depth2 .nav_list .nav_name.active {color:rgba(0, 117, 255,1);}
+.depth2 .nav_list .nav_name.active {color:#3692ff; font-weight:700;}
 
 /*계정 account profile*/
 aside .bot {margin-top: auto;}
 aside .bot .account, aside .bot .logout {width:220px; margin:0 auto;}
 aside .bot .account {margin-bottom:20px; display: flex; overflow-wrap: break-word; overflow: hidden; background-position: center; border-radius: 15px; padding: 10px; background-image: url(../images/account_bg.png); position: relative; justify-content:center; align-items:center;}
 aside .bot .account .user_icon {width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background-color: #fff; border-radius: 14px; margin-right:10px;}
-aside .bot .account .user_icon i {color:rgb(0,117,255); font-size: 24px;}
+aside .bot .account .user_icon svg {width:24px; height:24px;}
+aside .bot .account .user_icon svg path {fill:rgb(0,117,255);}
 aside .bot .account .account_name {font-weight:500; font-size:20px;}
 aside .bot .account .account_grade {margin-bottom: 20px; font-size: 16px;}
 aside .bot .account .account_edit {width: 100%; background-color: rgba(0,0, 0, 0.6); line-height: 40px; border-radius: 25px; transition: font-size 0.1s; font-weight: 600; cursor: pointer;}
 aside .bot .account .account_edit:hover {font-size:18px;}
-aside .bot .logout {margin-bottom:50px; background-image: linear-gradient(310deg, rgb(0, 117, 255), rgb(33, 212, 253)); line-height: 40px; display: block; border-radius: 15px; font-weight: 600; transition: font-size 0.1s; cursor: pointer;}
+aside .bot .logout {margin-bottom:50px; background-image:linear-gradient(310deg, rgb(23 66 115), rgb(19 40 44)); line-height: 40px; display: block; border-radius: 15px; font-weight: 600; transition: font-size 0.1s; cursor: pointer;}
 aside .bot .logout:hover {font-size:18px;}
 /*main의 그리드 디자인*/
 main {padding: 50px; max-height:100%; width: -webkit-fill-available; display:flex; gap: 20px; flex-wrap:wrap; justify-content:space-between; align-items:center;}
@@ -188,7 +190,7 @@ section.mini_cont {width:100%;}
   border-bottom: 0 none;
 }
 
-.year_select .fa-chevron-down {position:absolute; right:4px; top:5px;}
+.year_select .label svg {position:absolute; right:5px; top:50%; transform:translateY(-50%);}
 
 /*스크롤 커스텀*/
 .year_select .optionList::-webkit-scrollbar {width: 6px;}
@@ -206,5 +208,5 @@ section.mini_cont {width:100%;}
 .folding_wrap .graph_cont.expanded .chart_box {display:flex;}
 .folding_wrap .graph_cont .min_cont {display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; height:100%; padding:20px;}
 .min_cont_title {font-size:20px; font-weight:600; margin-bottom:20px;}
-.min_cont_num {font-size: 20px; margin-bottom: 20px; color: #2d73fb;}
+.min_cont_num {font-size: 30px; margin-bottom: 20px; color: #2d73fb;}
 .tCO2eq {font-size:14px;}
