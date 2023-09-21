@@ -1,4 +1,4 @@
-function dispose_yearchart(area_id, data) { // 대시보드 첫 번째 차트 - 연간 총 배출량
+function dispose_yearchart(area_id, data) { // 총 배출량(직접/간접)
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#D5D5D5';
@@ -57,7 +57,9 @@ function dispose_yearchart(area_id, data) { // 대시보드 첫 번째 차트 - 
 				yAxes: [{
 					stacked: true,
 					gridLines: {
-						color: "rgba(204, 204, 204,0.1)"
+						color: "rgba(204, 204, 204,0.1)",
+						zeroLineWidth : 1, //y축 0 부분의 선 두께
+						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
 					ticks: {
 						min: 0,
@@ -76,7 +78,7 @@ function dispose_yearchart(area_id, data) { // 대시보드 첫 번째 차트 - 
 	});
 }	
 
-function despose_barchart(area_id, data) { // 현황조회 바 차트
+function despose_barchart(area_id, data) { // 배출량 상세 그래프
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#D5D5D5';
@@ -131,7 +133,9 @@ function despose_barchart(area_id, data) { // 현황조회 바 차트
 			scales: {
 				yAxes: [{
 					gridLines: {
-						color: "rgba(204, 204, 204,0.1)"
+						color: "rgba(204, 204, 204,0.1)",
+						zeroLineWidth : 1, //y축 0 부분의 선 두께
+						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
 				}],
 				xAxes: [{

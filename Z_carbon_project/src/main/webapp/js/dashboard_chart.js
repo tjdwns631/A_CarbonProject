@@ -68,7 +68,9 @@ function dashboard_barchart(area_id, data) { // 대시보드 첫 번째 차트 -
 				yAxes: [{
 					stacked: true,
 					gridLines: {
-						color: "rgba(204, 204, 204,0.1)"
+						color: "rgba(204, 204, 204,0.1)",
+						zeroLineWidth : 1, //y축 0 부분의 선 두께
+						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
 					ticks: {
 						min: 0,
@@ -107,57 +109,39 @@ function dashboard_pie_chart(area_id,data) { // 대시보드 파이 차트
 			//cutoutPercentage: 85, 
 			responsive: true, // 반응형 설정 활성화
         	maintainAspectRatio: false, // 가로세로비율유지X
+			legend: {
+				display: true,
+				position: 'right',
+				labels : {
+					fontColor:'#D5D5D5',
+				},
+			},
 			layout : {
 				padding:{
 					left:20,
 					top : 70,
 					right:20,
-					bottom:20
+					bottom:30
 				},
 			},  
-			legend: {
-				display: false,
-			},
 			plugins: {
-/*				doughnutlabel: {
-					labels: [
-						{
-							text: 'The title4433434',
-							font: {
-								size: '60'
-							},
-							color: 'red'
-						},
-					]
-				},*/
 				datalabels: {
 					color: '#ffffff',
 					display: function(context) {
-						return context.dataset.data[context.dataIndex] > 5000000;
+						return context.dataset.data[context.dataIndex] > 1000000;
 					},
 					font: {
 						weight: 'bold'
 					},
-/*					formatter: function(value, context) {
-						let result = value + "%";
-						return result
-					},*/
 				},
 		
 			},
-/*			elements: {
-				center: {
-					text: '12313123131',
-					color: 'white',
-					fontStyle: 'Helvetica', //Default Arial 
-					//sidePadding: 15 //Default 20 (as a percentage) 
-				}
-			},*/
+			
 		},
 	});
 }
 
-//누적 라인그래프
+//누적 라인그래프 -> 지금은 안 씀
 function dashboard_stacked_linechart(area_id, json) {
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#D5D5D5';
@@ -325,24 +309,15 @@ function dashboard_d_barchart(area_id, data) { // 대시보드 3번째 차트
 			plugins: {
 				datalabels: {
 					display:false,
-			/*		color: '#D5D5D5',
-					display: function(context) {
-						return context.dataset.data[context.dataIndex] > 150000;
-					},
-					font: {
-						weight: 'bold'
-					},
-					formatter: function(value, context) {
-						let result = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-						return result
-					},*/
 				}
 			},
 
 			scales: {
 				yAxes: [{
 					gridLines: {
-						color: "rgba(204, 204, 204,0.1)"
+						color: "rgba(204, 204, 204,0.1)",
+						zeroLineWidth : 1, //y축 0 부분의 선 두께
+						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
 					
 				}],
@@ -353,10 +328,10 @@ function dashboard_d_barchart(area_id, data) { // 대시보드 3번째 차트
 							console.log("tetsetests" + context)
 							if(context.ticks.value === 0){
 								return "blue"
-							} 
-						}
+							}
+						},
 					},
-				}]
+				}],
 			}
 		},
 	});

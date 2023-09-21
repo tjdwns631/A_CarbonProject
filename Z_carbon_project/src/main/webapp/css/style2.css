@@ -91,10 +91,10 @@ hr.nav_line {flex-shrink: 0;
 /*계정 account profile*/
 aside .bot {margin-top: auto;}
 aside .bot .account, aside .bot .logout {width:220px; margin:0 auto;}
-aside .bot .account {margin-bottom:20px; height:220px;display: flex; flex-direction: column; overflow-wrap: break-word; overflow: hidden; background-position: center; border-radius: 25px; padding: 10px; background-image: url(../images/account_bg.png); position: relative; justify-content:center; align-items:center;}
-aside .bot .account .user_icon {width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; background-color: #fff; border-radius: 14px; margin-bottom:20px;}
-aside .bot .account .user_icon i {color:rgb(0,117,255); font-size: 50px;}
-aside .bot .account .account_name {font-weight:500; font-size:30px;}
+aside .bot .account {margin-bottom:20px; display: flex; overflow-wrap: break-word; overflow: hidden; background-position: center; border-radius: 15px; padding: 10px; background-image: url(../images/account_bg.png); position: relative; justify-content:center; align-items:center;}
+aside .bot .account .user_icon {width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background-color: #fff; border-radius: 14px; margin-right:10px;}
+aside .bot .account .user_icon i {color:rgb(0,117,255); font-size: 24px;}
+aside .bot .account .account_name {font-weight:500; font-size:20px;}
 aside .bot .account .account_grade {margin-bottom: 20px; font-size: 16px;}
 aside .bot .account .account_edit {width: 100%; background-color: rgba(0,0, 0, 0.6); line-height: 40px; border-radius: 25px; transition: font-size 0.1s; font-weight: 600; cursor: pointer;}
 aside .bot .account .account_edit:hover {font-size:18px;}
@@ -196,9 +196,9 @@ section.mini_cont {width:100%;}
 .year_select .optionList::-webkit-scrollbar-thumb:hover {background: #303030;}
 
 
-.folding_wrap {display: flex; justify-content: space-between; gap: 20px; width: 100%; height: 100%;}
+.folding_wrap {display: flex; justify-content: space-between; gap: 20px; width: 100%; height: 38%;}
 /*7개니까 14%로 맞췄습니다*/
-.folding_wrap .graph_cont {width: 14%; height:300px; cursor: pointer; flex-grow: 1; transition: width 0.5s;}
+.folding_wrap .graph_cont {width: 14%; height:100%; cursor: pointer; flex-grow: 1; transition: width 0.5s;}
 .folding_wrap .graph_cont canvas {width:100%; height: 100%;}
 .folding_wrap .graph_cont .chart_box {display:none;}
 .folding_wrap .graph_cont.expanded {width:50%;}

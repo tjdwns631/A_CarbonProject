@@ -40,7 +40,9 @@ function despose_energy(area_id, data) { // 직접 - 에너지 차트
 			scales: {
 				yAxes: [{
 					gridLines: {
-						color: "rgba(204, 204, 204,0.1)"
+						color: "rgba(204, 204, 204,0.1)",
+						zeroLineWidth : 1, //y축 0 부분의 선 두께
+						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
 				}],
 				xAxes: [{
@@ -94,7 +96,9 @@ function despose_indus(area_id, data) { // 직접 - 산업공정 차트
 			scales: {
 				yAxes: [{
 					gridLines: {
-						color: "rgba(204, 204, 204,0.1)"
+						color: "rgba(204, 204, 204,0.1)",
+						zeroLineWidth : 1, //y축 0 부분의 선 두께
+						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
 				}],
 				xAxes: [{
@@ -147,7 +151,9 @@ function despose_agri(area_id, data) { // 직접 - 농업 차트
 			scales: {
 				yAxes: [{
 					gridLines: {
-						color: "rgba(204, 204, 204,0.1)"
+						color: "rgba(204, 204, 204,0.1)",
+						zeroLineWidth : 1, //y축 0 부분의 선 두께
+						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
 				}],
 				xAxes: [{
@@ -160,7 +166,7 @@ function despose_agri(area_id, data) { // 직접 - 농업 차트
 	});
 }
 
-function despose_lulucf(area_id, data) { // 직접 - 폐기물 차트
+function despose_lulucf(area_id, data) { // 직접 -lulu cf 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#ffffff';
@@ -200,7 +206,9 @@ function despose_lulucf(area_id, data) { // 직접 - 폐기물 차트
 			scales: {
 				yAxes: [{
 					gridLines: {
-						color: "rgba(204, 204, 204,0.1)"
+						color: "rgba(204, 204, 204,0.1)",
+						zeroLineWidth : 1, //y축 0 부분의 선 두께
+						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
 				}],
 				xAxes: [{
@@ -252,7 +260,9 @@ function despose_waste(area_id, data) { // 간접 - 전력 차트
 			scales: {
 				yAxes: [{
 					gridLines: {
-						color: "rgba(204, 204, 204,0.1)"
+						color: "rgba(204, 204, 204,0.1)",
+						zeroLineWidth : 1, //y축 0 부분의 선 두께
+						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
 				}],
 				xAxes: [{
@@ -304,7 +314,9 @@ function despose_elect(area_id, data) { // 간접 - 페기물 차트
 			scales: {
 				yAxes: [{
 					gridLines: {
-						color: "rgba(204, 204, 204,0.1)"
+						color: "rgba(204, 204, 204,0.1)",
+						zeroLineWidth : 1, //y축 0 부분의 선 두께
+						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
 				}],
 				xAxes: [{
@@ -356,7 +368,9 @@ function despose_indiwaste(area_id, data) { // 에너지 차트
 			scales: {
 				yAxes: [{
 					gridLines: {
-						color: "rgba(204, 204, 204,0.1)"
+						color: "rgba(204, 204, 204,0.1)",
+						zeroLineWidth : 1, //y축 0 부분의 선 두께
+						zeroLineColor : 'rgba(255,255,255,0.5)', //y축 0 부분의 선 색깔
 					},
 				}],
 				xAxes: [{

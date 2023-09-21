@@ -93,10 +93,9 @@
 		<button class="logout">LOGOUT</button>
 	</div>
 	<script>
-		//버튼 눌렀을 때 화면 깜빡이면서 버벅이는 거 수정 할 수 있으면 수정하기ㅋㅋ
-		//클릭된 sidebar 버튼에 active class 추가하기
+		//버튼 눌렀을 때 화면 깜빡이면서 버벅이는 거 수정 할 수 있으면 수정하기
 		$(document).ready(function(){
-			//sidebar의 버튼을 클릭해서 페이지가 이동하거나 새로고침 됐을 때
+			//페이지가 이동하거나 새로고침 됐을 때 css 바뀐 게 유지되는 기능
 			var pageUrl = window.location.href; //창의 url을 가져온다.
 			$(window).on('load', function(){ //load가 되었을때 실행
 			    $('.nav_list.depth1').siblings('.depth1').removeClass('active'); //다른 active가 있으면 지워준다.
@@ -104,7 +103,7 @@
 			    $('.nav_list .depth2').css('display','none');
 			    $('.nav_list.depth1').removeClass('reverse'); //화살표 뒤집힌 거 원래대로 하기
 			    
-			    if (pageUrl.indexOf('cf_dispose') > -1) { //url에 cf_dispose(-=현황 조회) 라는 글자가 있으면 실행
+			    if (pageUrl.indexOf('cf_dispose') > -1) { //url에 cf_dispose(=현황 조회) 라는 글자가 있으면 실행
 			        $('.nav_list.depth1').eq(1).addClass('active'); //상세조회 불 들어오게 하기
 			        $('.depth2 .nav_list .nav_name').eq(0).addClass('active'); //현황 조회 색깔 바꾸기
 			        $('.nav_list.depth1').eq(1).addClass('reverse'); //화살표 뒤집기
@@ -122,17 +121,23 @@
 			    
 			    $('.nav_list.active .depth2').css('display','block');
 			    
-				$('.nav_list.depth1').click(function(){
-					$('.nav_list.depth1').siblings('.depth1').removeClass('active');
-					$('.nav_list .depth2').siblings('.depth2').css('display','none');
-					$('.nav_list.active .depth2').css('display','none');
-					$(this).addClass('active');
+			    //직접 sidebar 버튼 클릭했을 때 css바뀌는 기능
+				$('.nav_list .depth1_box').click(function(){
+					//이미 active인 버튼을 눌렀을 경우 변화 없게 하기
+					if($(this).parent('.nav_list.depth1').hasClass('active')){
+						e.preventDefault();
+						$(this).addClass('reverse');
+					}
+					else {
+						$('.nav_list.depth1').removeClass('active');
+						$('.nav_list .depth2').css('display','none');
+						$(this).parent('.nav_list.depth1').addClass('active');
+						$(this).find('.depth2').css('display','block');
+						$('.nav_list.depth1').removeClass('reverse');
+					}
 				});	
 			});
-			
-
 			 user_info()
-				
 		});
 		
 			
