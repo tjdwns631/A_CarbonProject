@@ -32,7 +32,15 @@ public class SecurityConfig {
         http
         .csrf().disable()
         .authorizeHttpRequests((requests) -> requests
-
+        		.requestMatchers(new AntPathRequestMatcher("/css/**"),new AntPathRequestMatcher("/images/**"),new AntPathRequestMatcher("/js/**"),
+        						new AntPathRequestMatcher("/vendors/**"),new AntPathRequestMatcher("/common/**"),
+        						new AntPathRequestMatcher("/login.do*"),
+        						new AntPathRequestMatcher("/cf_dispose.do"),new AntPathRequestMatcher("/DashboardDataList.do"),new AntPathRequestMatcher("/desposeData.do"),
+        						new AntPathRequestMatcher("/cf_lowdispose_detail.do"),new AntPathRequestMatcher("/Low_data.do")
+        						).permitAll()
+                //.requestMatchers("/css/**", "/img/**", "/js/**","/vendors/**" ,"/login","/error").permitAll()
+                //.requestMatchers("/dashboard/dashboard_sis").hasRole("ADMIN")
+                //.requestMatchers("/dashboard", "/main").hasAnyRole("ADMIN", "USER")
                 .anyRequest().authenticated() //그외 모든 접근권한 인증
         )
         .formLogin((form) -> form

@@ -97,7 +97,7 @@
 		$(document).ready(function(){
 			//페이지가 이동하거나 새로고침 됐을 때 css 바뀐 게 유지되는 기능
 			var pageUrl = window.location.href; //창의 url을 가져온다.
-			$(window).on('load', function(){ //load가 되었을때 실행
+			console.log(pageUrl)
 			    $('.nav_list.depth1').siblings('.depth1').removeClass('active'); //다른 active가 있으면 지워준다.
 			    $('.depth2 .nav_list .nav_name').siblings('.nav_name').removeClass('active');
 			    $('.nav_list .depth2').css('display','none');
@@ -136,7 +136,6 @@
 						$('.nav_list.depth1').removeClass('reverse');
 					}
 				});	
-			});
 			 user_info()
 		});
 		
