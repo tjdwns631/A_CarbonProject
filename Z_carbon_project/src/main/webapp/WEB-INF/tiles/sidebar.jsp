@@ -95,9 +95,8 @@
 	<script>
 		//버튼 눌렀을 때 화면 깜빡이면서 버벅이는 거 수정 할 수 있으면 수정하기
 		$(document).ready(function(){
-			//페이지가 이동하거나 새로고침 됐을 때 css 바뀐 게 유지되는 기능
-			var pageUrl = window.location.href; //창의 url을 가져온다.
-			console.log(pageUrl)
+				//페이지가 이동하거나 새로고침 됐을 때 css 바뀐 게 유지되는 기능
+				var pageUrl = window.location.href; //창의 url을 가져온다.
 			    $('.nav_list.depth1').siblings('.depth1').removeClass('active'); //다른 active가 있으면 지워준다.
 			    $('.depth2 .nav_list .nav_name').siblings('.nav_name').removeClass('active');
 			    $('.nav_list .depth2').css('display','none');
