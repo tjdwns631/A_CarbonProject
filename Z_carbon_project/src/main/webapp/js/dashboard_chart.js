@@ -270,7 +270,7 @@ function dashboard_stacked_linechart(area_id, json) {
 	});
 }
 
-function dashboard_d_barchart(area_id, data) { // 대시보드 3번째 차트
+function dashboard_d_barchart(area_id, data) { // 감축인벤토리 차트
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#D5D5D5';
@@ -286,7 +286,10 @@ function dashboard_d_barchart(area_id, data) { // 대시보드 3번째 차트
 			labels: data.prdt_nm,
 			datasets: [{
 				data: data.Low_arr,
-				backgroundColor: 'rgba(45,115,251,1)',
+				backgroundColor: function(context) {
+                    var value = context.dataset.data[context.dataIndex];
+                    return value <= 0 ? 'rgba(45,115,251,1)' : 'rgba(50,203,247,1)'; //앞의 색이 음수배경색, 뒤의 색이 양수배경색
+                },
 				fill:true,
 				barPercentage: 0.7,
 			}],

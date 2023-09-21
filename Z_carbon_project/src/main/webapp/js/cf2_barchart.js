@@ -178,7 +178,10 @@ function despose_lulucf(area_id, data) { // 직접 -lulu cf 차트
 			labels: data.lulucf_nm,
 			datasets: [{
 				data: data.lulucf_val,
-				backgroundColor: 'rgba(42,232,177,1)',
+				backgroundColor: function(context) {
+                    var value = context.dataset.data[context.dataIndex];
+                    return value <= 0 ? 'rgba(45,115,251,1)' : 'rgba(42,232,177,1)'; //앞의 색이 음수배경색, 뒤의 색이 양수배경색
+                },
 				fill: true,
 				barPercentage: 0.7,
 			}],
