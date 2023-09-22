@@ -92,7 +92,7 @@
 			<div class="min_cont">
 				<h4 class="min_cont_title">에너지</h4>
 				<p class="min_cont_num" id="energy_sum">1111</p>
-				<p class="tCO2eq">tCO2eq</p>
+				<p class="tCO₂eq">tCO₂eq</p>
 			</div>
         </section>
         <section class="graph_cont">
@@ -103,7 +103,7 @@
             <div class="min_cont" >
 				<h4 class="min_cont_title">산업공정</h4>
 				<p class="min_cont_num" id="indus_sum">1111</p>
-				<p class="tCO2eq">tCO2eq</p>
+				<p class="tCO₂eq">tCO₂eq</p>
 			</div>
         </section>
         <section class="graph_cont">
@@ -114,7 +114,7 @@
             <div class="min_cont" >
 				<h4 class="min_cont_title">농업</h4>
 				<p class="min_cont_num" id="agri_sum">1111</p>
-				<p class="tCO2eq">tCO2eq</p>
+				<p class="tCO₂eq">tCO₂eq</p>
 			</div>
         </section>
         <section class="graph_cont">
@@ -125,29 +125,29 @@
             <div class="min_cont">
 				<h4 class="min_cont_title">LULUCF</h4>
 				<p class="min_cont_num" id ="lulucf_sum">1111</p>
-				<p class="tCO2eq">tCO2eq</p>
+				<p class="tCO₂eq">tCO₂eq</p>
 			</div>
         </section>
         <section class="graph_cont">
             <div class="chart_box" >
-            	<div class="graph_title">폐기물(직접)</div>
+            	<div class="graph_title">폐기물</div>
                 <canvas id="waste"></canvas>
             </div>
             <div class="min_cont">
-				<h4 class="min_cont_title">폐기물(직접)</h4>
+				<h4 class="min_cont_title">폐기물</h4>
 				<p class="min_cont_num" id="waste_sum">1111</p>
-				<p class="tCO2eq">tCO2eq</p>
+				<p class="tCO₂eq">tCO₂eq</p>
 			</div>
         </section>
         <section class="graph_cont">
             <div class="chart_box" >
-            	<div class="graph_title">전력</div>
+            	<div class="graph_title">전력(간접)</div>
                 <canvas id="elect"></canvas>
             </div>
             <div class="min_cont">
-				<h4 class="min_cont_title">전력</h4>
+				<h4 class="min_cont_title">전력(간접)</h4>
 				<p class="min_cont_num" id="elect_sum">1111</p>
-				<p class="tCO2eq">tCO2eq</p>
+				<p class="tCO₂eq">tCO₂eq</p>
 			</div>
         </section>
         <section class="graph_cont">
@@ -158,7 +158,7 @@
             <div class="min_cont" >
             	<h4 class="min_cont_title">폐기물(간접)</h4>
 				<p class="min_cont_num" id="indiwaste_sum">1111</p>
-				<p class="tCO2eq">tCO2eq</p>
+				<p class="tCO₂eq">tCO₂eq</p>
             </div>
         </section>
     </div>

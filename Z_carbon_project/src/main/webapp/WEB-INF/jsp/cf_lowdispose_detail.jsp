@@ -51,10 +51,7 @@
 				</div>
 				<div class="year_select_cf">
 					<button class="label" id="year_data" value="optValue">
-						2018년
-						<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
-							<path fill="#0075ff" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/>
-						</svg>
+						2018년 <i class="fa-solid fa-chevron-down"></i>
 					</button>
 					<ul class="optionList">
 						<c:forEach var="year" items="${year_list}">
@@ -91,7 +88,7 @@
 			<div class="min_cont" >
 				<h4 class="min_cont_title">에너지</h4>
 				<p class="min_cont_num" id="energy_sum">1111</p>
-				<p class="tCO2eq">tCO2eq</p>
+				<p class="tCO₂eq">tCO₂eq</p>
 			</div>	
         </section>
        <section class="graph_cont">
@@ -102,7 +99,7 @@
             <div class="min_cont" >
 				<h4 class="min_cont_title">농업</h4>
 				<p class="min_cont_num" id="agri_sum">1111</p>
-				<p class="tCO2eq">tCO2eq</p>
+				<p class="tCO₂eq">tCO₂eq</p>
 			</div>
         </section>
        <section class="graph_cont">
@@ -113,18 +110,18 @@
             <div class="min_cont" >
 				<h4 class="min_cont_title">LULUCF</h4>
 				<p class="min_cont_num" id="lulucf_sum">1111</p>
-				<p class="tCO2eq">tCO2eq</p>
+				<p class="tCO₂eq">tCO₂eq</p>
 			</div>
         </section>
         <section class="graph_cont">
             <div class="chart_box" >
-            	<div class="graph_title">전력</div>
+            	<div class="graph_title">전력(간접)</div>
                 <canvas id="elect"></canvas>
             </div>
             <div class="min_cont" >
-				<h4 class="min_cont_title">전력</h4>
+				<h4 class="min_cont_title">전력(간접)</h4>
 				<p class="min_cont_num" id="elect_sum">1111</p>
-				<p class="tCO2eq">tCO2eq</p>
+				<p class="tCO₂eq">tCO₂eq</p>
 			</div>
         </section>
          <section class="graph_cont">
@@ -135,7 +132,7 @@
             <div class="min_cont" >
             	<h4 class="min_cont_title">폐기물(간접)</h4>
 				<p class="min_cont_num" id="indiwaste_sum">1111</p>
-				<p class="tCO2eq">tCO2eq</p>
+				<p class="tCO₂eq">tCO₂eq</p>
             </div>
         </section>
     </div>
@@ -228,7 +225,6 @@
 		// 클릭한 옵션의 텍스트를 라벨 안에 넣음
 		const handleSelect = function(item) {
 			label.innerHTML = item.textContent;
-			label.innerHTML += '<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path fill="#0075ff" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>';
 			label.parentNode.classList.remove('active');
 			// label.innerHTML = "222222"; 라벨에 값 넣기
 		}
