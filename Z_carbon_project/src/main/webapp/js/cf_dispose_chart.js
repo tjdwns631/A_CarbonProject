@@ -93,7 +93,9 @@ function despose_barchart(area_id, data) { // 배출량 상세 그래프
 			labels: data.cate_nm,
 			datasets: [{
 				data: data.Low_arr,
-				backgroundColor: 'rgba(45,115,251,1)',
+				backgroundColor: ['rgba(46,253,129,0.5)','rgba(46,253,129,0.5)','rgba(46,253,129,0.5)','rgba(46,253,129,0.5)', 'rgba(46,253,129,0.5)', 'rgba(45,115,251,0.5)', 'rgba(45,115,251,0.5)'],
+				borderColor: ['rgba(46,253,129,1)','rgba(46,253,129,1)','rgba(46,253,129,1)','rgba(46,253,129,1)', 'rgba(46,253,129,1)', 'rgba(45,115,251,1)', 'rgba(45,115,251,1)'],
+				borderWidth:2,
 				fill: true,
 				barPercentage: 0.7,
 			}],

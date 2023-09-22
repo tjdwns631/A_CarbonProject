@@ -105,26 +105,26 @@
 						dashboard_d_barchart('d_bar_chart',json);
 						//배출량 데이터 
 						$("#total_title").empty();
-						$("#total_title").html("총 배출량");
+						$("#total_title").html("총 배출량"+ '<span class="tooltips color" data-text="총배출량 : 온실가스 인벤토리에서 에너지, 산업공정, 농업, 폐기물 등 지역 경계 내 배출되는 온실가스의 총합"></span>');
 						$("#total_num").empty();
 						$("#total_num").html(comma(json.total_val));
 						$("#lu_title").empty();
-						$("#lu_title").html("순 배출량");
+						$("#lu_title").html("순 배출량" + '<span class="tooltips" data-text="순배출량 : 총배출량에서 ‘토지이용, 토지이용 변화 및 임업(LULUCF :Land Use, Land-use Change and Forestry) 분야를 포함한 배출량으로 대기 중에 배출되는 온실가스 양에서 온실가스 흡수 양을 상쇄한 배출량을 의미하며, 탄소중립이란 순배출량이 0이 되는 상태를 말함"></span>');
 						$("#lu_num").empty();
 						$("#lu_num").html(comma(json.total_lu_val));
 						$("#di_title").empty();
-						$("#di_title").html("직접 배출량");
+						$("#di_title").html("직접 배출량" + '<span class="tooltips" data-text="직접배출(Scope1) : 온실가스가 직접적으로 배출·흡수되는 배출원"></span>');
 						$("#di_num").empty();
 						$("#di_num").html(comma(json.di_val));
 						$("#indi_title").empty();
-						$("#indi_title").html("간접 배출량");
+						$("#indi_title").html("간접 배출량" + '<span class="tooltips" data-text="간접배출(Scope2) : 간접적으로 온실가스를 발생시키는 배출원으로 사용단계에서는 온실가스가 배출되지는 않으나 생산단계에서 온실가스를 배출"></span>');
 						$("#indi_num").empty();
 						$("#indi_num").html(comma(json.indi_val));
 						
 						$("#mc_year").empty();
 						$("#mc_year").html(json.year+"년");
 						$("#low_total_title").empty();
-						$("#low_total_title").html("감축 인벤토리");
+						$("#low_total_title").html("감축 인벤토리" + '<span class="tooltips color" data-text="감축 인벤토리 : 온실가스 인벤토리 활용성을 극대화하기 위해 지자체 관리권한에 중점을 둔 인벤토리로 비산업부문 인벤토리를 의미하며, 지자체 감축목표 달성을 위한 온실가스 배출량 기준으로 활용"></span>');
 						$("#low_total_num").empty();
 						$("#low_total_num").html(comma(json.total_low_val));
 						$("#low_di_title").empty();

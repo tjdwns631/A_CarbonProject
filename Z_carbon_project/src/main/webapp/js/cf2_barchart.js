@@ -16,7 +16,9 @@ function despose_energy(area_id, data) { // 직접 - 에너지 차트
 			labels: data.energy_nm,
 			datasets: [{
 				data: data.energy_val,
-				backgroundColor: 'rgba(42,232,177,1)',
+				backgroundColor: 'rgba(46,253,129,0.5)',
+				borderColor: 'rgba(46,253,129,1)',
+				borderWidth: 2,
 				fill: true,
 				barPercentage: 0.7,
 			}],
@@ -79,7 +81,9 @@ function despose_indus(area_id, data) { // 직접 - 산업공정 차트
 			labels: data.indus_nm,
 			datasets: [{
 				data: data.indus_val,
-				backgroundColor: 'rgba(42,232,177,1)',
+				backgroundColor: 'rgba(46,253,129,0.5)',
+				borderColor: 'rgba(46,253,129,1)',
+				borderWidth: 2,
 				fill: true,
 				barPercentage: 0.7,
 			}],
@@ -143,7 +147,9 @@ function despose_agri(area_id, data) { // 직접 - 농업 차트
 			labels: data.agri_nm,
 			datasets: [{
 				data: data.agri_val,
-				backgroundColor: 'rgba(42,232,177,1)',
+				backgroundColor: 'rgba(46,253,129,0.5)',
+				borderColor: 'rgba(46,253,129,1)',
+				borderWidth: 2,
 				fill: true,
 				barPercentage: 0.7,
 			}],
@@ -207,9 +213,14 @@ function despose_lulucf(area_id, data) { // 직접 -lulu cf 차트
 			labels: data.lulucf_nm,
 			datasets: [{
 				data: data.lulucf_val,
+				borderWidth: 2,
 				backgroundColor: function(context) {
                     var value = context.dataset.data[context.dataIndex];
-                    return value <= 0 ? 'rgba(45,115,251,1)' : 'rgba(42,232,177,1)'; //앞의 색이 음수배경색, 뒤의 색이 양수배경색
+                    return value <= 0 ? 'rgba(42,232,177,0.5)' : 'rgba(46,253,129,0.5)'; //앞의 색이 음수배경색, 뒤의 색이 양수배경색
+                },
+				borderColor: function(context2) {
+                    var value = context2.dataset.data[context2.dataIndex];
+                    return value <= 0 ? 'rgba(42,232,177,1)' : 'rgba(46,253,129,1)'; //앞의 색이 음수배경색, 뒤의 색이 양수배경색
                 },
 				fill: true,
 				barPercentage: 0.7,
@@ -272,7 +283,9 @@ function despose_waste(area_id, data) { // 간접 - 전력 차트
 			labels: data.waste_nm,
 			datasets: [{
 				data: data.waste_val,
-				backgroundColor: 'rgba(56,227,255,1)',
+				backgroundColor: 'rgba(45,115,251,0.5)',
+				borderColor: 'rgba(45,115,251,1)',
+				borderWidth: 2,
 				fill: true,
 				barPercentage: 0.7,
 			}],
@@ -335,7 +348,9 @@ function despose_elect(area_id, data) { // 간접 - 페기물 차트
 			labels: data.elect_nm,
 			datasets: [{
 				data: data.elect_val,
-				backgroundColor: 'rgba(56,227,255,1)',
+				backgroundColor: 'rgba(45,115,251,0.5)',
+				borderColor: 'rgba(45,115,251,1)',
+				borderWidth: 2,
 				fill: true,
 				barPercentage: 0.7,
 			}],
@@ -381,7 +396,7 @@ function despose_elect(area_id, data) { // 간접 - 페기물 차트
 		},
 	});
 }
-function despose_indiwaste(area_id, data) { // 에너지 차트
+function despose_indiwaste(area_id, data) { // 간접 - 폐기물
 
 	Chart.defaults.global.defaultFontFamily = 'pretendard', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 	Chart.defaults.global.defaultFontColor = '#ffffff';
@@ -398,7 +413,9 @@ function despose_indiwaste(area_id, data) { // 에너지 차트
 			labels: data.indiwaste_nm,
 			datasets: [{
 				data: data.indiwaste_val,
-				backgroundColor: 'rgba(56,227,255,1)',
+				backgroundColor: 'rgba(45,115,251,0.5)',
+				borderColor: 'rgba(45,115,251,1)',
+				borderWidth: 2,
 				fill: true,
 				barPercentage: 0.7,
 			}],
