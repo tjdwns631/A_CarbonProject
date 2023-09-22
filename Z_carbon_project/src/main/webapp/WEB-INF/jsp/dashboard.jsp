@@ -10,7 +10,9 @@
 <body>
 	<!--연간 총 배출량-->
 	<section class="graph_cont year_total_emission">
-	<div class="graph_title">연간 총 배출량</div>
+	<div class="graph_title">연간 총 배출량
+		<span class="unit">(단위 : tCO₂eq)</span>
+	</div>
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
 			<canvas id="barChart"></canvas>
@@ -18,7 +20,7 @@
 	</section>
 	<!--파이(파이 or 도넛) 그래프-->
 	<section class="graph_cont stack_line_graph">
-	<div class="graph_title" id="pie_charttitle">누적 라인 그래프</div>
+	<div class="graph_title" id="pie_charttitle"></div>
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
 			<canvas id="dashboard_piechart"></canvas>
@@ -26,7 +28,9 @@
 	</section>
 	<!--감축인벤토리 + 연도선택기능-->
 	<section class="graph_cont reduction_inventory">
-	<div class="graph_title">감축 인벤토리</div>
+	<div class="graph_title">감축 인벤토리
+		<span class="unit">(단위 : tCO₂eq)</span>
+	</div>
 		<div class="chart_box">
 			<canvas id="d_bar_chart"></canvas>
 		</div>
@@ -155,7 +159,7 @@
 						dashboard_pie_chart('dashboard_piechart', json);
 						
 						$("#pie_charttitle").empty();
-						$("#pie_charttitle").html(json.year+"년 총 배출량 상세 그래프");
+						$("#pie_charttitle").html(json.year+"년 총 배출량 상세 그래프" + '<span class="unit">(단위 : tCO₂eq)</span>');
 					}, "json");
 		}
 		

@@ -119,7 +119,8 @@ section.graph_cont {position: relative; background: linear-gradient(127.09deg, r
 .mini_box .icon {width:50px; height:50px; display: flex; align-items: center; justify-content: center; border-radius: 15px; background-color: #0075ff; margin-left: auto;}
 .mini_cont .line {width:2px; height:100px; background-color:#fff;}
 
-.graph_title {font-size:20px; color:#fff; font-weight:600; position:absolute; top:20px; left:20px;}
+.graph_title {font-size:20px; color:#fff; font-weight:600; position:absolute; top:20px; left:20px; display: flex; justify-content: space-between; width:100%;}
+.graph_title .unit {font-size:14px; color:#888; font-weight:400; margin-right:40px;}
 /*연간 총 배출량*/
 .year_total_emission {height:44%; width:59%;}
 /*누적 라인 그래프*/
@@ -207,9 +208,19 @@ section.mini_cont {width:100%;}
 .folding_wrap .graph_cont.expanded {width:50%;}
 .folding_wrap .graph_cont.expanded .chart_box {display:flex;}
 .folding_wrap .graph_cont .min_cont {display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; height:100%; padding:20px;}
+.min_cont_icon {width: 80px; height: 80px; background-position:center; background-repeat: no-repeat; margin-bottom:20px; opacity:0.95;}
+.min_cont_icon.energy {background-image:url(../images/energy.svg);}
+.min_cont_num.green {color:#2efd81;}
+.min_cont_icon.agri {background-image:url(../images/wheat.svg);}
+.min_cont_icon.lulucf {background-image:url(../images/lulucf.svg);}
+.min_cont_icon.elec {background-image:url(../images/elec.svg);}
+.min_cont_icon.trash_green {background-image:url(../images/trashcan_green.svg);}
+.min_cont_icon.trash_blue {background-image:url(../images/trashcan_blue.svg);}
+.min_cont_icon.industry {background-image:url(../images/industry.svg);}
+
 .min_cont_title {font-size:20px; font-weight:600; margin-bottom:20px;}
 .min_cont_num {font-size: 30px; margin-bottom: 20px; color: #2d73fb;}
-.tCO2eq {font-size:14px;}
+.tCO₂eq {font-size:14px; color:#888;}
 
 /*툴팁 디자인*/
 .tooltips {cursor:pointer; background-image:url(../images/tooltip_icon.svg); width:20px; height:20px; background-size:cover; display:inline-block; margin-left:5px; position:relative;}

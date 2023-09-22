@@ -65,7 +65,9 @@
 	<section class="graph_cont first_chart_box">
 		<!--차트 넣는 곳-->
 		<div class="chart_box">
-			<div class="graph_title">총배출량 (직접/간접)</div>
+			<div class="graph_title">총배출량 (직접/간접)
+				<span class="unit">(단위 : tCO₂eq)</span>
+			</div>
 			<canvas id="barChart"></canvas>
 		</div>
 	</section>
@@ -82,55 +84,70 @@
 	<div class="folding_wrap">
         <section class="graph_cont">
             <div class="chart_box" >
-            	<div class="graph_title">에너지</div>
+            	<div class="graph_title">에너지
+            		<span class="unit">(단위 : tCO₂eq)</span>
+            	</div>
                 <canvas id="energy"></canvas>
             </div>
 			<div class="min_cont" >
+				<div class="min_cont_icon energy"></div>
 				<h4 class="min_cont_title">에너지</h4>
-				<p class="min_cont_num" id="energy_sum">1111</p>
+				<p class="min_cont_num green" id="energy_sum">1111</p>
 				<p class="tCO₂eq">tCO₂eq</p>
 			</div>	
         </section>
        <section class="graph_cont">
             <div class="chart_box" >
-            	<div class="graph_title">농업</div>
+            	<div class="graph_title">농업
+            		<span class="unit">(단위 : tCO₂eq)</span>
+            	</div>
                 <canvas id="agri"></canvas>
             </div>
             <div class="min_cont" >
+            	<div class="min_cont_icon agri"></div>
 				<h4 class="min_cont_title">농업</h4>
-				<p class="min_cont_num" id="agri_sum">1111</p>
+				<p class="min_cont_num green" id="agri_sum">1111</p>
 				<p class="tCO₂eq">tCO₂eq</p>
 			</div>
         </section>
        <section class="graph_cont">
             <div class="chart_box" >
-            	<div class="graph_title">LULUCF</div>
+            	<div class="graph_title">LULUCF
+            		<span class="unit">(단위 : tCO₂eq)</span>
+            	</div>
                 <canvas id="lulucf"></canvas>
             </div>
             <div class="min_cont" >
+            	<div class="min_cont_icon lulucf"></div>
 				<h4 class="min_cont_title">LULUCF</h4>
-				<p class="min_cont_num" id="lulucf_sum">1111</p>
+				<p class="min_cont_num green" id="lulucf_sum">1111</p>
 				<p class="tCO₂eq">tCO₂eq</p>
 			</div>
         </section>
         <section class="graph_cont">
             <div class="chart_box" >
-            	<div class="graph_title">전력(간접)</div>
+            	<div class="graph_title">전력
+            		<span class="unit">(단위 : tCO₂eq)</span>
+            	</div>
                 <canvas id="elect"></canvas>
             </div>
             <div class="min_cont" >
-				<h4 class="min_cont_title">전력(간접)</h4>
+            	<div class="min_cont_icon elec"></div>
+				<h4 class="min_cont_title">전력</h4>
 				<p class="min_cont_num" id="elect_sum">1111</p>
 				<p class="tCO₂eq">tCO₂eq</p>
 			</div>
         </section>
          <section class="graph_cont">
             <div class="chart_box">
-            	<div class="graph_title">폐기물(간접)</div>
+            	<div class="graph_title">폐기물
+            		<span class="unit">(단위 : tCO₂eq)</span>
+            	</div>
                 <canvas id="indiwaste"></canvas>
             </div>
             <div class="min_cont" >
-            	<h4 class="min_cont_title">폐기물(간접)</h4>
+            	<div class="min_cont_icon trash_blue"></div>
+            	<h4 class="min_cont_title">폐기물</h4>
 				<p class="min_cont_num" id="indiwaste_sum">1111</p>
 				<p class="tCO₂eq">tCO₂eq</p>
             </div>
@@ -209,7 +226,7 @@
 			$("#indi_num").html(comma(json.indi_val));
 			
 			$("#detail_graph_title").empty();
-			$("#detail_graph_title").html(json.year + "년 배출량 상세 그래프");
+			$("#detail_graph_title").html(json.year + "년 배출량 상세 그래프" + '<span class="unit">(단위 : tCO₂eq)</span>');
 
 		}, "json");
 	}
