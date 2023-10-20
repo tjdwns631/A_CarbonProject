@@ -92,18 +92,19 @@
 	</section>
 	<script>
 		$(function() {
+			SelectBoxClick() // 셀텍트 박스 클릭 이벤
+			
 			DashboardYearData(); //연간 배출량 데이터
 			DashboardSelectData(); //연별 선택 감축 데이터 및 배출량 데이터
 			Dashboard_piechart() //파이차트 데이터 (default 2018년 데이터)
 			
-			SelectBoxClick() // 셀텍트 박스 클릭 이벤
 			
 		})
 
 		function DashboardSelectData(year) { // 선택연도 데이터
-			$.post('/DashboardSelectList.do', {"year" : year},
+			$.post('/dashboardSelectList.do', {"year" : year},
 					function(json) {
-						console.log(json)
+						console.log("DashboardSelectList : "+ json)
 						//감축 인벤토리 데이터
 						$("#d_bar_chart").empty(); 
 						dashboard_d_barchart('d_bar_chart',json);
@@ -185,9 +186,6 @@
 					
 					let year ="";
 					year = $(this).val(); //선택된 연도 담기
-		
-
-					
 					DashboardSelectData(year); 
 				})
 			})

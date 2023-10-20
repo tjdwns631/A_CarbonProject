@@ -1,29 +1,17 @@
 package carbon.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.io.FilenameUtils;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import carbon.dto.CategoryDto;
 import carbon.dto.TestDto;
-import carbon.mapper.UploadDataMapper;
 import carbon.service.UploadService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,7 +28,6 @@ public class UploadController {
 		return "upload";
 
 	}
-	
 	
 	@RequestMapping("/inser_test.do")
 	@ResponseBody
@@ -65,40 +52,8 @@ public class UploadController {
 		
 		//product 테이블 insert -> cbnrt 테이블 insert -> insert 한 idx 값 각 각 반환 후 -> data 테이블 insert
 		
-		String extension = FilenameUtils.getExtension(file.getOriginalFilename()); // 
-		System.out.println(extension);
-		if (!extension.equals("xlsx") && !extension.equals("xls")) {
-			throw new IOException("엑셀파일만 업로드 해주세요.");
-		}
-
-		Workbook workbook = null;
-
-		if (extension.equals("xlsx")) {
-			workbook = new XSSFWorkbook(file.getInputStream());
-		} else if (extension.equals("xls")) {
-			workbook = new HSSFWorkbook(file.getInputStream());
-		}
-
-		List<TestDto> dataList = new ArrayList<>();
+		uploadservice.upload_excel_data(file);
 		
-		//시트 가져오기
-		Sheet worksheet = workbook.getSheetAt(0);
-		// 0번째줄 읽기
-		Row row = worksheet.getRow(0);
-
-		System.out.println(row);
-		System.out.println(worksheet.getPhysicalNumberOfRows()); // 총 열 갯수
-		
-		TestDto testdto = new TestDto();
-		/*
-		 * testdto.setTest_content(row.getCell(0).getStringCellValue());
-		 * testdto.setTest_date(row.getCell(1).getStringCellValue());
-		 * testdto.setNum((int)row.getCell(2).getNumericCellValue());
-		 */
-		
-		workbook.close();
-		log.info("list={}", testdto);
-
 		return "redirect:/upload.do";
 
 	}

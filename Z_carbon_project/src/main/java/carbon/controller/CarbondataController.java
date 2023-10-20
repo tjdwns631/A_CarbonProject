@@ -95,11 +95,12 @@ public class CarbondataController {
 		
 	}
 	
-	@RequestMapping("DashboardSelectList.do")
+	@RequestMapping("/dashboardSelectList.do")
 	@ResponseBody 
 	//선택 연도별 감축량 데이터 및 배출량 데이터 조회 
 	public Map<String, Object> dashboardSelectList(@RequestParam(value="year" , required = false) Integer year){
 		
+		System.out.println("dashboardSelectListdashboardSelectList");
 		System.out.println("year tear : "+year);
 		
 		Integer low_date = 2018;
@@ -124,14 +125,13 @@ public class CarbondataController {
 		}
 		System.out.println("prdt_nm : " + Arrays.deepToString(prdt_nm));
 		
-		
 		List<CbntrdataDto> data3 = carbondataservice.SelectLowData(low_date); //감축량
 		log.info("date3= {}", data3);
+		System.out.println("data3.size()data3.size()" + data3.size());
 		
 		Integer total_low_val =0; //총 감축 배출량
 		Integer di_low_val =0; //직접 배출
 		Integer indi_low_val =0; // 간접 배출
-		
 		for (int i = 0; i < data3.size(); i++) {
 			Low_arr[i] = data3.get(i).getData_val();
 			total_low_val += data3.get(i).getData_val();
@@ -209,12 +209,27 @@ public class CarbondataController {
 		String[] cate_nm = new String[category.size()]; // 
 		Integer[] cate_sn = new Integer[category.size()];
 		Integer[] Low_arr = new Integer[category.size()]; // 큰 배열->연도->작은배열->대분류별 데이터 입력
-		Integer max = catecount.get(0).getCount();
-
-		for (int i = 0; i < catecount.size(); i++) {// 카테고리수 최대값 구하기
-			max = Math.max(max, catecount.get(i).getCount());
+		Integer[] cate_count = new Integer[category.size()]; // 총갯수 카테고리별 활동자료 수
+		for(int i = 0; i<category.size(); i++) {cate_count[i] = 0;}
+//		Integer max = catecount.get(0).getCount();
+		
+		for(int i = 0; i< catecount.size(); i++) {
+			if(catecount.get(i).getCate_nm().equals("에너지")) {cate_count[0] += 1;}
+			if(catecount.get(i).getCate_nm().equals("산업공정")) {	cate_count[1] += 1;}
+			if(catecount.get(i).getCate_nm().equals("농업")) {cate_count[2] += 1;	}
+			if(catecount.get(i).getCate_nm().equals("LULUCF")) {cate_count[3] += 1;}
+			if(catecount.get(i).getCate_nm().equals("폐기물")) {cate_count[4] += 1;}
+			if(catecount.get(i).getCate_nm().equals("전력(간접)")) {cate_count[5] += 1;}
+			if(catecount.get(i).getCate_nm().equals("폐기물(간접)")) {cate_count[6] += 1;}
 		}
-		Integer[][] Arr = new Integer[category.size()][max];
+		
+		System.out.println("cate_count "+Arrays.toString(cate_count));
+		
+		/*
+		 * for (int i = 0; i < cate_count.length; i++) {// 카테고리수 최대값 구하기 max =
+		 * Math.max(max, cate_count.length); } Integer[][] Arr = new
+		 * Integer[category.size()][max];
+		 */
 		for (int i = 0; i < category.size(); i++) {
 			if(category.get(i).getCate_upr_sn().equals(2)) {
 				cate_nm[i] = category.get(i).getCate_nm()+"(직접)"; // 대분류 카테고리 명
@@ -223,27 +238,29 @@ public class CarbondataController {
 			}
 			cate_sn[i] = category.get(i).getCate_sn(); // 대분류 카테고리 idx
 			Low_arr[i] = 0; // 각 대분류별 데이터 
-			for(int j = 0; j < catecount.get(i).getCount(); j++) {
-				Arr[i][j] = 0;
-			}
+			/*
+			 * for(int j = 0; j < catecount.get(i).getCount(); j++) { Arr[i][j] = 0; }
+			 */
 		}
+		System.out.println("cate_nm "+Arrays.toString(cate_nm));
+		System.out.println("cate_nm "+Arrays.toString(cate_count));
 		
 		String[] cata_name ={"에너지","산업공정","농업","LULUCF","폐기물","전력(간접)","폐기물(간접)"};
 		List<CategoryDto> prdt_info_energy =carbondataservice.SelectviPrdtnm(cata_name[0]); //배출인벤 에너지 활동자료명 가져옴
 		log.info("prdt_info_energyprdt_info_energy= {}", prdt_info_energy);
 		/**/
-		String[] energy_nm = new String[catecount.get(0).getCount()];
-		Integer[] energy_sn = new Integer[catecount.get(0).getCount()];
-		Integer[] energy_val = new Integer[catecount.get(0).getCount()];
+		String[] energy_nm = new String[cate_count[0]];
+		Integer[] energy_sn = new Integer[cate_count[0]];
+		Integer[] energy_val = new Integer[cate_count[0]];
 		for(int i =0; i<prdt_info_energy.size(); i++) {
 			energy_sn[i] = prdt_info_energy.get(i).getPrdt_sn();
 			energy_nm[i] = prdt_info_energy.get(i).getPrdt_nm();
 			energy_val[i] = 0;
 		}
 		/**/
-		String[] indus_nm  = new String[catecount.get(1).getCount()];
-		Integer[] indus_sn = new Integer[catecount.get(1).getCount()];
-		Integer[] indus_val = new Integer[catecount.get(1).getCount()];
+		String[] indus_nm  = new String[cate_count[1]];
+		Integer[] indus_sn = new Integer[cate_count[1]];
+		Integer[] indus_val = new Integer[cate_count[1]];
 		List<CategoryDto> prdt_info_indus =carbondataservice.SelectviPrdtnm(cata_name[1]); //배출인벤 에너지 활동자료명 가져옴
 		for(int i =0; i<prdt_info_indus.size(); i++) {
 			indus_sn[i] = prdt_info_indus.get(i).getPrdt_sn();
@@ -251,9 +268,9 @@ public class CarbondataController {
 			indus_val[i] = 0;
 		}
 		/**/
-		String[] agri_nm  = new String[catecount.get(2).getCount()];
-		Integer[] agri_sn = new Integer[catecount.get(2).getCount()];
-		Integer[] agri_val = new Integer[catecount.get(2).getCount()];
+		String[] agri_nm  = new String[cate_count[2]];
+		Integer[] agri_sn = new Integer[cate_count[2]];
+		Integer[] agri_val = new Integer[cate_count[2]];
 		List<CategoryDto> prdt_info_agri =carbondataservice.SelectviPrdtnm(cata_name[2]); //배출인벤 에너지 활동자료명 가져옴
 		for(int i =0; i<prdt_info_agri.size(); i++) {
 			agri_sn[i] = prdt_info_agri.get(i).getPrdt_sn();
@@ -261,9 +278,9 @@ public class CarbondataController {
 			agri_val[i] = 0;
 		}
 		/**/
-		String[] lulucf_nm  = new String[catecount.get(3).getCount()];
-		Integer[] lulucf_sn = new Integer[catecount.get(3).getCount()];
-		Integer[] lulucf_val = new Integer[catecount.get(3).getCount()];
+		String[] lulucf_nm  = new String[cate_count[3]];
+		Integer[] lulucf_sn = new Integer[cate_count[3]];
+		Integer[] lulucf_val = new Integer[cate_count[3]];
 		List<CategoryDto> prdt_info_lulucf =carbondataservice.SelectviPrdtnm(cata_name[3]); //배출인벤 에너지 활동자료명 가져옴
 		for(int i =0; i<prdt_info_lulucf.size(); i++) {
 			lulucf_sn[i] = prdt_info_lulucf.get(i).getPrdt_sn();
@@ -271,9 +288,9 @@ public class CarbondataController {
 			lulucf_val[i] = 0;
 		}
 		/**/
-		String[] waste_nm  = new String[catecount.get(4).getCount()];
-		Integer[] waste_sn = new Integer[catecount.get(4).getCount()];
-		Integer[] waste_val = new Integer[catecount.get(4).getCount()];
+		String[] waste_nm  = new String[cate_count[4]];
+		Integer[] waste_sn = new Integer[cate_count[4]];
+		Integer[] waste_val = new Integer[cate_count[4]];
 		List<CategoryDto> prdt_info_waste =carbondataservice.SelectviPrdtnm(cata_name[4]); //배출인벤 에너지 활동자료명 가져옴
 		for(int i =0; i<prdt_info_waste.size(); i++) {
 			waste_sn[i] = prdt_info_waste.get(i).getPrdt_sn();
@@ -281,9 +298,9 @@ public class CarbondataController {
 			waste_val[i] = 0;
 		}
 		/**/
-		String[] elect_nm  = new String[catecount.get(5).getCount()];
-		Integer[] elect_sn = new Integer[catecount.get(5).getCount()];
-		Integer[] elect_val = new Integer[catecount.get(5).getCount()];
+		String[] elect_nm  = new String[cate_count[5]];
+		Integer[] elect_sn = new Integer[cate_count[5]];
+		Integer[] elect_val = new Integer[cate_count[5]];
 		List<CategoryDto> prdt_info_elect =carbondataservice.SelectviPrdtnm(cata_name[5]); //배출인벤 에너지 활동자료명 가져옴
 		for(int i =0; i<prdt_info_elect.size(); i++) {
 			elect_sn[i] = prdt_info_elect.get(i).getPrdt_sn();
@@ -291,9 +308,9 @@ public class CarbondataController {
 			elect_val[i] = 0;
 		}
 		/**/
-		String[] indiwaste_nm  = new String[catecount.get(6).getCount()];
-		Integer[] indiwaste_sn = new Integer[catecount.get(6).getCount()];
-		Integer[] indiwaste_val = new Integer[catecount.get(6).getCount()];
+		String[] indiwaste_nm  = new String[cate_count[6]];
+		Integer[] indiwaste_sn = new Integer[cate_count[6]];
+		Integer[] indiwaste_val = new Integer[cate_count[6]];
 		List<CategoryDto> prdt_info_indiwaste =carbondataservice.SelectviPrdtnm(cata_name[6]); //배출인벤 에너지 활동자료명 가져옴
 		for(int i =0; i<prdt_info_indiwaste.size(); i++) {
 			indiwaste_sn[i] = prdt_info_indiwaste.get(i).getPrdt_sn();
@@ -445,20 +462,31 @@ public class CarbondataController {
 		String[] cate_nm = new String[category.size()]; // 
 		Integer[] cate_sn = new Integer[category.size()];
 		Integer[] Low_arr = new Integer[category.size()]; // 큰 배열->연도->작은배열->대분류별 데이터 입력
-		Integer max = catecount.get(0).getCount();
+		Integer[] cate_count = new Integer[category.size()]; // 총갯수 카테고리별 활동자료 수
+		for(int i = 0; i<category.size(); i++) {cate_count[i] = 0;}
+//		Integer max = catecount.get(0).getCount();
 		
-		for (int i = 0; i < catecount.size(); i++) {// 카테고리수 최대값 구하기
-			max = Math.max(max, catecount.get(i).getCount());
+//		for (int i = 0; i < catecount.size(); i++) {// 카테고리수 최대값 구하기
+//			max = Math.max(max, catecount.get(i).getCount());
+//		}
+		
+//		Integer[][] Arr = new Integer[category.size()][max];
+		
+		for(int i = 0; i< catecount.size(); i++) {
+			if(catecount.get(i).getCate_nm().equals("에너지")) {cate_count[0] += 1;}
+			if(catecount.get(i).getCate_nm().equals("농업")) {cate_count[1] += 1;	}
+			if(catecount.get(i).getCate_nm().equals("LULUCF")) {cate_count[2] += 1;}
+			if(catecount.get(i).getCate_nm().equals("전력(간접)")) {cate_count[3] += 1;}
+			if(catecount.get(i).getCate_nm().equals("폐기물(간접)")) {cate_count[4] += 1;}
 		}
 		
-		Integer[][] Arr = new Integer[category.size()][max];
 		for (int i = 0; i < category.size(); i++) {
 			cate_nm[i] = category.get(i).getCate_nm(); // 대분류 카테고리 명
 			cate_sn[i] = category.get(i).getCate_sn(); // 대분류 카테고리 idx
 			Low_arr[i] = 0; // 각 대분류별 데이터 
-			for(int j = 0; j < catecount.get(i).getCount(); j++) {
-				Arr[i][j] = 0;
-			}
+//			for(int j = 0; j < catecount.get(i).getCount(); j++) {
+//				Arr[i][j] = 0;
+//			}
 		}
 		
 		String[] cata_name ={"에너지","농업","LULUCF","전력(간접)","폐기물(간접)"};
@@ -466,18 +494,18 @@ public class CarbondataController {
 		log.info("prdt_info_energy= {}", prdt_info_energy);
 		log.info("catecount= {}", catecount);
 		/**/
-		String[] energy_nm = new String[catecount.get(0).getCount()];
-		Integer[] energy_sn = new Integer[catecount.get(0).getCount()];
-		Integer[] energy_val = new Integer[catecount.get(0).getCount()];
+		String[] energy_nm = new String[cate_count[0]];
+		Integer[] energy_sn = new Integer[cate_count[0]];
+		Integer[] energy_val = new Integer[cate_count[0]];
 		for(int i =0; i<prdt_info_energy.size(); i++) {
 			energy_sn[i] = prdt_info_energy.get(i).getPrdt_sn();
 			energy_nm[i] = prdt_info_energy.get(i).getPrdt_nm();
 			energy_val[i] = 0;
 		}
 		/**/
-		String[] agri_nm  = new String[catecount.get(1).getCount()];
-		Integer[] agri_sn = new Integer[catecount.get(1).getCount()];
-		Integer[] agri_val = new Integer[catecount.get(1).getCount()];
+		String[] agri_nm  = new String[cate_count[1]];
+		Integer[] agri_sn = new Integer[cate_count[1]];
+		Integer[] agri_val = new Integer[cate_count[1]];
 		List<CategoryDto> prdt_info_agri =carbondataservice.SelectLowPrdtnm(cata_name[1]); //배출인벤 에너지 활동자료명 가져옴
 		for(int i =0; i<prdt_info_agri.size(); i++) {
 			agri_sn[i] = prdt_info_agri.get(i).getPrdt_sn();
@@ -485,9 +513,9 @@ public class CarbondataController {
 			agri_val[i] = 0;
 		}
 		/**/
-		String[] lulucf_nm  = new String[catecount.get(2).getCount()];
-		Integer[] lulucf_sn = new Integer[catecount.get(2).getCount()];
-		Integer[] lulucf_val = new Integer[catecount.get(2).getCount()];
+		String[] lulucf_nm  = new String[cate_count[2]];
+		Integer[] lulucf_sn = new Integer[cate_count[2]];
+		Integer[] lulucf_val = new Integer[cate_count[2]];
 		List<CategoryDto> prdt_info_lulucf =carbondataservice.SelectLowPrdtnm(cata_name[2]); //배출인벤 에너지 활동자료명 가져옴
 		for(int i =0; i<prdt_info_lulucf.size(); i++) {
 			lulucf_sn[i] = prdt_info_lulucf.get(i).getPrdt_sn();
@@ -495,9 +523,9 @@ public class CarbondataController {
 			lulucf_val[i] = 0;
 		}
 		/**/
-		String[] elect_nm  = new String[catecount.get(3).getCount()];
-		Integer[] elect_sn = new Integer[catecount.get(3).getCount()];
-		Integer[] elect_val = new Integer[catecount.get(3).getCount()];
+		String[] elect_nm  = new String[cate_count[3]];
+		Integer[] elect_sn = new Integer[cate_count[3]];
+		Integer[] elect_val = new Integer[cate_count[3]];
 		List<CategoryDto> prdt_info_elect =carbondataservice.SelectLowPrdtnm(cata_name[3]); //배출인벤 에너지 활동자료명 가져옴
 		for(int i =0; i<prdt_info_elect.size(); i++) {
 			elect_sn[i] = prdt_info_elect.get(i).getPrdt_sn();
@@ -505,9 +533,9 @@ public class CarbondataController {
 			elect_val[i] = 0;
 		}
 		/**/
-		String[] indiwaste_nm  = new String[catecount.get(4).getCount()];
-		Integer[] indiwaste_sn = new Integer[catecount.get(4).getCount()];
-		Integer[] indiwaste_val = new Integer[catecount.get(4).getCount()];
+		String[] indiwaste_nm  = new String[cate_count[4]];
+		Integer[] indiwaste_sn = new Integer[cate_count[4]];
+		Integer[] indiwaste_val = new Integer[cate_count[4]];
 		List<CategoryDto> prdt_info_indiwaste =carbondataservice.SelectLowPrdtnm(cata_name[4]); //배출인벤 에너지 활동자료명 가져옴
 		for(int i =0; i<prdt_info_indiwaste.size(); i++) {
 			indiwaste_sn[i] = prdt_info_indiwaste.get(i).getPrdt_sn();

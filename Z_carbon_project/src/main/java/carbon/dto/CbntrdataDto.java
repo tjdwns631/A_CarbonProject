@@ -11,6 +11,8 @@ public class CbntrdataDto { // data테이블 값 dto
 	String lev_2; 		// 배출법
 	Integer cate_sn_3;	// 대분류 sn
 	String lev_3;		// 대분류
+	
+	Integer data_sn;
 	Integer data_date;
 	Integer data_val;
 	

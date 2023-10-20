@@ -19,6 +19,33 @@
 		INSERT INTO tb_board_comment (member_idx, cmt_content, board_idx, cmt_upidx, cmt_date)
 		VALUES (#{member_idx}, #{cmt_content}, #{board_idx}, #{cmt_upidx}, #{cmt_date})
 	</insert> -->
+	<!-- 엑셀 업로드 시 카테고리 테이블 cate_sn 찾기 -->
+	<select id="categorysn" parameterType="hashMap" resultType="carbon.dto.CategoryDto">
+		SELECT distinct c.cate_nm as cate_nm, c.cate_sn as cate_sn, c.cate_upr_sn as cate_upr_sn
+		FROM comt_cbntr_product a JOIN comt_cbntr_data b ON a.prdt_sn = b.prdt_sn
+		JOIN comt_cbntr_category c ON a.cate_sn = c.cate_sn
+		JOIN comt_cbntr_category b2 ON b2.cate_sn = c.cate_upr_sn
+		JOIN comt_cbntr_category b3 ON b3.cate_sn = b2.cate_upr_sn
+		WHERE b3.cate_nm = #{arg0} and b2.cate_nm = #{arg1} and c.cate_nm = #{arg2}
+	</select>
 	
+	<!-- 엑셀 업로드 시 카테고리 테이블 cate_sn 찾기 -->
+	<select id="product_select" parameterType="hashMap" resultType="carbon.dto.ProductDto">
+		SELECT *
+		FROM comt_cbntr_product
+		WHERE cate_sn = #{arg0} and prdt_nm = #{arg1}
+	</select>
+	
+	<!-- 활동자료 등록 -->
+	<insert id="product_insert" parameterType="carbon.dto.ProductDto" useGeneratedKeys="true" keyProperty="prdt_sn" keyColumn="prdt_sn">
+		INSERT INTO comt_cbntr_product (cate_sn, prdt_nm, prdt_note)
+		VALUES (#{cate_sn}, #{prdt_nm}, #{prdt_note})
+	</insert>
 
+	<select id="data_select" parameterType="hashMap"	resultType="carbon.dto.CbntrdataDto">
+		SELECT data_sn, data_date, data_exha_val date_val, data_note, prdt_sn
+		FROM comt_cbntr_data
+		WHERE data_date = #{arg0} and prdt_sn = #{arg1}
+	</select>
+	
 </mapper>
