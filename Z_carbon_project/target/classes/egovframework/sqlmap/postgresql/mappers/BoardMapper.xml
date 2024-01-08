@@ -2,12 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="carbon.mapper.BoardMapper">
 
-	<resultMap type="carbon.dto.MemberDto" id="MemberDto">
-		<id column="MEMBER_IDX" property="member_idx" />
-		<result column="MEMBER_ID" property="member_id" />
-		<result column="MEMBER_PWD" property="member_pwd" />			
-		<result column="MEMBER_NAME" property="member_name" />
-	</resultMap>
 	
 	<resultMap type="carbon.dto.Tb_categoryDto" id="Tb_categoryDto">
 		<id column="CATE_IDX" property="cate_idx" />
@@ -25,7 +19,6 @@
 		<result column="BOARD_DATE" property="board_date" />
 		<result column="BOARD_UPD" property="board_upd" />
 		<result column="COUNT" property="count" />
-		<collection property="memberdto" resultMap="MemberDto" />
 		<collection property="tb_categorydto" resultMap="Tb_categoryDto" />
 	</resultMap>
 	

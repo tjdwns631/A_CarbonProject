@@ -36,6 +36,12 @@
  	<definition name="map/map_test" extends="no-tiles"> <!-- definition name은 controller에서 return 해주는 값을 매칭 -->
 		<put-attribute name="notemple" value="/WEB-INF/jsp/map/map_test.jsp" />
 	</definition>
+	<definition name="map/test_m" extends="no-tiles"> <!-- definition name은 controller에서 return 해주는 값을 매칭 -->
+		<put-attribute name="notemple" value="/WEB-INF/jsp/map/test_m.jsp" />
+	</definition>
+	<definition name="map/map_new_lay" extends="no-tiles"> <!-- definition name은 controller에서 return 해주는 값을 매칭 -->
+		<put-attribute name="notemple" value="/WEB-INF/jsp/map/map_new_lay.jsp" />
+	</definition>
 	<definition name="error" extends="no-tiles">
 		<put-attribute name="notemple" value="${pageContext.request.contextPath}/common/error.jsp" />
 	</definition>
